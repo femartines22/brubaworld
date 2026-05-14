@@ -7,7 +7,7 @@ const features = [
     id: 1,
     title: "Personalização total",
     description:
-      "Seu roteiro começa do zero, sempre. Destinos, ritmo, estilo de viagem, orçamento, com quem vai. Cada detalhe que você me conta vira escolha no roteiro.",
+      "Seu roteiro começa do zero, sempre. Destinos, ritmo, estilo de viagem, com quem vai. Cada detalhe que você me conta vira escolha no roteiro.",
     gradient: "radial-gradient(circle at 50% 0%, #F2277E 0%, #f7b3ce 32%, #FAFAF8 62%, #FAFAF8 100%)",
     visual: (
       <div className="absolute top-6 left-5 right-5">
@@ -151,16 +151,13 @@ export default function CoreFeatures() {
               backgroundClip: "text",
             }}
           >
-            por que brubaworld?
+            por quê brubaworld?
           </span>
           <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
             Feito pra você.
             <br />
             Não pra todo mundo.
           </h2>
-          <p className="font-jakarta font-light text-preto/50 text-lg mt-5 max-w-lg mx-auto leading-relaxed">
-            Cada roteiro começa do zero. A sua viagem não cabe em template.
-          </p>
         </div>
 
         {/* Cards grid */}

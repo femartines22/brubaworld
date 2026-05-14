@@ -2,10 +2,10 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
+import About from "@/components/About";
+import HowItWorks from "@/components/HowItWorks";
 import CoreFeatures from "@/components/CoreFeatures";
 import Packages from "@/components/Packages";
-import HowItWorks from "@/components/HowItWorks";
-import About from "@/components/About";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
@@ -17,10 +17,10 @@ export default function Home() {
       <main>
         <Hero />
         <Marquee />
+        <About />
+        <HowItWorks />
         <CoreFeatures />
         <Packages />
-        <HowItWorks />
-        <About />
         <ContactForm />
       </main>
       <Footer />

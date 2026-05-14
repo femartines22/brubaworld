@@ -14,14 +14,14 @@ const steps = [
     number: "02",
     title: "Eu monto o seu roteiro",
     description:
-      "Vou pesquisar, organizar e montar um roteiro 100% baseado no que você me contou. Do zero. Sem atalhos.",
+      "Vou pesquisar, organizar e montar um roteiro 100% baseado no que você me contou. Do zero. Dia a dia, cada detalhe pensado para você.",
     dark: true,
   },
   {
     number: "03",
     title: "Você recebe e viaja",
     description:
-      "PDF na sua caixa de entrada (+ mapa se for o pacote completo). Pronto pra usar, do pré-embarque ao último dia.",
+      "PDF entregue na sua caixa de entrada — com Google Maps interativo caso opte pelo pacote completo. Pronto para ser utilizado do primeiro ao último dia.",
     dark: false,
   },
 ];
@@ -101,8 +101,18 @@ export default function HowItWorks() {
           ))}
         </div>
 
+        {/* Informational note */}
+        <div className="reveal mt-10 max-w-3xl mx-auto">
+          <p className="font-jakarta font-light text-preto/40 text-sm text-center leading-relaxed italic">
+            Vale lembrar: o serviço brubaworld é de consultoria e planejamento.
+            Não realizo compra de passagens, reservas de hotéis, passeios ou
+            restaurantes — mas incluo todas as indicações e dicas no seu
+            roteiro, como uma amiga que já foi e sabe exatamente o que vale.
+          </p>
+        </div>
+
         {/* CTA bottom */}
-        <div className="reveal text-center mt-16">
+        <div className="reveal text-center mt-10">
           <a
             href="#contato"
             className="inline-flex items-center gap-2 bg-preto text-offwhite font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-preto/80 hover:scale-105 transition-all duration-200"

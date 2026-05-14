@@ -143,6 +143,12 @@ export default function Packages() {
           Cada roteiro é construído do zero. Nada de template. Nada de
           copia-e-cola.
         </p>
+
+        {/* Partnership note */}
+        <p className="reveal font-jakarta font-light text-preto/35 text-xs text-center mt-4">
+          Também conto com parcerias para reserva de hotéis e benefícios em
+          cartões internacionais.
+        </p>
       </div>
     </section>
   );

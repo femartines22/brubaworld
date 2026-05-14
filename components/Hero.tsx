@@ -27,12 +27,12 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-10 py-24">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-10 py-24 w-full">
         <div ref={revealRef} className="reveal max-w-3xl">
           {/* Pill tag */}
           <div className="inline-flex items-center gap-2 bg-rosa/15 border border-rosa/30 text-rosa font-jakarta font-medium text-xs px-4 py-1.5 rounded-full mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-rosa inline-block" />
-            Roteiros personalizados, especialista em Europa
+            Concierge. Especialista em personalização.
           </div>
 
           {/* Headline */}
@@ -44,8 +44,7 @@ export default function Hero() {
 
           {/* Description */}
           <p className="font-jakarta font-light text-offwhite/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            Não é pacote turístico. Não é template pra todo mundo. É o seu
-            roteiro, feito pra você, baseado em quem você é e no que você quer
+            Seu roteiro, feito para você. Baseado em quem você é e no que quer
             viver.
           </p>
 
