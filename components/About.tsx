@@ -61,30 +61,24 @@ export default function About() {
               </p>
             </div>
 
-            {/* Language badges */}
+            {/* Language line */}
             <div className="reveal flex flex-wrap gap-2">
-              {["🇧🇷 Português", "🇫🇷 Francês", "🇬🇧 Inglês", "🇪🇸 Espanhol*"].map(
-                (lang) => (
-                  <span
-                    key={lang}
-                    className="inline-flex items-center font-jakarta font-medium text-sm bg-white/20 text-white border border-white/30 px-4 py-1.5 rounded-full"
-                  >
-                    {lang}
-                  </span>
-                )
-              )}
-              <span className="font-jakarta font-light text-white/50 text-xs self-center ml-1">
-                *me arrisco no espanhol
-              </span>
+              {["🇧🇷 Português", "🇫🇷 Francês", "🇬🇧 Inglês"].map((lang) => (
+                <span
+                  key={lang}
+                  className="inline-flex items-center font-jakarta font-medium text-sm bg-white/20 text-white border border-white/30 px-4 py-1.5 rounded-full"
+                >
+                  {lang}
+                </span>
+              ))}
             </div>
 
             {/* Body paragraphs */}
             <div className="reveal space-y-4 font-jakarta font-light text-white/80 text-base md:text-lg leading-relaxed">
               <p>
-                Já perdi a conta de quantos roteiros montei para mim, para a
-                família e para amigos. Sempre do mesmo jeito: pesquisando tudo
-                do zero e pensando no que faz sentido para{" "}
-                <em>aquela</em> pessoa, não para qualquer pessoa.
+                Já perdi a conta de quantos roteiros montei. Para mim. Para
+                amigos. Para família. Sempre do mesmo jeito: pesquisando tudo do
+                zero e pensando no que faz sentido para aquela pessoa.
               </p>
               <p>
                 O <span className="font-medium text-white">@brubaworld</span>{" "}
@@ -98,7 +92,7 @@ export default function About() {
             </div>
 
             {/* Quote box */}
-            <div className="reveal bg-manteiga rounded-2xl p-6 md:p-8">
+            <div className="reveal rounded-2xl p-6 md:p-8" style={{ backgroundColor: "#F5E6A3" }}>
               <p className="font-abril text-preto text-xl md:text-2xl leading-snug">
                 &ldquo;Eu não vendo roteiro. Eu planejo a sua viagem como se
                 fosse a minha.&rdquo;
@@ -127,9 +121,9 @@ export default function About() {
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-manteiga/30 rounded-full blur-2xl pointer-events-none" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-preto/20 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Floating badge */}
+              {/* Floating badge — sem ícone */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full whitespace-nowrap shadow-lg">
-                ✈ 20+ países visitados
+                20+ países visitados
               </div>
             </div>
           </div>

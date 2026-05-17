@@ -23,7 +23,12 @@ export default function Packages() {
   }, []);
 
   return (
-    <section id="pacotes" ref={ref} className="bg-manteiga py-24 md:py-32 px-5 md:px-10">
+    <section
+      id="pacotes"
+      ref={ref}
+      className="py-24 md:py-32 px-5 md:px-10"
+      style={{ backgroundColor: "#F5E6A3" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="reveal mb-16">
@@ -85,9 +90,12 @@ export default function Packages() {
 
           {/* Card 2 — PDF + Google Maps (destaque) */}
           <div className="reveal bg-preto rounded-3xl p-8 md:p-10 flex flex-col gap-6 relative overflow-hidden">
+            {/* Rosa accent border */}
+            <div className="absolute left-0 top-0 bottom-0 w-1 bg-rosa rounded-l-3xl" />
+
             {/* Highlight badge */}
             <div className="absolute top-6 right-6">
-              <span className="inline-block font-jakarta font-semibold text-xs text-preto bg-manteiga px-3 py-1 rounded-full">
+              <span className="inline-block font-jakarta font-semibold text-xs text-preto bg-rosa px-3 py-1 rounded-full text-white">
                 mais popular ⭐
               </span>
             </div>
@@ -96,10 +104,10 @@ export default function Packages() {
             <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-rosa/10 rounded-full blur-2xl pointer-events-none" />
 
             <div>
-              <span className="inline-block font-jakarta font-medium text-xs text-offwhite/40 uppercase tracking-widest border border-offwhite/10 px-3 py-1 rounded-full mb-4">
+              <span className="inline-block font-jakarta font-medium text-xs text-rosa uppercase tracking-widest border border-rosa/30 px-3 py-1 rounded-full mb-4">
                 Completo
               </span>
-              <h3 className="font-abril text-offwhite text-3xl md:text-4xl">
+              <h3 className="font-abril text-rosa text-3xl md:text-4xl">
                 PDF +<br />Google Maps
               </h3>
               <p className="font-jakarta font-light text-offwhite/60 mt-3 leading-relaxed">
@@ -112,25 +120,25 @@ export default function Packages() {
             <ul className="flex flex-col gap-3 flex-1">
               {[
                 "Tudo do pacote Só PDF",
-                "Mapa Google My Maps personalizado",
+                "Google Maps personalizado",
                 "Todos os pontos marcados e organizados",
                 "Funciona offline no celular",
                 "Fácil de compartilhar com acompanhantes",
               ].map((item) => (
                 <li key={item} className="flex items-start gap-3 font-jakarta font-light text-offwhite/70 text-sm">
-                  <span className="text-manteiga mt-0.5 text-lg leading-none">✓</span>
+                  <span className="text-rosa mt-0.5 text-lg leading-none">✓</span>
                   {item}
                 </li>
               ))}
             </ul>
 
             <div className="pt-4 border-t border-offwhite/10">
-              <p className="font-syne font-bold text-manteiga text-lg mb-4">
+              <p className="font-syne font-bold text-rosa text-lg mb-4">
                 Preço sob consulta
               </p>
               <a
                 href="#contato"
-                className="inline-flex items-center gap-2 bg-manteiga text-preto font-jakarta font-semibold text-sm px-6 py-3 rounded-full hover:bg-manteiga/90 hover:scale-105 transition-all duration-200"
+                className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-6 py-3 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200"
               >
                 quero esse →
               </a>

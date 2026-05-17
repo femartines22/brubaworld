@@ -92,11 +92,10 @@ export default function ContactForm() {
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Preenche o formulário e eu entro em contato para entender
-                melhor o que você precisa. Sem compromisso.
-              </p>
-              <p>
-                Cada conversa é diferente. Cada viagem é diferente.
+                Vou ler pessoalmente seu briefing e entender o que faz sentido
+                pra você. Preenche o formulário e eu entro em contato para
+                conversar melhor sobre a sua viagem. Sem compromisso. Cada
+                conversa é diferente. Cada viagem é diferente.
               </p>
             </div>
 
@@ -105,7 +104,6 @@ export default function ContactForm() {
               {[
                 "100% individual",
                 "feito do zero",
-                "sem template",
                 "resposta em até 48h",
               ].map((tag) => (
                 <span

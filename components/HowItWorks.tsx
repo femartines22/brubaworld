@@ -9,6 +9,7 @@ const steps = [
     description:
       "Me conta tudo: destinos que quer, quanto tempo tem, com quem vai, estilo de viagem, orçamento, medos, expectativas. Quanto mais detalhe, melhor o roteiro.",
     dark: false,
+    pink: false,
   },
   {
     number: "02",
@@ -16,13 +17,15 @@ const steps = [
     description:
       "Vou pesquisar, organizar e montar um roteiro 100% baseado no que você me contou. Do zero. Dia a dia, cada detalhe pensado para você.",
     dark: true,
+    pink: false,
   },
   {
     number: "03",
     title: "Você recebe e viaja",
     description:
-      "PDF entregue na sua caixa de entrada — com Google Maps interativo caso opte pelo pacote completo. Pronto para ser utilizado do primeiro ao último dia.",
+      "PDF entregue na sua caixa de entrada, com Google Maps interativo caso opte pelo pacote completo. Pronto para ser utilizado do primeiro ao último dia.",
     dark: false,
+    pink: true,
   },
 ];
 
@@ -46,6 +49,30 @@ export default function HowItWorks() {
     return () => observer.disconnect();
   }, []);
 
+  const cardClass = (step: typeof steps[0]) => {
+    if (step.pink) return "bg-rosa text-white";
+    if (step.dark) return "bg-preto text-offwhite";
+    return "bg-white border border-preto/8";
+  };
+
+  const numberClass = (step: typeof steps[0]) => {
+    if (step.pink) return "text-white/30";
+    if (step.dark) return "text-manteiga";
+    return "text-rosa/20";
+  };
+
+  const titleClass = (step: typeof steps[0]) => {
+    if (step.pink) return "text-white";
+    if (step.dark) return "text-offwhite";
+    return "text-preto";
+  };
+
+  const descClass = (step: typeof steps[0]) => {
+    if (step.pink) return "text-white/80";
+    if (step.dark) return "text-offwhite/60";
+    return "text-preto/60";
+  };
+
   return (
     <section
       id="como-funciona"
@@ -68,32 +95,16 @@ export default function HowItWorks() {
           {steps.map((step) => (
             <div
               key={step.number}
-              className={`reveal rounded-3xl p-8 md:p-10 flex flex-col gap-6 ${
-                step.dark
-                  ? "bg-preto text-offwhite"
-                  : "bg-white border border-preto/8"
-              }`}
+              className={`reveal rounded-3xl p-8 md:p-10 flex flex-col gap-6 ${cardClass(step)}`}
             >
-              <span
-                className={`font-syne font-extrabold text-6xl leading-none ${
-                  step.dark ? "text-manteiga" : "text-rosa/20"
-                }`}
-              >
+              <span className={`font-syne font-extrabold text-6xl leading-none ${numberClass(step)}`}>
                 {step.number}
               </span>
               <div>
-                <h3
-                  className={`font-abril text-2xl md:text-3xl leading-tight mb-4 ${
-                    step.dark ? "text-offwhite" : "text-preto"
-                  }`}
-                >
+                <h3 className={`font-abril text-2xl md:text-3xl leading-tight mb-4 ${titleClass(step)}`}>
                   {step.title}
                 </h3>
-                <p
-                  className={`font-jakarta font-light leading-relaxed ${
-                    step.dark ? "text-offwhite/60" : "text-preto/60"
-                  }`}
-                >
+                <p className={`font-jakarta font-light leading-relaxed ${descClass(step)}`}>
                   {step.description}
                 </p>
               </div>
@@ -103,12 +114,20 @@ export default function HowItWorks() {
 
         {/* Informational note */}
         <div className="reveal mt-10 max-w-3xl mx-auto">
-          <p className="font-jakarta font-light text-preto/40 text-sm text-center leading-relaxed italic">
-            Vale lembrar: o serviço brubaworld é de consultoria e planejamento.
-            Não realizo compra de passagens, reservas de hotéis, passeios ou
-            restaurantes — mas incluo todas as indicações e dicas no seu
-            roteiro, como uma amiga que já foi e sabe exatamente o que vale.
-          </p>
+          <div className="flex items-start gap-4 bg-white border border-preto/8 rounded-2xl p-6">
+            <div className="flex-shrink-0 w-7 h-7 rounded-full border border-preto/20 flex items-center justify-center mt-0.5">
+              <span className="font-jakarta font-semibold text-preto/50 text-sm leading-none">!</span>
+            </div>
+            <p className="font-jakarta font-light text-preto/50 text-sm leading-relaxed">
+              Importante saber: a Brubaworld é uma consultoria e planejamento de
+              viagens personalizada. As reservas de passagens, hotéis, passeios e
+              restaurantes são feitas por você, mas todas as indicações, dicas e
+              o roteiro completo são criados exclusivamente para a sua viagem,
+              como uma amiga que já foi e sabe exatamente o que vale a pena. Após
+              a entrega, está incluída uma rodada de ajustes para garantir que o
+              roteiro fique exatamente como você imaginou.
+            </p>
+          </div>
         </div>
 
         {/* CTA bottom */}
