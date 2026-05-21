@@ -52,11 +52,9 @@ export default function About() {
               <p className="font-jakarta font-light text-white text-base leading-relaxed">
                 Já morei em{" "}
                 <span className="font-semibold">Lille, na França</span>,
-                trabalhei na{" "}
-                <span className="font-semibold">
-                  The Walt Disney Company em Orlando, EUA
-                </span>
-                , como Cast Member e visitei mais de{" "}
+                trabalhei como Cast Member no{" "}
+                <span className="font-semibold">Walt Disney World, em Orlando</span>,
+                e já visitei mais de{" "}
                 <span className="font-semibold">20 países</span>.
               </p>
             </div>
@@ -76,12 +74,15 @@ export default function About() {
             {/* Body paragraphs */}
             <div className="reveal space-y-4 font-jakarta font-light text-white/80 text-base md:text-lg leading-relaxed">
               <p>
-                Já perdi a conta de quantos roteiros montei. Para mim. Para
-                amigos. Para família. Sempre do mesmo jeito: pesquisando tudo do
-                zero e pensando no que faz sentido para aquela pessoa.
+                Já perdi a conta de quantos roteiros montei pra mim, amigos e
+                família. Sempre do mesmo jeito: pesquisando tudo do zero e
+                pensando no que realmente combina com cada pessoa.
               </p>
               <p>
-                O <span className="font-medium text-white">@brubaworld</span>{" "}
+                O{" "}
+                <em className="font-medium text-white not-italic">
+                  @brubaworld
+                </em>{" "}
                 nasceu porque percebi que o mercado era escasso de roteiros
                 realmente exclusivos. Os roteiros prontos não serviam. São
                 genéricos. São cansativos. Não pertencem a ninguém.
@@ -92,7 +93,10 @@ export default function About() {
             </div>
 
             {/* Quote box */}
-            <div className="reveal rounded-2xl p-6 md:p-8" style={{ backgroundColor: "#F5E6A3" }}>
+            <div
+              className="reveal rounded-2xl p-6 md:p-8"
+              style={{ backgroundColor: "#F5E6A3" }}
+            >
               <p className="font-abril text-preto text-xl md:text-2xl leading-snug">
                 &ldquo;Eu não vendo roteiro. Eu planejo a sua viagem como se
                 fosse a minha.&rdquo;
@@ -121,7 +125,7 @@ export default function About() {
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-manteiga/30 rounded-full blur-2xl pointer-events-none" />
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-preto/20 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Floating badge — sem ícone */}
+              {/* Floating badge */}
               <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full whitespace-nowrap shadow-lg">
                 20+ países visitados
               </div>
