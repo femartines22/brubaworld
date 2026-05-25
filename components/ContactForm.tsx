@@ -138,7 +138,20 @@ export default function ContactForm() {
                   </button>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <>
+                  {/* Travel notice */}
+                  <div
+                    className="flex items-start gap-3 rounded-2xl p-4 mb-6"
+                    style={{ backgroundColor: "#F5E6A3" }}
+                  >
+                    <span className="text-lg leading-none mt-0.5 flex-shrink-0">✈</span>
+                    <p className="font-jakarta font-light text-preto/70 text-sm leading-relaxed">
+                      Estou viajando até a segunda semana de junho (testando
+                      mais um roteiro). Seu formulário será salvo e entrarei em
+                      contato assim que voltar.
+                    </p>
+                  </div>
+                  <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-5">
                     <div>
                       <label htmlFor="name" className={labelClass}>
@@ -263,6 +276,7 @@ export default function ContactForm() {
                     Sem spam. Seus dados são só pra montar seu roteiro.
                   </p>
                 </form>
+                </>
               )}
             </div>
           </div>
