@@ -1,18 +1,9 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function ContactForm() {
   const ref = useRef<HTMLElement>(null);
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [form, setForm] = useState({
-    name: "",
-    age: "",
-    phone: "",
-    email: "",
-    instagram: "",
-    source: "",
-  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -31,45 +22,6 @@ export default function ContactForm() {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("sending");
-
-    const url = process.env.NEXT_PUBLIC_FORMSPREE_URL;
-    if (!url) {
-      setStatus("error");
-      return;
-    }
-
-    try {
-      const res = await fetch(url, {
-        method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
-        body: JSON.stringify(form),
-      });
-
-      if (res.ok) {
-        setStatus("success");
-        setForm({ name: "", age: "", phone: "", email: "", instagram: "", source: "" });
-      } else {
-        setStatus("error");
-      }
-    } catch {
-      setStatus("error");
-    }
-  };
-
-  const inputClass =
-    "w-full bg-white/5 border border-offwhite/10 text-offwhite font-jakarta font-light text-base px-5 py-4 rounded-xl placeholder-offwhite/30 focus:outline-none focus:border-rosa focus:bg-white/10 transition-all duration-200";
-
-  const labelClass = "block font-jakarta font-medium text-sm text-offwhite/60 mb-2";
-
   return (
     <section
       id="contato"
@@ -77,8 +29,8 @@ export default function ContactForm() {
       className="bg-offwhite py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left — text */}
+        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+          {/* Left */}
           <div>
             <div className="reveal">
               <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
@@ -92,192 +44,51 @@ export default function ContactForm() {
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Vou ler pessoalmente seu briefing e entender o que faz sentido
-                pra você. Preenche o formulário e eu entro em contato para
-                conversar melhor sobre a sua viagem. Sem compromisso. Cada
-                conversa é diferente. Cada viagem é diferente.
+                Nas próximas semanas estarei viajando e testando mais um
+                roteiro. Me acompanha pelo Instagram enquanto isso — assim que
+                voltar, abrimos as consultas novamente.
               </p>
             </div>
 
-            {/* Badges */}
             <div className="reveal mt-10 flex flex-wrap gap-3">
-              {[
-                "100% individual",
-                "feito do zero",
-                "resposta em até 48h",
-              ].map((tag) => (
-                <span
-                  key={tag}
-                  className="inline-flex items-center gap-1.5 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full"
-                >
-                  <span className="w-1 h-1 rounded-full bg-rosa" />
-                  {tag}
-                </span>
-              ))}
+              {["100% individual", "feito do zero", "resposta em até 48h"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="inline-flex items-center gap-1.5 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full"
+                  >
+                    <span className="w-1 h-1 rounded-full bg-rosa" />
+                    {tag}
+                  </span>
+                )
+              )}
             </div>
           </div>
 
-          {/* Right — form card */}
+          {/* Right — offline card */}
           <div className="reveal">
-            <div className="bg-preto rounded-3xl p-8 md:p-10">
-              {status === "success" ? (
-                <div className="text-center py-12">
-                  <div className="text-5xl mb-6">✈️</div>
-                  <h3 className="font-abril text-offwhite text-3xl mb-4">
-                    Recebi!
-                  </h3>
-                  <p className="font-jakarta font-light text-offwhite/60 text-lg leading-relaxed">
-                    Obrigada pela confiança. Vou analisar tudo e te responder
-                    em até 48 horas.
-                  </p>
-                  <button
-                    onClick={() => setStatus("idle")}
-                    className="mt-8 inline-flex items-center gap-2 border border-offwhite/20 text-offwhite font-jakarta font-medium text-sm px-6 py-3 rounded-full hover:border-offwhite/50 transition-all"
-                  >
-                    enviar outro
-                  </button>
-                </div>
-              ) : (
-                <>
-                  {/* Travel notice */}
-                  <div
-                    className="flex items-start gap-3 rounded-2xl p-4 mb-6"
-                    style={{ backgroundColor: "#F5E6A3" }}
-                  >
-                    <span className="text-lg leading-none mt-0.5 flex-shrink-0">✈</span>
-                    <p className="font-jakarta font-light text-preto/70 text-sm leading-relaxed">
-                      Estou viajando até a segunda semana de junho (testando
-                      mais um roteiro). Seu formulário será salvo e entrarei em
-                      contato assim que voltar.
-                    </p>
-                  </div>
-                  <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
-                    <div>
-                      <label htmlFor="name" className={labelClass}>
-                        Nome *
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        required
-                        placeholder="Como você se chama?"
-                        value={form.name}
-                        onChange={handleChange}
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="age" className={labelClass}>
-                        Idade *
-                      </label>
-                      <input
-                        id="age"
-                        name="age"
-                        type="number"
-                        required
-                        placeholder="Sua idade"
-                        min={16}
-                        max={99}
-                        value={form.age}
-                        onChange={handleChange}
-                        className={inputClass}
-                      />
-                    </div>
-                  </div>
+            <div className="bg-preto rounded-3xl p-10 md:p-14 flex flex-col items-start gap-8">
+              <div>
+                <h3 className="font-abril text-offwhite text-3xl md:text-4xl leading-tight mb-5">
+                  Estou fora
+                  <br />
+                  por enquanto.
+                </h3>
+                <p className="font-jakarta font-light text-offwhite/60 text-base md:text-lg leading-relaxed">
+                  Nas próximas semanas estarei viajando e o formulário ficará
+                  temporariamente fora do ar. Me acompanhe no Instagram em
+                  tempo real!
+                </p>
+              </div>
 
-                  <div>
-                    <label htmlFor="phone" className={labelClass}>
-                      Telefone / WhatsApp *
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      required
-                      placeholder="(11) 99999-9999"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className={labelClass}>
-                      E-mail *
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="seu@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="instagram" className={labelClass}>
-                      Instagram{" "}
-                      <span className="text-offwhite/30">(opcional)</span>
-                    </label>
-                    <input
-                      id="instagram"
-                      name="instagram"
-                      type="text"
-                      placeholder="@seunome"
-                      value={form.instagram}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="source" className={labelClass}>
-                      Como me achou? *
-                    </label>
-                    <select
-                      id="source"
-                      name="source"
-                      required
-                      value={form.source}
-                      onChange={handleChange}
-                      className={`${inputClass} appearance-none`}
-                    >
-                      <option value="" disabled className="bg-preto">
-                        Selecione uma opção
-                      </option>
-                      <option value="TikTok" className="bg-preto">TikTok</option>
-                      <option value="Instagram" className="bg-preto">Instagram</option>
-                      <option value="Indicação de amigo" className="bg-preto">Indicação de amigo</option>
-                      <option value="Outro" className="bg-preto">Outro</option>
-                    </select>
-                  </div>
-
-                  {status === "error" && (
-                    <p className="font-jakarta font-medium text-rosa text-sm">
-                      Algo deu errado. Tente novamente ou me mande mensagem no
-                      Instagram.
-                    </p>
-                  )}
-
-                  <button
-                    type="submit"
-                    disabled={status === "sending"}
-                    className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl hover:bg-rosa/90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 mt-2"
-                  >
-                    {status === "sending" ? "Enviando..." : "quero o meu roteiro ✈"}
-                  </button>
-
-                  <p className="font-jakarta font-light text-offwhite/30 text-xs text-center">
-                    Sem spam. Seus dados são só pra montar seu roteiro.
-                  </p>
-                </form>
-                </>
-              )}
+              <a
+                href="https://www.instagram.com/brubaworld"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-rosa/20"
+              >
+                seguir no Instagram →
+              </a>
             </div>
           </div>
         </div>
