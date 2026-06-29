@@ -81,36 +81,19 @@ export default function ContactForm() {
           {/* Left */}
           <div>
             <div className="reveal">
-              <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
-                vamos começar
-              </span>
-              <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
-                Me conta
+              <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
+                Quero ser
                 <br />
-                tudo.
+                avisado.
               </h2>
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Vou ler pessoalmente seu briefing e entender o que faz sentido
-                pra você. Preenche o formulário e eu entro em contato para
-                conversar melhor sobre a sua viagem. Sem compromisso. Cada
-                conversa é diferente. Cada viagem é diferente.
+                Estou com a agenda pausada agora, reformulando como vou
+                entregar os próximos roteiros. Não vou te chamar de imediato,
+                mas deixa seus dados aqui que assim que tiver novidade, eu
+                entro em contato.
               </p>
-            </div>
-
-            <div className="reveal mt-10 flex flex-wrap gap-3">
-              {["100% individual", "feito do zero", "resposta em até 72h"].map(
-                (tag) => (
-                  <span
-                    key={tag}
-                    className="inline-flex items-center gap-1.5 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-rosa" />
-                    {tag}
-                  </span>
-                )
-              )}
             </div>
           </div>
 
@@ -253,7 +236,7 @@ export default function ContactForm() {
                     disabled={status === "sending"}
                     className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl hover:bg-rosa/90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 mt-2"
                   >
-                    {status === "sending" ? "Enviando..." : "quero o meu roteiro ✈"}
+                    {status === "sending" ? "Enviando..." : "quero ser avisado →"}
                   </button>
 
                   <p className="font-jakarta font-light text-offwhite/30 text-xs text-center">

@@ -32,20 +32,19 @@ export default function Hero() {
           {/* Pill tag */}
           <div className="inline-flex items-center gap-2 bg-rosa/15 border border-rosa/30 text-rosa font-jakarta font-medium text-xs px-4 py-1.5 rounded-full mb-8">
             <span className="w-1.5 h-1.5 rounded-full bg-rosa inline-block" />
-            Concierge. Especialista em personalização.
+            Concierge de viagens.
           </div>
 
           {/* Headline */}
           <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8">
-            <span className="block">A sua viagem</span>
-            <span className="block text-manteiga">do seu jeito,</span>
-            <span className="block">do zero.</span>
+            <span className="block">Roteiros feitos</span>
+            <span className="block text-manteiga">por quem</span>
+            <span className="block">já viveu.</span>
           </h1>
 
           {/* Description */}
           <p className="font-jakarta font-light text-offwhite/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            Seu roteiro, feito para você. Baseado em quem você é e no que quer
-            viver.
+            Roteiros de viagem pensados com quem já viveu cada destino.
           </p>
 
           {/* CTAs */}
@@ -54,13 +53,7 @@ export default function Hero() {
               href="#contato"
               className="inline-flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-rosa/30"
             >
-              quero o meu roteiro ✈
-            </a>
-            <a
-              href="#pacotes"
-              className="inline-flex items-center justify-center gap-2 border border-offwhite/20 text-offwhite font-jakarta font-medium text-base px-8 py-4 rounded-full hover:border-offwhite/50 hover:bg-offwhite/5 transition-all duration-200"
-            >
-              ver pacotes →
+              quero ser avisado →
             </a>
           </div>
 

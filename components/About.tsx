@@ -75,8 +75,8 @@ export default function About() {
             <div className="reveal space-y-4 font-jakarta font-light text-white/80 text-base md:text-lg leading-relaxed">
               <p>
                 Já perdi a conta de quantos roteiros montei pra mim, amigos e
-                família. Sempre do mesmo jeito: pesquisando tudo do zero e
-                pensando no que realmente combina com cada pessoa.
+                família. Sempre do mesmo jeito: pesquisando tudo e testando
+                na prática o que realmente vale a pena.
               </p>
               <p>
                 O{" "}

@@ -13,9 +13,8 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Pacotes", href: "#pacotes" },
-    { label: "Como funciona", href: "#como-funciona" },
     { label: "Sobre", href: "#sobre" },
+    { label: "Avaliações", href: "#avaliacoes" },
     { label: "Contato", href: "#contato" },
   ];
 
@@ -53,7 +52,7 @@ export default function Navbar() {
           href="#contato"
           className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors"
         >
-          quero o meu ✈
+          quero ser avisado →
         </a>
 
         {/* Mobile hamburger */}
@@ -98,7 +97,7 @@ export default function Navbar() {
               className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors mt-2"
               onClick={() => setMenuOpen(false)}
             >
-              quero o meu ✈
+              quero ser avisado →
             </a>
           </li>
         </ul>

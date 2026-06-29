@@ -58,7 +58,7 @@ export default function Reviews() {
   }, []);
 
   return (
-    <section ref={ref} className="bg-preto py-24 md:py-32 px-5 md:px-10">
+    <section id="avaliacoes" ref={ref} className="bg-preto py-24 md:py-32 px-5 md:px-10">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="reveal text-center mb-16">
