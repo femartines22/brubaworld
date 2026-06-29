@@ -64,12 +64,6 @@ export default function Footer() {
           </p>
         </div>
 
-        {/* Tagline */}
-        <div className="mt-10 pt-8 border-t border-offwhite/5 text-center">
-          <p className="font-jakarta font-light text-offwhite/20 text-sm">
-            Roteiros 100% individuais. Especialista em Europa. Feito do zero pra você.
-          </p>
-        </div>
       </div>
     </footer>
   );

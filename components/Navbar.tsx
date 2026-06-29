@@ -52,7 +52,7 @@ export default function Navbar() {
           href="#contato"
           className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors"
         >
-          quero ser avisado →
+          quero ser avisada →
         </a>
 
         {/* Mobile hamburger */}
@@ -97,7 +97,7 @@ export default function Navbar() {
               className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors mt-2"
               onClick={() => setMenuOpen(false)}
             >
-              quero ser avisado →
+              quero ser avisada →
             </a>
           </li>
         </ul>

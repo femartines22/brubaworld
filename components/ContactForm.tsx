@@ -84,15 +84,13 @@ export default function ContactForm() {
               <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
                 Quero ser
                 <br />
-                avisado.
+                avisada.
               </h2>
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Estou com a agenda pausada agora, reformulando como vou
-                entregar os próximos roteiros. Não vou te chamar de imediato,
-                mas deixa seus dados aqui que assim que tiver novidade, eu
-                entro em contato.
+                Por enquanto a personalização tá pausada por aqui. Deixa seu
+                contato pra eu te avisar assim que eu voltar com novidades!
               </p>
             </div>
           </div>
@@ -107,8 +105,8 @@ export default function ContactForm() {
                     Recebi!
                   </h3>
                   <p className="font-jakarta font-light text-offwhite/60 text-lg leading-relaxed">
-                    Obrigada pela confiança. Vou analisar tudo e te responder
-                    em até 72 horas.
+                    Anotei tudo! Assim que tiver novidades por aqui, você será
+                    uma das primeiras a saber.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
@@ -236,7 +234,7 @@ export default function ContactForm() {
                     disabled={status === "sending"}
                     className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl hover:bg-rosa/90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 mt-2"
                   >
-                    {status === "sending" ? "Enviando..." : "quero ser avisado →"}
+                    {status === "sending" ? "Enviando..." : "quero ser avisada →"}
                   </button>
 
                   <p className="font-jakarta font-light text-offwhite/30 text-xs text-center">

@@ -44,7 +44,7 @@ export default function Hero() {
 
           {/* Description */}
           <p className="font-jakarta font-light text-offwhite/60 text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            Roteiros de viagem pensados com quem já viveu cada destino.
+            Viagens vividas de verdade, direto pra você.
           </p>
 
           {/* CTAs */}
@@ -53,7 +53,7 @@ export default function Hero() {
               href="#contato"
               className="inline-flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-rosa/30"
             >
-              quero ser avisado →
+              quero ser avisada →
             </a>
           </div>
 

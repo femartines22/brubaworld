@@ -79,16 +79,12 @@ export default function About() {
                 na prática o que realmente vale a pena.
               </p>
               <p>
-                O{" "}
-                <em className="font-medium text-white not-italic">
-                  @brubaworld
-                </em>{" "}
-                nasceu porque percebi que o mercado era escasso de roteiros
-                realmente exclusivos. Os roteiros prontos não serviam. São
-                genéricos. São cansativos. Não pertencem a ninguém.
+                Via muito do mesmo por aí. Roteiros genéricos, óbvios, que
+                pareciam ter sido feitos pra qualquer pessoa, em qualquer lugar.
               </p>
-              <p className="font-medium text-white">
-                Então resolvi fazer diferente.
+              <p>
+                Resolvi ir além. Visitar de verdade, testar cada lugar com
+                meus próprios olhos antes de recomendar pra alguém.
               </p>
             </div>
 
@@ -98,8 +94,8 @@ export default function About() {
               style={{ backgroundColor: "#F5E6A3" }}
             >
               <p className="font-abril text-preto text-xl md:text-2xl leading-snug">
-                &ldquo;Eu não vendo roteiro. Eu planejo a sua viagem como se
-                fosse a minha.&rdquo;
+                &ldquo;Eu já fui. Eu já testei. E recomendo só o que realmente
+                vale a pena.&rdquo;
               </p>
               <span className="font-jakarta font-medium text-preto/50 text-sm mt-3 block">
                 Bruba
