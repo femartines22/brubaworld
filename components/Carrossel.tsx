@@ -104,60 +104,8 @@ export default function Carrossel() {
           className="reveal flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {guias.map((guia) => {
-            const card = (
-              <div
-                className={`relative flex-shrink-0 w-72 md:w-80 snap-start rounded-3xl overflow-hidden transition-all duration-300 ${
-                  guia.active
-                    ? "cursor-pointer hover:scale-[1.02] hover:shadow-2xl"
-                    : "cursor-default"
-                }`}
-              >
-                {/* Cover image area */}
-                <div
-                  className="w-full h-96 flex items-end p-6 relative"
-                  style={{
-                    background: guia.active
-                      ? "linear-gradient(135deg, #111111 0%, #F2277E 100%)"
-                      : "linear-gradient(135deg, #333333 0%, #555555 100%)",
-                    filter: guia.active ? "none" : "blur(2px) brightness(0.7)",
-                  }}
-                >
-                  {/* Decorative pattern */}
-                  <div className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%), radial-gradient(circle at 70% 70%, #FAFAF8 0%, transparent 50%)",
-                    }}
-                  />
-                  {/* Eiffel tower minimal icon */}
-                  {guia.active && (
-                    <div className="absolute top-6 right-6 opacity-20">
-                      <svg width="48" height="64" viewBox="0 0 48 64" fill="white">
-                        <path d="M24 2 L20 20 L16 20 L12 40 L8 40 L4 62 L44 62 L40 40 L36 40 L32 20 L28 20 Z M18 44 L30 44 L30 50 L18 50 Z" fillRule="evenodd"/>
-                      </svg>
-                    </div>
-                  )}
-                  <div className="relative z-10">
-                    {/* Tag */}
-                    <span
-                      className={`inline-flex items-center font-jakarta font-semibold text-xs px-3 py-1 rounded-full mb-3 ${
-                        guia.active
-                          ? "bg-rosa text-white"
-                          : "bg-white/20 text-white/70"
-                      }`}
-                    >
-                      {guia.active && <span className="w-1.5 h-1.5 rounded-full bg-white mr-1.5" />}
-                      {guia.tag}
-                    </span>
-                    <h3 className="font-abril text-white text-xl leading-snug">
-                      {guia.title}
-                    </h3>
-                  </div>
-                </div>
-              </div>
-            );
-
-            return guia.active && guia.href ? (
+          {guias.map((guia) =>
+            guia.active && guia.href ? (
               <Link key={guia.id} href={guia.href} className="flex-shrink-0 w-72 md:w-80 snap-start">
                 <div
                   className="relative rounded-3xl overflow-hidden cursor-pointer hover:scale-[1.02] hover:shadow-2xl transition-all duration-300"
@@ -229,8 +177,8 @@ export default function Carrossel() {
                   </div>
                 </div>
               </div>
-            );
-          })}
+            )
+          )}
         </div>
 
         {/* Mobile arrows */}
