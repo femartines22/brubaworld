@@ -6,7 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const KIWIFY_URL = "#"; // substituir pelo link real da Kiwify
+const KIWIFY_URL = "https://pay.kiwify.com.br/yMypo41";
 const PRECO = "R$ [confirmar]"; // confirmar antes de publicar
 
 const checklist = [
@@ -16,8 +16,6 @@ const checklist = [
   "Como usar o metrô parisiense sem cair em pegadinha",
   "Checklist completo pra não pegar fila nem porta fechada",
   "Dicas de bairro: o que vale e o que é cilada",
-  "Sugestões de hotéis por localização e perfil",
-  "O que comprar (e o que não comprar) em Paris",
 ];
 
 const paraQuem = [
@@ -89,7 +87,7 @@ export default function ParisPage() {
       <CustomCursor />
       <Navbar />
       <main>
-        {/* Hero */}
+        {/* 1. Hero */}
         <section className="relative bg-preto min-h-[80vh] flex items-center pt-20 pb-24 px-5 md:px-10 overflow-hidden">
           <div
             className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rosa opacity-20 animate-blob pointer-events-none"
@@ -133,7 +131,7 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* Para quem é */}
+        {/* 2. Para quem é */}
         <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
             <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
@@ -160,7 +158,7 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* O que está incluso */}
+        {/* 3. O que está incluso */}
         <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
@@ -187,35 +185,7 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* Prévia do roteiro */}
-        <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
-              prévia
-            </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
-              Uma olhada por dentro.
-            </h2>
-            <div className="grid sm:grid-cols-3 gap-4">
-              {[1, 2, 3].map((n) => (
-                <div
-                  key={n}
-                  className="aspect-[3/4] rounded-2xl flex items-center justify-center border border-preto/10"
-                  style={{ backgroundColor: "#F5E6A3" }}
-                >
-                  <span className="font-jakarta font-light text-preto/30 text-sm">
-                    Preview {n}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="font-jakarta font-light text-preto/40 text-sm mt-4 text-center">
-              Imagens em breve. O guia está disponível para compra agora.
-            </p>
-          </div>
-        </section>
-
-        {/* Quanto você economiza */}
+        {/* 4. Quanto você economiza */}
         <section
           className="py-20 md:py-28 px-5 md:px-10"
           style={{ backgroundColor: "#F2277E" }}
@@ -227,11 +197,10 @@ export default function ParisPage() {
             <h2 className="font-abril text-white text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Quanto você economiza.
             </h2>
-            <div className="grid sm:grid-cols-3 gap-6">
+            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
               {[
                 { label: "Horas de pesquisa", sem: "20h+", com: "0h" },
                 { label: "Risco de erro", sem: "Alto", com: "Zero" },
-                { label: "Custo", sem: "Seu tempo", com: PRECO },
               ].map((item) => (
                 <div key={item.label} className="bg-white/15 border border-white/20 rounded-2xl p-6">
                   <p className="font-jakarta font-medium text-white/70 text-sm mb-4">
@@ -254,60 +223,16 @@ export default function ParisPage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* Quem criou */}
-        <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
-              quem faz
-            </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-8">
-              Eu sou a Bruba.
-            </h2>
-            <div className="bg-white border border-preto/8 rounded-3xl p-8 md:p-10">
-              <div className="space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
-                <p>
-                  Já morei em <span className="font-semibold text-preto">Lille, na França</span>, trabalhei como Cast Member no{" "}
-                  <span className="font-semibold text-preto">Walt Disney World, em Orlando</span>, e já visitei mais de{" "}
-                  <span className="font-semibold text-preto">20 países</span>.
-                </p>
-                <p>
-                  Via muito do mesmo por aí. Roteiros genéricos, óbvios, que pareciam ter sido feitos pra qualquer pessoa, em qualquer lugar. Resolvi ir além. Visitar de verdade, testar cada lugar com meus próprios olhos antes de recomendar pra alguém.
-                </p>
-                <p className="font-medium text-preto">
-                  &ldquo;Eu já fui. Eu já testei. E recomendo só o que realmente vale a pena.&rdquo;
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-2 mt-6">
-                {["🇧🇷 Português", "🇫🇷 Francês", "🇬🇧 Inglês"].map((lang) => (
-                  <span
-                    key={lang}
-                    className="inline-flex items-center font-jakarta font-medium text-sm bg-preto/5 text-preto border border-preto/10 px-4 py-1.5 rounded-full"
-                  >
-                    {lang}
-                  </span>
-                ))}
-              </div>
+            {/* Credibility note */}
+            <div className="mt-10 max-w-2xl">
+              <p className="font-abril text-white text-xl md:text-2xl leading-snug">
+                &ldquo;Feito por quem morou em Paris de verdade, não é roteiro genérico copiado da internet.&rdquo;
+              </p>
             </div>
           </div>
         </section>
 
-        {/* FAQ */}
-        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
-              dúvidas
-            </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
-              Perguntas frequentes.
-            </h2>
-            <FAQ />
-          </div>
-        </section>
-
-        {/* Compra */}
+        {/* 5. Compra — destaque total */}
         <section
           className="py-20 md:py-28 px-5 md:px-10 text-center"
           style={{ backgroundColor: "#F5E6A3" }}
@@ -319,25 +244,42 @@ export default function ParisPage() {
             <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronto pra viajar?
             </h2>
-            <p className="font-jakarta font-light text-preto/60 text-lg mb-10">
+            <p className="font-jakarta font-light text-preto/60 text-lg mb-2">
               É só comprar, baixar e levar no celular. Paris te espera.
+            </p>
+            <p className="font-jakarta font-medium text-preto/50 text-sm mb-8">
+              Entrega imediata, direto no seu e-mail.
             </p>
 
             {/* Preço */}
-            <p className="font-syne font-extrabold text-preto text-4xl md:text-5xl mb-8">
+            <p className="font-syne font-extrabold text-preto text-5xl md:text-6xl mb-8">
               {PRECO}
             </p>
 
-            {/* Imagem clicável pro checkout */}
+            {/* Botão principal grande */}
             <a
               href={KIWIFY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block group"
+              className="inline-flex items-center justify-center gap-3 bg-rosa text-white font-jakarta font-semibold text-xl px-12 py-6 rounded-2xl hover:bg-rosa/90 hover:scale-[1.03] transition-all duration-200 shadow-xl shadow-rosa/30 mb-6"
+            >
+              Garantir agora →
+            </a>
+
+            <p className="font-jakarta font-light text-preto/40 text-xs">
+              Checkout seguro via Kiwify
+            </p>
+
+            {/* Imagem clicável (capa do guia) */}
+            <a
+              href={KIWIFY_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block group mt-12"
               aria-label="Comprar guia de Paris"
             >
               <div
-                className="w-72 md:w-96 mx-auto aspect-[3/4] rounded-3xl flex items-end p-8 relative overflow-hidden group-hover:scale-[1.03] group-hover:shadow-2xl transition-all duration-300"
+                className="w-64 md:w-80 mx-auto aspect-[3/4] rounded-3xl flex items-end p-8 relative overflow-hidden group-hover:scale-[1.03] group-hover:shadow-2xl transition-all duration-300"
                 style={{ background: "linear-gradient(135deg, #111111 0%, #F2277E 100%)" }}
               >
                 <div
@@ -355,18 +297,28 @@ export default function ParisPage() {
                   <p className="font-jakarta font-medium text-white/60 text-xs uppercase tracking-widest mb-2">
                     brubaworld
                   </p>
-                  <h3 className="font-abril text-white text-2xl leading-snug mb-4">
+                  <h3 className="font-abril text-white text-xl leading-snug">
                     Paris em 5 Dias: Guia para a Primeira Viagem
                   </h3>
-                  <span className="inline-flex items-center gap-2 bg-white text-preto font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full group-hover:bg-rosa group-hover:text-white transition-all duration-200">
-                    Garantir agora →
-                  </span>
                 </div>
               </div>
-              <p className="font-jakarta font-light text-preto/40 text-xs mt-4">
+              <p className="font-jakarta font-light text-preto/40 text-xs mt-3">
                 Clique para ir ao checkout seguro
               </p>
             </a>
+          </div>
+        </section>
+
+        {/* 6. FAQ — última seção */}
+        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
+              dúvidas
+            </span>
+            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+              Perguntas frequentes.
+            </h2>
+            <FAQ />
           </div>
         </section>
       </main>

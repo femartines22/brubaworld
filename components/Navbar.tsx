@@ -16,7 +16,6 @@ export default function Navbar() {
     { label: "Roteiros", href: "#roteiros" },
     { label: "Sobre", href: "#sobre" },
     { label: "Avaliações", href: "#avaliacoes" },
-    { label: "Contato", href: "#contato" },
   ];
 
   return (
@@ -50,10 +49,10 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#contato"
+          href="/roteiros/paris"
           className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors"
         >
-          quero ser avisada →
+          quero meu roteiro →
         </a>
 
         {/* Mobile hamburger */}
@@ -94,11 +93,11 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#contato"
+              href="/roteiros/paris"
               className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors mt-2"
               onClick={() => setMenuOpen(false)}
             >
-              quero ser avisada →
+              quero meu roteiro →
             </a>
           </li>
         </ul>

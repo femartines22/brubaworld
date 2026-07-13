@@ -5,7 +5,6 @@ import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import Reviews from "@/components/Reviews";
 import Carrossel from "@/components/Carrossel";
-import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -19,7 +18,6 @@ export default function Home() {
         <About />
         <Reviews />
         <Carrossel />
-        <ContactForm />
       </main>
       <Footer />
     </>
