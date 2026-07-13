@@ -89,8 +89,8 @@ export default function ContactForm() {
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Por enquanto a personalização tá pausada por aqui. Deixa seu
-                contato pra eu te avisar assim que eu voltar com novidades!
+                Deixa seu contato pra eu te avisar assim que os próximos
+                roteiros saírem.
               </p>
             </div>
           </div>

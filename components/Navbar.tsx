@@ -13,6 +13,7 @@ export default function Navbar() {
   }, []);
 
   const links = [
+    { label: "Roteiros", href: "#roteiros" },
     { label: "Sobre", href: "#sobre" },
     { label: "Avaliações", href: "#avaliacoes" },
     { label: "Contato", href: "#contato" },

@@ -21,12 +21,12 @@ const abrilFatface = Abril_Fatface({
 });
 
 export const metadata: Metadata = {
-  title: "brubaworld — Roteiros de viagem para a Europa",
+  title: "brubaworld — Roteiros de viagem por quem já viveu cada destino",
   description:
-    "Roteiros de viagem 100% personalizados para a Europa. Feito do zero pra você, não pra uma turma.",
+    "Guias de viagem criados por quem já foi, testou e recomenda só o que realmente vale a pena.",
   openGraph: {
-    title: "brubaworld — Roteiros de viagem para a Europa",
-    description: "Roteiros 100% individuais feitos do zero pra você.",
+    title: "brubaworld — Roteiros de viagem por quem já viveu cada destino",
+    description: "Guias de viagem criados por quem já foi, testou e recomenda só o que realmente vale a pena.",
     type: "website",
   },
 };
