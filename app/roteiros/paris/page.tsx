@@ -8,20 +8,80 @@ import Footer from "@/components/Footer";
 
 const KIWIFY_URL = "https://pay.kiwify.com.br/yMypo41";
 
-const checklist = [
-  "Roteiro de 5 dias, dia a dia, com horários e dicas de ordem de visita",
-  "Cada lugar linkado no Google Maps (é só clicar)",
-  "Onde comer em cada região, com faixas de preço",
-  "Como usar o metrô parisiense sem cair em pegadinha",
-  "Checklist completo pra não pegar fila nem porta fechada",
-  "Dicas de bairro: o que vale e o que é cilada",
-];
-
 const paraQuem = [
   "Você vai a Paris pela primeira vez e não quer desperdiçar um dia",
   "Você tem pouco tempo e quer aproveitar ao máximo",
   "Você não quer ficar horas no Google tentando montar um roteiro",
   "Você viaja sozinha, com amigas, em casal ou em família",
+];
+
+const dias = [
+  {
+    num: "01",
+    titulo: "Torre Eiffel e a margem esquerda",
+    desc: "O dia mais icônico logo de cara. O guia mostra o ângulo secreto do Trocadéro que evita a multidão, o horário certo pra subir, e o restaurante do chef com preço justo logo ali do lado. E um alerta sobre o golpe da pulseirinha que pega todo turista desavisado.",
+    pilulas: ["Ângulo secreto do Trocadéro", "Horário certo pra subir", "Alerta de golpe", "Jantar histórico desde 1680"],
+  },
+  {
+    num: "02",
+    titulo: "Louvre, Île de la Cité e Jardim de Luxemburgo",
+    desc: "O dia mais cultural, quase tudo a pé. O guia indica as 3 alas do Louvre que valem pra primeira visita (sem se perder em 4 horas), a entrada que tem fila menor, e a Sainte-Chapelle — o lugar mais lindo de Paris que quase todo turista pula.",
+    pilulas: ["Entrada com fila menor", "As 3 alas certas do Louvre", "Sainte-Chapelle com sol", "Atenção: fecha toda terça"],
+  },
+  {
+    num: "03",
+    titulo: "Montmartre, Pigalle e Ópera",
+    desc: "O dia mais fotogênico. Subir pela escadaria certa (não pelo funicular cheio), o café da Amélie Poulain, o 'eu te amo' em 300 idiomas, almoço de comida francesa de verdade por menos de 20€ e a vista gratuita das Galeries Lafayette com a Torre Eiffel ao fundo.",
+    pilulas: ["Escadaria certa pra subir", "Café da Amélie", "Vista gratuita", "Jantar no Moulin Rouge"],
+  },
+  {
+    num: "04",
+    titulo: "Marais e o coração histórico",
+    desc: "O bairro mais charmoso de Paris, feito pra perder o rumo de propósito. O guia indica as ruelas certas, o falafel mais famoso da cidade, o mousse de chocolate servido na vasilha gigante e por que o Marais é a melhor escolha se o seu dia 4 cair num domingo.",
+    pilulas: ["Ruelas medievais", "Falafel lendário", "Dica do domingo", "Mercado mais antigo de Paris"],
+  },
+  {
+    num: "05",
+    titulo: "Champs-Élysées, Arco do Triunfo e despedida",
+    desc: "O último dia fecha em grande estilo. A vista do topo do Arco do Triunfo — que na opinião da Bruba é melhor que a da Torre Eiffel, porque a torre está na foto. E um aviso importante: nunca atravesse a rotatória.",
+    pilulas: ["Vista que supera a Torre Eiffel", "Aviso da rotatória", "Jantar de despedida", "Torre piscando uma última vez"],
+  },
+];
+
+const extras = [
+  {
+    icon: "📋",
+    titulo: "Checklist de reservas na ordem certa",
+    texto: "O que reservar assim que comprar a passagem. O que deixar pra 4 semanas antes. O que só abre com poucos dias de antecedência. Na ordem certa, sem esquecer nada.",
+  },
+  {
+    icon: "🚇",
+    titulo: "Guia completo do metrô parisiense",
+    texto: "Desde novembro de 2025 não existe mais bilhete de papel em Paris. O guia explica o novo sistema, os passes certos pra cada situação e o erro que gera multa na saída — que quase todo turista comete.",
+  },
+  {
+    icon: "🛡",
+    titulo: "Alertas de golpe por ponto turístico",
+    texto: "Pulseirinha no Trocadéro. Jogo dos copinhos na base da torre. Arrastão no metrô. O guia avisa antes, ponto a ponto, com a regra única que resolve tudo.",
+  },
+];
+
+const depoimentos = [
+  {
+    texto: "O roteiro foi simplesmente perfeito. Cada detalhe fez sentido pra gente.",
+    nome: "Simone",
+    local: "Malta",
+  },
+  {
+    texto: "Virei Paris pela primeira vez sem nenhum estresse. Sabia exatamente onde ir e em que ordem.",
+    nome: "Rafaella",
+    local: "Paris",
+  },
+  {
+    texto: "Já fui em outros países com roteiros genéricos e a diferença é absurda. Esse guia tem alma.",
+    nome: "Maria",
+    local: "Barcelona",
+  },
 ];
 
 const faqs = [
@@ -48,26 +108,19 @@ function FAQ() {
   return (
     <div className="space-y-3">
       {faqs.map((item, i) => (
-        <div
-          key={i}
-          className="border border-offwhite/10 rounded-2xl overflow-hidden"
-        >
+        <div key={i} className="border border-offwhite/10 rounded-2xl overflow-hidden">
           <button
             className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-offwhite/5 transition-colors"
             onClick={() => setOpen(open === i ? null : i)}
           >
-            <span className="font-jakarta font-medium text-offwhite text-base pr-4">
-              {item.q}
-            </span>
+            <span className="font-jakarta font-medium text-offwhite text-base pr-4">{item.q}</span>
             <span className="text-rosa font-syne font-bold text-lg flex-shrink-0">
               {open === i ? "−" : "+"}
             </span>
           </button>
           {open === i && (
             <div className="px-6 pb-5">
-              <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed">
-                {item.a}
-              </p>
+              <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed">{item.a}</p>
             </div>
           )}
         </div>
@@ -82,6 +135,7 @@ export default function ParisPage() {
       <CustomCursor />
       <Navbar />
       <main>
+
         {/* 1. Hero */}
         <section className="relative bg-preto min-h-[80vh] flex items-center pt-20 pb-24 px-5 md:px-10 overflow-hidden">
           <div
@@ -99,16 +153,12 @@ export default function ParisPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
               Guia de Viagem
             </span>
-
-            {/* Título dividido em título + subtítulo */}
             <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
               Paris em 5 Dias:
             </h1>
             <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
               Guia para a Primeira Viagem
             </p>
-
-            {/* Texto do hero */}
             <div className="space-y-4 max-w-2xl">
               <p className="font-jakarta font-medium text-offwhite/90 text-lg md:text-xl leading-relaxed italic">
                 O roteiro que eu gostaria de ter recebido antes da minha primeira viagem para Paris.
@@ -141,87 +191,189 @@ export default function ParisPage() {
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {paraQuem.map((item, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-4 bg-white border border-preto/8 rounded-2xl p-6"
-                >
+                <div key={i} className="flex items-start gap-4 bg-white border border-preto/8 rounded-2xl p-6">
                   <span className="w-6 h-6 rounded-full bg-rosa flex-shrink-0 flex items-center justify-center mt-0.5">
                     <span className="text-white text-xs">✓</span>
                   </span>
-                  <p className="font-jakarta font-light text-preto/70 text-base leading-relaxed">
-                    {item}
-                  </p>
+                  <p className="font-jakarta font-light text-preto/70 text-base leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 3+4. O que está incluso + Quanto você economiza — seção única */}
+        {/* 3. Cinco dias. Tudo pensado. */}
         <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            {/* Bloco 1 — checklist */}
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
-              conteúdo
+              dentro do guia
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
-              O que está incluso.
+            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+              Cinco dias. Tudo pensado.
             </h2>
-            <div className="grid sm:grid-cols-2 gap-3">
-              {checklist.map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <span
-                    className="w-5 h-5 rounded-full flex-shrink-0 flex items-center justify-center mt-1"
-                    style={{ backgroundColor: "#F5E6A3" }}
-                  >
-                    <span className="text-preto text-xs font-bold">✓</span>
-                  </span>
-                  <p className="font-jakarta font-light text-offwhite/70 text-base leading-relaxed">
-                    {item}
-                  </p>
-                </div>
-              ))}
-            </div>
+            <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
+              Não é uma lista de atrações do Google. É um roteiro com contexto, ordem certa, dicas de quem já foi e os alertas que ninguém te conta antes.
+            </p>
 
-            {/* Bloco 2 — economiza */}
-            <div className="mt-16 pt-16 border-t border-offwhite/10">
-              <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
-                vale a pena?
-              </span>
-              <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
-                Quanto você economiza.
-              </h2>
-              <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
-                {[
-                  { label: "Horas de pesquisa", sem: "20h+", com: "0h" },
-                  { label: "Risco de erro", sem: "Alto", com: "Zero" },
-                ].map((item) => (
-                  <div key={item.label} className="bg-offwhite/5 border border-offwhite/10 rounded-2xl p-6">
-                    <p className="font-jakarta font-medium text-offwhite/60 text-sm mb-4">
-                      {item.label}
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="flex-1 text-center bg-offwhite/5 rounded-xl p-3">
-                        <p className="font-jakarta font-light text-offwhite/40 text-xs mb-1">Sem guia</p>
-                        <p className="font-syne font-extrabold text-offwhite/40 text-lg">{item.sem}</p>
-                      </div>
-                      <span className="text-offwhite/20 font-jakarta">→</span>
-                      <div
-                        className="flex-1 text-center rounded-xl p-3"
-                        style={{ backgroundColor: "#F5E6A3" }}
-                      >
-                        <p className="font-jakarta font-light text-preto/50 text-xs mb-1">Com guia</p>
-                        <p className="font-syne font-extrabold text-preto text-lg">{item.com}</p>
+            <div className="space-y-6">
+              {dias.map((dia) => (
+                <div
+                  key={dia.num}
+                  className="border border-offwhite/10 rounded-3xl p-8 md:p-10 hover:border-offwhite/20 transition-colors"
+                >
+                  <div className="flex flex-col md:flex-row md:items-start gap-6">
+                    <span
+                      className="font-syne font-extrabold text-6xl md:text-7xl leading-none flex-shrink-0"
+                      style={{ color: "#F5E6A3" }}
+                    >
+                      {dia.num}
+                    </span>
+                    <div className="flex-1">
+                      <h3 className="font-abril text-offwhite text-2xl md:text-3xl leading-tight mb-4">
+                        {dia.titulo}
+                      </h3>
+                      <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed mb-6">
+                        {dia.desc}
+                      </p>
+                      <div className="flex flex-wrap gap-2">
+                        {dia.pilulas.map((p) => (
+                          <span
+                            key={p}
+                            className="font-jakarta font-medium text-xs text-offwhite/50 bg-offwhite/5 border border-offwhite/10 px-3 py-1.5 rounded-full"
+                          >
+                            {p}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
+
+              {/* Bloco bônus */}
+              <div className="border border-dashed border-offwhite/20 rounded-3xl p-8 md:p-10">
+                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  <span className="font-syne font-extrabold text-5xl md:text-6xl leading-none flex-shrink-0 text-offwhite/20">
+                    +1
+                  </span>
+                  <div className="flex-1">
+                    <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest mb-2 block">
+                      dia extra opcional
+                    </span>
+                    <h3 className="font-abril text-offwhite/60 text-2xl md:text-3xl leading-tight mb-4">
+                      Versalhes ou Giverny
+                    </h3>
+                    <p className="font-jakarta font-light text-offwhite/40 text-base leading-relaxed">
+                      Se sobrar um dia, o guia traz as duas melhores opções de bate-volta: o palácio mais famoso do mundo e o jardim de Monet. Com como chegar, horário certo pra ir e o bilhete que você NÃO pode usar (e que gera multa na saída).
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* 5. Compra — destaque total */}
+        {/* 4. Os extras que fazem diferença */}
+        <section
+          className="py-20 md:py-28 px-5 md:px-10"
+          style={{ backgroundColor: "#F2277E" }}
+        >
+          <div className="max-w-4xl mx-auto">
+            <span className="font-jakarta font-medium text-sm text-white/60 uppercase tracking-widest">
+              tem mais
+            </span>
+            <h2 className="font-abril text-white text-3xl md:text-5xl leading-tight mt-3 mb-4">
+              O guia dentro do guia.
+            </h2>
+            <p className="font-jakarta font-light text-white/70 text-base md:text-lg mb-12">
+              Além dos 5 dias, tem tudo isso também.
+            </p>
+            <div className="grid md:grid-cols-3 gap-5">
+              {extras.map((card) => (
+                <div
+                  key={card.titulo}
+                  className="bg-white/10 border border-white/20 rounded-2xl p-7 flex flex-col gap-4"
+                >
+                  <span className="text-3xl">{card.icon}</span>
+                  <h3 className="font-abril text-white text-xl leading-snug">
+                    {card.titulo}
+                  </h3>
+                  <p className="font-jakarta font-light text-white/70 text-sm leading-relaxed">
+                    {card.texto}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 5. Quanto você economiza */}
+        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
+              vale a pena?
+            </span>
+            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+              Quanto você economiza.
+            </h2>
+            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
+              {[
+                { label: "Horas de pesquisa", sem: "30h+", com: "0h" },
+                { label: "Risco de erro", sem: "Alto", com: "Zero" },
+              ].map((item) => (
+                <div key={item.label} className="bg-offwhite/5 border border-offwhite/10 rounded-2xl p-6">
+                  <p className="font-jakarta font-medium text-offwhite/60 text-sm mb-4">{item.label}</p>
+                  <div className="flex items-center gap-3">
+                    <div className="flex-1 text-center bg-offwhite/5 rounded-xl p-3">
+                      <p className="font-jakarta font-light text-offwhite/40 text-xs mb-1">Sem guia</p>
+                      <p className="font-syne font-extrabold text-offwhite/40 text-lg">{item.sem}</p>
+                    </div>
+                    <span className="text-offwhite/20 font-jakarta">→</span>
+                    <div
+                      className="flex-1 text-center rounded-xl p-3"
+                      style={{ backgroundColor: "#F5E6A3" }}
+                    >
+                      <p className="font-jakarta font-light text-preto/50 text-xs mb-1">Com guia</p>
+                      <p className="font-syne font-extrabold text-preto text-lg">{item.com}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6. Depoimentos */}
+        <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
+          <div className="max-w-4xl mx-auto">
+            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+              quem já foi
+            </span>
+            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
+              O que estão dizendo.
+            </h2>
+            <div className="grid md:grid-cols-3 gap-5">
+              {depoimentos.map((dep) => (
+                <div key={dep.nome} className="bg-white border border-preto/8 rounded-2xl p-7 flex flex-col gap-4">
+                  <div className="flex gap-0.5">
+                    {[...Array(5)].map((_, i) => (
+                      <span key={i} className="text-sm" style={{ color: "#F5E6A3", filter: "drop-shadow(0 0 2px #000)" }}>★</span>
+                    ))}
+                  </div>
+                  <p className="font-jakarta font-light text-preto/70 text-base leading-relaxed flex-1">
+                    &ldquo;{dep.texto}&rdquo;
+                  </p>
+                  <div>
+                    <p className="font-jakarta font-semibold text-rosa text-sm">{dep.nome}</p>
+                    <p className="font-jakarta font-light text-preto/40 text-xs">{dep.local}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 7. Preço + CTA */}
         <section
           className="py-20 md:py-28 px-5 md:px-10 text-center"
           style={{ backgroundColor: "#F5E6A3" }}
@@ -233,14 +385,13 @@ export default function ParisPage() {
             <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronto pra viajar?
             </h2>
-            <p className="font-jakarta font-light text-preto/60 text-lg mb-2">
-              É só comprar, baixar e levar no celular. Paris te espera.
+            <p className="font-jakarta font-light text-preto/70 text-lg mb-2">
+              Tudo isso por <span className="font-semibold text-preto">R$ 39,90</span>. É só comprar, baixar e levar no celular. Paris te espera.
             </p>
             <p className="font-jakarta font-medium text-preto/50 text-sm mb-10">
               Entrega imediata, direto no seu e-mail.
             </p>
 
-            {/* Botão principal grande */}
             <a
               href={KIWIFY_URL}
               target="_blank"
@@ -251,10 +402,9 @@ export default function ParisPage() {
             </a>
 
             <p className="font-jakarta font-light text-preto/40 text-xs mb-12">
-              Checkout seguro via Kiwify
+              Checkout seguro via Kiwify.
             </p>
 
-            {/* Imagem clicável (capa do guia) */}
             <a
               href={KIWIFY_URL}
               target="_blank"
@@ -268,9 +418,7 @@ export default function ParisPage() {
               >
                 <div
                   className="absolute inset-0 opacity-10"
-                  style={{
-                    backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%)",
-                  }}
+                  style={{ backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%)" }}
                 />
                 <div className="absolute top-8 right-8 opacity-20">
                   <svg width="48" height="64" viewBox="0 0 48 64" fill="white">
@@ -293,7 +441,7 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* 6. FAQ — última seção */}
+        {/* FAQ — última seção */}
         <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
@@ -305,6 +453,7 @@ export default function ParisPage() {
             <FAQ />
           </div>
         </section>
+
       </main>
       <Footer />
     </>
