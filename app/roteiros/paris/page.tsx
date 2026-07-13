@@ -104,20 +104,17 @@ export default function ParisPage() {
             <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
               Paris em 5 Dias:
             </h1>
-            <p className="font-jakarta font-light text-rosa text-2xl md:text-4xl lg:text-5xl leading-tight mt-2 mb-8">
+            <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
               Guia para a Primeira Viagem
             </p>
 
-            {/* Texto do hero — versão curta */}
-            <div className="space-y-4 font-jakarta font-light text-offwhite/70 text-lg md:text-xl max-w-2xl leading-relaxed">
-              <p>
-                Sua primeira vez em Paris merece ser inesquecível, não estressante ⭐️
+            {/* Texto do hero */}
+            <div className="space-y-4 max-w-2xl">
+              <p className="font-jakarta font-medium text-offwhite/90 text-lg md:text-xl leading-relaxed italic">
+                O roteiro que eu gostaria de ter recebido antes da minha primeira viagem para Paris.
               </p>
-              <p>
-                Eu já morei na França e voltei muitas vezes, e reuni nesse guia tudo o que uma primeira viagem precisa.
-              </p>
-              <p>
-                É só baixar, abrir no celular e viajar tranquilo ✈️
+              <p className="font-jakarta font-light text-offwhite/60 text-base md:text-lg leading-relaxed">
+                Depois de morar na França e visitar Paris diversas vezes, reuni neste guia tudo o que realmente faz diferença para aproveitar a cidade sem estresse. É só abrir no celular e viajar com tranquilidade.
               </p>
             </div>
             <div className="mt-10">
