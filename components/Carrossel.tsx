@@ -10,11 +10,13 @@ const guias = [
     titulo: "Paris em 5 Dias",
     subtitulo: "o guia da sua primeira viagem",
     transformacao: "Sua primeira vez em Paris, sem estresse e sem perder nada.",
+    precoRiscado: "R$ 59,90",
     preco: "R$ 39,90",
     cta: "quero esse guia →",
     href: "/roteiros/paris",
     externo: false,
     gradiente: "linear-gradient(135deg, #1a0a10 0%, #F2277E 100%)",
+    emBreve: false,
   },
   {
     id: "paris-a-table",
@@ -22,11 +24,31 @@ const guias = [
     titulo: "Paris à Table",
     subtitulo: "bistrôs, padarias e mesas favoritas",
     transformacao: "Comer bem em Paris sem cair em armadilha de turista.",
-    preco: "R$ 29,90",
+    precoRiscado: "R$ 29,90",
+    preco: "R$ 19,90",
     cta: "quero esse guia →",
-    href: "https://pay.kiwify.com.br/Pd1fsEO",
-    externo: true,
+    href: "/roteiros/paris-a-table",
+    externo: false,
     gradiente: "linear-gradient(135deg, #100d04 0%, #8B5E1A 100%)",
+    emBreve: false,
+  },
+  {
+    id: "em-breve-1",
+    badge: "Em breve",
+    titulo: "Novo guia",
+    subtitulo: "próximo destino",
+    transformacao: "Mais um destino chegando em breve.",
+    gradiente: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
+    emBreve: true,
+  },
+  {
+    id: "em-breve-2",
+    badge: "Em breve",
+    titulo: "Novo guia",
+    subtitulo: "próximo destino",
+    transformacao: "Mais um destino chegando em breve.",
+    gradiente: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
+    emBreve: true,
   },
 ];
 
@@ -64,7 +86,7 @@ export default function Carrossel() {
             guias
           </span>
           <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
-            Escolha o seu destino.
+            Escolha o Seu Roteiro.
           </h2>
           <p className="font-jakarta font-light text-preto/50 text-base md:text-lg mt-3">
             Feitos por quem já foi, testou e voltou pra contar.
@@ -72,13 +94,19 @@ export default function Carrossel() {
         </div>
 
         {/* Grid de cards */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-4 md:gap-6">
           {guias.map((guia) => {
             const conteudo = (
-              <div className="bg-preto rounded-3xl overflow-hidden border border-white/5 hover:border-white/10 hover:scale-[1.01] hover:shadow-2xl transition-all duration-300 flex flex-col h-full">
+              <div
+                className={`bg-preto rounded-3xl overflow-hidden border flex flex-col h-full transition-all duration-300 ${
+                  guia.emBreve
+                    ? "border-white/5 cursor-default grayscale opacity-50"
+                    : "border-white/5 hover:border-white/10 hover:scale-[1.01] hover:shadow-2xl"
+                }`}
+              >
                 {/* Área decorativa */}
                 <div
-                  className="h-44 relative overflow-hidden flex-shrink-0"
+                  className="h-32 md:h-44 relative overflow-hidden flex-shrink-0"
                   style={{ background: guia.gradiente }}
                 >
                   <div
@@ -100,10 +128,17 @@ export default function Carrossel() {
                       🍽
                     </div>
                   )}
+                  {guia.emBreve && (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest border border-offwhite/20 px-3 py-1 rounded-full">
+                        em breve
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Conteúdo */}
-                <div className="p-7 flex flex-col gap-4 flex-1">
+                <div className="p-4 md:p-7 flex flex-col gap-3 md:gap-4 flex-1">
                   {/* Badge */}
                   <span className="inline-flex items-center gap-1.5 font-jakarta font-medium text-xs text-offwhite/40 border border-offwhite/10 px-3 py-1 rounded-full w-fit">
                     {guia.badge}
@@ -111,38 +146,57 @@ export default function Carrossel() {
 
                   {/* Título + subtítulo */}
                   <div>
-                    <h3 className="font-abril text-offwhite text-3xl md:text-4xl leading-tight">
+                    <h3 className="font-abril text-offwhite text-xl md:text-4xl leading-tight">
                       {guia.titulo}
                     </h3>
-                    <p className="font-jakarta font-light text-offwhite/40 text-sm mt-1">
+                    <p className="font-jakarta font-light text-offwhite/40 text-xs md:text-sm mt-1">
                       {guia.subtitulo}
                     </p>
                   </div>
 
                   {/* Linha de transformação */}
-                  <p className="font-jakarta font-medium text-offwhite text-base md:text-lg leading-snug">
+                  <p className="font-jakarta font-medium text-offwhite text-xs md:text-lg leading-snug hidden md:block">
                     {guia.transformacao}
                   </p>
 
                   {/* Preço */}
-                  <p className="font-syne font-extrabold text-offwhite/60 text-xl">
-                    {guia.preco}
-                  </p>
+                  {!guia.emBreve && "preco" in guia && guia.preco && (
+                    <div className="flex items-baseline gap-2">
+                      {"precoRiscado" in guia && guia.precoRiscado && (
+                        <span className="font-jakarta font-light text-offwhite/30 text-sm line-through">
+                          {guia.precoRiscado}
+                        </span>
+                      )}
+                      <span className="font-syne font-extrabold text-offwhite/80 text-lg md:text-xl">
+                        {guia.preco}
+                      </span>
+                    </div>
+                  )}
 
                   {/* CTA */}
-                  <div className="mt-auto pt-2">
-                    <span className="w-full flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-6 py-4 rounded-xl hover:bg-rosa/90 transition-colors">
-                      {guia.cta}
-                    </span>
-                  </div>
+                  {!guia.emBreve && "cta" in guia && guia.cta && (
+                    <div className="mt-auto pt-2">
+                      <span className="w-full flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-xs md:text-base px-4 md:px-6 py-3 md:py-4 rounded-xl hover:bg-rosa/90 transition-colors">
+                        {guia.cta}
+                      </span>
+                    </div>
+                  )}
                 </div>
               </div>
             );
 
-            return guia.externo ? (
+            if (guia.emBreve) {
+              return (
+                <div key={guia.id} className="reveal block" aria-disabled="true">
+                  {conteudo}
+                </div>
+              );
+            }
+
+            return "externo" in guia && guia.externo ? (
               <a
                 key={guia.id}
-                href={guia.href}
+                href={"href" in guia ? guia.href ?? "#" : "#"}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="reveal block"
@@ -150,7 +204,7 @@ export default function Carrossel() {
                 {conteudo}
               </a>
             ) : (
-              <Link key={guia.id} href={guia.href} className="reveal block">
+              <Link key={guia.id} href={"href" in guia ? guia.href ?? "/" : "/"} className="reveal block">
                 {conteudo}
               </Link>
             );

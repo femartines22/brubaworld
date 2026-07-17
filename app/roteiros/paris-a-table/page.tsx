@@ -6,45 +6,45 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const KIWIFY_URL = "https://pay.kiwify.com.br/yMypo41";
+const KIWIFY_URL = "https://pay.kiwify.com.br/Pd1fsEO";
 
 const paraQuem = [
-  "Vai a Paris pela primeira vez e não quer desperdiçar um dia",
-  "Tem pouco tempo e quer aproveitar ao máximo",
-  "Não quer ficar horas no Google tentando montar um roteiro",
-  "Viaja sozinha, com amigas, em casal ou em família",
+  "Vai a Paris e não quer perder tempo pesquisando onde comer",
+  "Quer fugir das armadilhas de turista e comer onde os locais comem de verdade",
+  "Busca desde o pão de todo dia até o jantar especial de uma data comemorativa",
+  "Gosta de ter um plano na mão, sem depender de review genérico do Google",
 ];
 
-const dias = [
+const categorias = [
   {
     num: "01",
-    titulo: "Torre Eiffel e a margem esquerda",
-    desc: "O dia mais icônico começa com um ângulo que a maioria dos turistas não conhece — e um alerta que evita a armadilha clássica perto da torre.",
-    pilulas: ["Horário certo pra subir", "Alerta de golpe", "Jantar histórico"],
+    titulo: "Os favoritos da Bruba",
+    desc: "Os bistrôs e a padaria que ela testou e aprovou pessoalmente — do jantar de primeira noite ao pão de todo dia. São os endereços que ela voltaria pra qualquer viagem.",
+    pilulas: ["Bistrô para o primeiro jantar", "A padaria certa", "Volta sempre"],
   },
   {
     num: "02",
-    titulo: "Louvre, Île de la Cité e Jardim de Luxemburgo",
-    desc: "O dia mais cultural, quase tudo a pé. O guia indica o que realmente vale no Louvre — e o lugar mais lindo de Paris que quase todo turista pula.",
-    pilulas: ["Entrada com fila menor", "As alas certas do Louvre", "Atenção: fecha toda terça"],
+    titulo: "Cool spots & vistas",
+    desc: "Os endereços do momento e os rooftops com a Torre Eiffel de cenário. Com a dica de quando ir pra aproveitar sem espera.",
+    pilulas: ["Vista da torre", "Atmosfera", "Dica de horário"],
   },
   {
     num: "03",
-    titulo: "Montmartre, Pigalle e Ópera",
-    desc: "O dia mais fotogênico. Subida pelo caminho certo, café que ficou famoso no cinema e uma vista incrível que ninguém precisa pagar.",
-    pilulas: ["A subida certa", "Vista gratuita", "Jantar animado"],
+    titulo: "TikTok Famous & resolve rápido",
+    desc: "Os lugares que viralizaram e valem a fila — e as opções certeiras pra quando o tempo é curto. Com o aviso do que é hype de verdade.",
+    pilulas: ["Vale a fila?", "Quando o tempo é curto", "O que é hype"],
   },
   {
     num: "04",
-    titulo: "Marais e o coração histórico",
-    desc: "O bairro mais charmoso de Paris, feito pra perder o rumo de propósito. Tem uma dica de domingo que vale sozinha.",
-    pilulas: ["Ruelas medievais", "Dica do domingo", "Comida lendária"],
+    titulo: "Cozinhas do mundo",
+    desc: "Bistrôs franceses clássicos, italianos, asiáticos e bares escondidos, organizados por estilo e ocasião pra facilitar a escolha na hora certa.",
+    pilulas: ["Bistrô clássico", "Bar escondido", "Por ocasião"],
   },
   {
     num: "05",
-    titulo: "Champs-Élysées, Arco do Triunfo e despedida",
-    desc: "O último dia fecha em grande. Tem a vista que, na opinião da Bruba, supera a da Torre Eiffel — e um aviso que todo visitante deveria saber antes de chegar.",
-    pilulas: ["Vista que supera a Torre Eiffel", "Aviso da rotatória", "Jantar de despedida"],
+    titulo: "Jantar especial",
+    desc: "As mesas de alta gastronomia e os clássicos de ocasião. Pra quando o momento pede investir — com orientação de quando reservar e o que pedir.",
+    pilulas: ["Alta gastronomia", "Clássicos de ocasião", "Quando reservar"],
   },
 ];
 
@@ -58,8 +58,8 @@ const faqs = [
     a: "Sim. O guia é um PDF que você salva no celular. Só os links do Google Maps precisam de conexão.",
   },
   {
-    q: "Posso usar em qualquer época do ano?",
-    a: "Sim. O roteiro inclui observações sobre sazonalidade e o que muda por período.",
+    q: "Esse guia serve pra outras cidades?",
+    a: "Não — ele é exclusivo de Paris. Cada endereço foi escolhido e testado pessoalmente na cidade.",
   },
   {
     q: "Serve pra quantas viagens?",
@@ -93,7 +93,7 @@ function FAQ() {
   );
 }
 
-export default function ParisPage() {
+export default function ParisATablePage() {
   return (
     <>
       <CustomCursor />
@@ -103,7 +103,8 @@ export default function ParisPage() {
         {/* 1. Hero */}
         <section className="relative bg-preto min-h-[80vh] flex items-center pt-20 pb-24 px-5 md:px-10 overflow-hidden">
           <div
-            className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rosa opacity-20 animate-blob pointer-events-none"
+            className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] opacity-20 animate-blob pointer-events-none"
+            style={{ backgroundColor: "#8B5E1A" }}
             aria-hidden="true"
           />
           <div className="relative z-10 max-w-4xl mx-auto w-full">
@@ -115,20 +116,20 @@ export default function ParisPage() {
             </Link>
             <span className="inline-flex items-center gap-2 bg-rosa/15 border border-rosa/30 text-rosa font-jakarta font-medium text-xs px-4 py-1.5 rounded-full mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
-              Guia de Viagem
+              Guia de Restaurantes
             </span>
             <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
-              Paris em 5 Dias:
+              Paris à Table:
             </h1>
             <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
-              Guia para a Primeira Viagem
+              Bistrôs, Padarias e Mesas Favoritas
             </p>
             <div className="space-y-4 max-w-2xl">
               <p className="font-jakarta font-medium text-offwhite/90 text-lg md:text-xl leading-relaxed italic">
-                O roteiro que eu gostaria de ter recebido antes da minha primeira viagem para Paris.
+                O roteiro de bons endereços que eu monto depois de comer por Paris de ponta a ponta.
               </p>
               <p className="font-jakarta font-light text-offwhite/60 text-base md:text-lg leading-relaxed">
-                Depois de morar na França e visitar Paris diversas vezes, reuni neste guia tudo o que realmente faz diferença para aproveitar a cidade sem estresse. É só abrir no celular e viajar com tranquilidade.
+                Reuni neste guia os bistrôs, padarias, bares e mesas que valem a pena — dos clássicos parisienses aos queridinhos do TikTok. É só abrir no celular, tocar no nome e seguir direto pro endereço no Google Maps.
               </p>
             </div>
             <div className="mt-10">
@@ -166,23 +167,23 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* 3. Cinco dias. Tudo pensado. */}
+        {/* 3. Dentro do guia */}
         <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dentro do guia
             </span>
             <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
-              Cinco dias. Tudo pensado.
+              Tudo organizado por categoria.
             </h2>
             <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
-              Não é uma lista de atrações do Google. É um roteiro com contexto, ordem certa, dicas de quem já foi e os alertas que ninguém te conta antes.
+              Não é uma lista genérica de restaurantes. É uma curadoria pessoal, testada e aprovada, com contexto pra cada ocasião.
             </p>
 
             <div className="space-y-6">
-              {dias.map((dia) => (
+              {categorias.map((cat) => (
                 <div
-                  key={dia.num}
+                  key={cat.num}
                   className="border border-offwhite/10 rounded-3xl p-8 md:p-10 hover:border-offwhite/20 transition-colors"
                 >
                   <div className="flex flex-col md:flex-row md:items-start gap-6">
@@ -190,17 +191,17 @@ export default function ParisPage() {
                       className="font-syne font-extrabold text-6xl md:text-7xl leading-none flex-shrink-0"
                       style={{ color: "#F5E6A3" }}
                     >
-                      {dia.num}
+                      {cat.num}
                     </span>
                     <div className="flex-1">
                       <h3 className="font-abril text-offwhite text-2xl md:text-3xl leading-tight mb-4">
-                        {dia.titulo}
+                        {cat.titulo}
                       </h3>
                       <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed mb-6">
-                        {dia.desc}
+                        {cat.desc}
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {dia.pilulas.map((p) => (
+                        {cat.pilulas.map((p) => (
                           <span
                             key={p}
                             className="font-jakarta font-medium text-xs text-offwhite/50 bg-offwhite/5 border border-offwhite/10 px-3 py-1.5 rounded-full"
@@ -222,13 +223,13 @@ export default function ParisPage() {
                   </span>
                   <div className="flex-1">
                     <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest mb-2 block">
-                      dia extra opcional
+                      bônus
                     </span>
                     <h3 className="font-abril text-offwhite/60 text-2xl md:text-3xl leading-tight mb-4">
-                      Versalhes ou Giverny
+                      Doces, café da manhã e o croissant certo
                     </h3>
                     <p className="font-jakarta font-light text-offwhite/40 text-base leading-relaxed">
-                      Se sobrar um dia, o guia traz as duas melhores opções de bate-volta. Cada uma com a forma certa de chegar e o detalhe que muda tudo.
+                      Pâtisseries, os melhores croissants de Paris e as dicas de ouro pra não pagar mico à mesa.
                     </p>
                   </div>
                 </div>
@@ -237,43 +238,7 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* 4. Quanto você economiza */}
-        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
-              vale a pena?
-            </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
-              Quanto você economiza.
-            </h2>
-            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
-              {[
-                { label: "Horas de pesquisa", sem: "30h+", com: "0h" },
-                { label: "Risco de erro", sem: "Alto", com: "Zero" },
-              ].map((item) => (
-                <div key={item.label} className="bg-offwhite/5 border border-offwhite/10 rounded-2xl p-6">
-                  <p className="font-jakarta font-medium text-offwhite/60 text-sm mb-4">{item.label}</p>
-                  <div className="flex items-center gap-3">
-                    <div className="flex-1 text-center bg-offwhite/5 rounded-xl p-3">
-                      <p className="font-jakarta font-light text-offwhite/40 text-xs mb-1">Sem guia</p>
-                      <p className="font-syne font-extrabold text-offwhite/40 text-lg">{item.sem}</p>
-                    </div>
-                    <span className="text-offwhite/20 font-jakarta">→</span>
-                    <div
-                      className="flex-1 text-center rounded-xl p-3"
-                      style={{ backgroundColor: "#F5E6A3" }}
-                    >
-                      <p className="font-jakarta font-light text-preto/50 text-xs mb-1">Com guia</p>
-                      <p className="font-syne font-extrabold text-preto text-lg">{item.com}</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* 5. CTA */}
+        {/* 4. CTA */}
         <section
           className="py-20 md:py-28 px-5 md:px-10 text-center"
           style={{ backgroundColor: "#F5E6A3" }}
@@ -283,10 +248,10 @@ export default function ParisPage() {
               garanta o seu
             </span>
             <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
-              Pronto pra viajar?
+              Pronta pra comer bem em Paris?
             </h2>
             <p className="font-jakarta font-light text-preto/70 text-lg mb-2">
-              É só comprar, baixar e levar no celular. Paris te espera.
+              É só comprar, abrir no celular e seguir direto pro endereço certo.
             </p>
             <p className="font-jakarta font-medium text-preto/50 text-sm mb-10">
               Notificação de acesso por e-mail e WhatsApp.
@@ -310,27 +275,25 @@ export default function ParisPage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block group"
-              aria-label="Comprar guia de Paris"
+              aria-label="Comprar guia Paris à Table"
             >
               <div
                 className="w-64 md:w-80 mx-auto aspect-[3/4] rounded-3xl flex items-end p-8 relative overflow-hidden group-hover:scale-[1.03] group-hover:shadow-2xl transition-all duration-300"
-                style={{ background: "linear-gradient(135deg, #111111 0%, #F2277E 100%)" }}
+                style={{ background: "linear-gradient(135deg, #100d04 0%, #8B5E1A 100%)" }}
               >
                 <div
                   className="absolute inset-0 opacity-10"
                   style={{ backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%)" }}
                 />
-                <div className="absolute top-8 right-8 opacity-20">
-                  <svg width="48" height="64" viewBox="0 0 48 64" fill="white">
-                    <path d="M24 2 L20 20 L16 20 L12 40 L8 40 L4 62 L44 62 L40 40 L36 40 L32 20 L28 20 Z M18 44 L30 44 L30 50 L18 50 Z" fillRule="evenodd"/>
-                  </svg>
+                <div className="absolute top-8 right-8 opacity-20 text-5xl select-none">
+                  🍽
                 </div>
                 <div className="relative z-10 text-left w-full">
                   <p className="font-jakarta font-medium text-white/60 text-xs uppercase tracking-widest mb-2">
                     brubaworld
                   </p>
                   <h3 className="font-abril text-white text-xl leading-snug">
-                    Paris em 5 Dias: Guia para a Primeira Viagem
+                    Paris à Table: Bistrôs, Padarias e Mesas Favoritas
                   </h3>
                 </div>
               </div>

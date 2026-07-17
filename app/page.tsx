@@ -16,8 +16,8 @@ export default function Home() {
         <Hero />
         <Marquee />
         <About />
-        <Reviews />
         <Carrossel />
+        <Reviews />
       </main>
       <Footer />
     </>
