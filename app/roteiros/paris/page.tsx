@@ -16,36 +16,11 @@ const paraQuem = [
 ];
 
 const dias = [
-  {
-    num: "01",
-    titulo: "Torre Eiffel e a margem esquerda",
-    desc: "O dia mais icônico começa com um ângulo que a maioria dos turistas não conhece — e um alerta que evita a armadilha clássica perto da torre.",
-    pilulas: ["Horário certo pra subir", "Alerta de golpe", "Jantar histórico"],
-  },
-  {
-    num: "02",
-    titulo: "Louvre, Île de la Cité e Jardim de Luxemburgo",
-    desc: "O dia mais cultural, quase tudo a pé. O guia indica o que realmente vale no Louvre — e o lugar mais lindo de Paris que quase todo turista pula.",
-    pilulas: ["Entrada com fila menor", "As alas certas do Louvre", "Atenção: fecha toda terça"],
-  },
-  {
-    num: "03",
-    titulo: "Montmartre, Pigalle e Ópera",
-    desc: "O dia mais fotogênico. Subida pelo caminho certo, café que ficou famoso no cinema e uma vista incrível que ninguém precisa pagar.",
-    pilulas: ["A subida certa", "Vista gratuita", "Jantar animado"],
-  },
-  {
-    num: "04",
-    titulo: "Marais e o coração histórico",
-    desc: "O bairro mais charmoso de Paris, feito pra perder o rumo de propósito. Tem uma dica de domingo que vale sozinha.",
-    pilulas: ["Ruelas medievais", "Dica do domingo", "Comida lendária"],
-  },
-  {
-    num: "05",
-    titulo: "Champs-Élysées, Arco do Triunfo e despedida",
-    desc: "O último dia fecha em grande. Tem a vista que, na opinião da Bruba, supera a da Torre Eiffel — e um aviso que todo visitante deveria saber antes de chegar.",
-    pilulas: ["Vista que supera a Torre Eiffel", "Aviso da rotatória", "Jantar de despedida"],
-  },
+  { num: "01", texto: "O detalhe que transforma a experiência da Torre Eiffel." },
+  { num: "02", texto: "Como visitar o Louvre do jeito certo." },
+  { num: "03", texto: "O segredo para viver Montmartre além do óbvio." },
+  { num: "04", texto: "As ruelas mais encantadoras de Paris." },
+  { num: "05", texto: "O final de viagem que quase ninguém planeja." },
 ];
 
 const faqs = [
@@ -179,59 +154,32 @@ export default function ParisPage() {
               Não é uma lista de atrações do Google. É um roteiro com contexto, ordem certa, dicas de quem já foi e os alertas que ninguém te conta antes.
             </p>
 
-            <div className="space-y-6">
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 md:-mx-10 md:px-10 snap-x snap-mandatory">
               {dias.map((dia) => (
                 <div
                   key={dia.num}
-                  className="border border-offwhite/10 rounded-3xl p-8 md:p-10 hover:border-offwhite/20 transition-colors"
+                  className="flex-shrink-0 w-[260px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-6 hover:border-offwhite/20 transition-colors"
                 >
-                  <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    <span
-                      className="font-syne font-extrabold text-6xl md:text-7xl leading-none flex-shrink-0"
-                      style={{ color: "#F5E6A3" }}
-                    >
-                      {dia.num}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="font-abril text-offwhite text-2xl md:text-3xl leading-tight mb-4">
-                        {dia.titulo}
-                      </h3>
-                      <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed mb-6">
-                        {dia.desc}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {dia.pilulas.map((p) => (
-                          <span
-                            key={p}
-                            className="font-jakarta font-medium text-xs text-offwhite/50 bg-offwhite/5 border border-offwhite/10 px-3 py-1.5 rounded-full"
-                          >
-                            {p}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                  <span
+                    className="font-syne font-extrabold text-7xl leading-none"
+                    style={{ color: "#F5E6A3" }}
+                  >
+                    {dia.num}
+                  </span>
+                  <p className="font-jakarta font-medium text-offwhite text-base leading-snug">
+                    {dia.texto}
+                  </p>
                 </div>
               ))}
 
-              {/* Bloco bônus */}
-              <div className="border border-dashed border-offwhite/20 rounded-3xl p-8 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  <span className="font-syne font-extrabold text-5xl md:text-6xl leading-none flex-shrink-0 text-offwhite/20">
-                    +1
-                  </span>
-                  <div className="flex-1">
-                    <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest mb-2 block">
-                      dia extra opcional
-                    </span>
-                    <h3 className="font-abril text-offwhite/60 text-2xl md:text-3xl leading-tight mb-4">
-                      Versalhes ou Giverny
-                    </h3>
-                    <p className="font-jakarta font-light text-offwhite/40 text-base leading-relaxed">
-                      Se sobrar um dia, o guia traz as duas melhores opções de bate-volta. Cada uma com a forma certa de chegar e o detalhe que muda tudo.
-                    </p>
-                  </div>
-                </div>
+              {/* Bônus */}
+              <div className="flex-shrink-0 w-[260px] snap-start border border-dashed border-offwhite/20 rounded-3xl p-8 flex flex-col gap-6">
+                <span className="font-syne font-extrabold text-7xl leading-none text-offwhite/20">
+                  +1
+                </span>
+                <p className="font-jakarta font-medium text-offwhite/40 text-base leading-snug">
+                  O bate-volta ideal para completar a viagem.
+                </p>
               </div>
             </div>
           </div>

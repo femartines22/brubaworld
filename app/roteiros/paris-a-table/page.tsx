@@ -18,33 +18,18 @@ const paraQuem = [
 const categorias = [
   {
     num: "01",
-    titulo: "Os favoritos da Bruba",
-    desc: "Os bistrôs e a padaria que ela testou e aprovou pessoalmente — do jantar de primeira noite ao pão de todo dia. São os endereços que ela voltaria pra qualquer viagem.",
-    pilulas: ["Bistrô para o primeiro jantar", "A padaria certa", "Volta sempre"],
+    titulo: "Nunca mais pesquise onde comer",
+    desc: "Tudo organizado por bairro, ocasião, preço e estilo.",
   },
   {
     num: "02",
-    titulo: "Cool spots & vistas",
-    desc: "Os endereços do momento e os rooftops com a Torre Eiffel de cenário. Com a dica de quando ir pra aproveitar sem espera.",
-    pilulas: ["Vista da torre", "Atmosfera", "Dica de horário"],
+    titulo: "Os lugares que fazem Paris valer a viagem",
+    desc: "Dos rooftops aos cafés escondidos.",
   },
   {
     num: "03",
-    titulo: "TikTok Famous & resolve rápido",
-    desc: "Os lugares que viralizaram e valem a fila — e as opções certeiras pra quando o tempo é curto. Com o aviso do que é hype de verdade.",
-    pilulas: ["Vale a fila?", "Quando o tempo é curto", "O que é hype"],
-  },
-  {
-    num: "04",
-    titulo: "Cozinhas do mundo",
-    desc: "Bistrôs franceses clássicos, italianos, asiáticos e bares escondidos, organizados por estilo e ocasião pra facilitar a escolha na hora certa.",
-    pilulas: ["Bistrô clássico", "Bar escondido", "Por ocasião"],
-  },
-  {
-    num: "05",
-    titulo: "Jantar especial",
-    desc: "As mesas de alta gastronomia e os clássicos de ocasião. Pra quando o momento pede investir — com orientação de quando reservar e o que pedir.",
-    pilulas: ["Alta gastronomia", "Clássicos de ocasião", "Quando reservar"],
+    titulo: "O que realmente vale a fama",
+    desc: "Para você não perder tempo nem dinheiro.",
   },
 ];
 
@@ -180,58 +165,41 @@ export default function ParisATablePage() {
               Não é uma lista genérica de restaurantes. É uma curadoria pessoal, testada e aprovada, com contexto pra cada ocasião.
             </p>
 
-            <div className="space-y-6">
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 md:-mx-10 md:px-10 snap-x snap-mandatory">
               {categorias.map((cat) => (
                 <div
                   key={cat.num}
-                  className="border border-offwhite/10 rounded-3xl p-8 md:p-10 hover:border-offwhite/20 transition-colors"
+                  className="flex-shrink-0 w-[260px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-5 hover:border-offwhite/20 transition-colors"
                 >
-                  <div className="flex flex-col md:flex-row md:items-start gap-6">
-                    <span
-                      className="font-syne font-extrabold text-6xl md:text-7xl leading-none flex-shrink-0"
-                      style={{ color: "#F5E6A3" }}
-                    >
-                      {cat.num}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="font-abril text-offwhite text-2xl md:text-3xl leading-tight mb-4">
-                        {cat.titulo}
-                      </h3>
-                      <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed mb-6">
-                        {cat.desc}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {cat.pilulas.map((p) => (
-                          <span
-                            key={p}
-                            className="font-jakarta font-medium text-xs text-offwhite/50 bg-offwhite/5 border border-offwhite/10 px-3 py-1.5 rounded-full"
-                          >
-                            {p}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
+                  <span
+                    className="font-syne font-extrabold text-7xl leading-none"
+                    style={{ color: "#F5E6A3" }}
+                  >
+                    {cat.num}
+                  </span>
+                  <div>
+                    <p className="font-abril text-offwhite text-lg leading-snug mb-2">
+                      {cat.titulo}
+                    </p>
+                    <p className="font-jakarta font-light text-offwhite/50 text-sm leading-relaxed">
+                      {cat.desc}
+                    </p>
                   </div>
                 </div>
               ))}
 
-              {/* Bloco bônus */}
-              <div className="border border-dashed border-offwhite/20 rounded-3xl p-8 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  <span className="font-syne font-extrabold text-5xl md:text-6xl leading-none flex-shrink-0 text-offwhite/20">
-                    +1
-                  </span>
-                  <div className="flex-1">
-                    <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest mb-2 block">
-                      bônus
-                    </span>
-                    <h3 className="font-abril text-offwhite/60 text-2xl md:text-3xl leading-tight mb-4">
-                      Doces, café da manhã e o croissant certo
-                    </h3>
-                    <p className="font-jakarta font-light text-offwhite/40 text-base leading-relaxed">
-                      Pâtisseries, os melhores croissants de Paris e as dicas de ouro pra não pagar mico à mesa.
-                    </p>
-                  </div>
+              {/* Bônus */}
+              <div className="flex-shrink-0 w-[260px] snap-start border border-dashed border-offwhite/20 rounded-3xl p-8 flex flex-col gap-5">
+                <span className="font-syne font-extrabold text-7xl leading-none text-offwhite/20">
+                  +1
+                </span>
+                <div>
+                  <p className="font-abril text-offwhite/50 text-lg leading-snug mb-2">
+                    O mapa dos doces
+                  </p>
+                  <p className="font-jakarta font-light text-offwhite/30 text-sm leading-relaxed">
+                    Croissants, cafés e sobremesas que realmente valem a parada.
+                  </p>
                 </div>
               </div>
             </div>
