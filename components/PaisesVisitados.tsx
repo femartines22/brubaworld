@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { paisesVisitados } from "@/data/paisesVisitados";
+import { paisesVisitados, paisesPorContinente } from "@/data/paisesVisitados";
 import { cidadesVisitadas } from "@/data/cidades";
 import Globo from "@/components/Globo";
 
@@ -52,7 +52,7 @@ export default function PaisesVisitados() {
 
             {/* Contador */}
             <div className="reveal flex items-baseline gap-3 mt-8">
-              <span className="font-syne font-extrabold text-rosa text-6xl md:text-8xl leading-none">
+              <span className="font-display font-black text-rosa text-7xl md:text-9xl leading-none">
                 {paisesVisitados.length}
               </span>
               <span className="font-jakarta font-medium text-preto/60 text-base md:text-lg leading-tight">
@@ -69,15 +69,33 @@ export default function PaisesVisitados() {
           </div>
         </div>
 
-        {/* Grade de países */}
-        <div className="reveal flex flex-wrap gap-2 md:gap-3 mt-12">
-          {paisesVisitados.map((pais) => (
-            <span
-              key={pais}
-              className="font-jakarta font-medium text-sm md:text-base bg-manteigaClara text-grafite px-4 py-2 rounded-full border border-transparent hover:border-rosa hover:-translate-y-0.5 transition-all duration-200 cursor-default"
-            >
-              {pais}
-            </span>
+        {/* Países agrupados por continente */}
+        <div className="mt-12 space-y-7">
+          {paisesPorContinente.map((grupo) => (
+            <div key={grupo.continente} className="reveal">
+              {/* Cabeçalho do continente */}
+              <div className="flex items-baseline gap-3 mb-3">
+                <h3 className="font-display font-bold text-preto text-lg md:text-xl">
+                  {grupo.continente}
+                </h3>
+                <span className="font-jakarta font-semibold text-xs tracking-[0.1em] text-rosa">
+                  {grupo.paises.length}
+                </span>
+                <span className="flex-1 h-px bg-preto/10" />
+              </div>
+
+              {/* Países do continente */}
+              <div className="flex flex-wrap gap-2">
+                {grupo.paises.map((pais) => (
+                  <span
+                    key={pais}
+                    className="font-jakarta font-normal text-sm md:text-base bg-manteigaClara text-grafite px-3 py-1.5 rounded-lg border border-transparent hover:border-rosa hover:-translate-y-0.5 transition-all duration-200 cursor-default"
+                  >
+                    {pais}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
 
