@@ -141,7 +141,7 @@ export default function HowItWorks() {
         {/* CTA bottom */}
         <div className="reveal text-center mt-10">
           <a
-            href="#contato"
+            href="#form-personalizado"
             className="inline-flex items-center gap-2 bg-preto text-offwhite font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-preto/80 hover:scale-105 transition-all duration-200"
           >
             começar agora →

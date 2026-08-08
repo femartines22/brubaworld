@@ -80,7 +80,7 @@ export default function Packages() {
                 Preço sob consulta
               </p>
               <a
-                href="#contato"
+                href="#form-personalizado"
                 className="inline-flex items-center gap-2 border-2 border-preto text-preto font-jakarta font-semibold text-sm px-6 py-3 rounded-full hover:bg-preto hover:text-offwhite transition-all duration-200"
               >
                 quero esse →
@@ -137,7 +137,7 @@ export default function Packages() {
                 Preço sob consulta
               </p>
               <a
-                href="#contato"
+                href="#form-personalizado"
                 className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-6 py-3 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200"
               >
                 quero esse →

@@ -2,16 +2,33 @@
 
 import { useEffect, useRef, useState } from "react";
 
+type FormState = {
+  name: string;
+  age: string;
+  phone: string;
+  email: string;
+  instagram: string;
+  destino: string;
+};
+
+function formatPhone(value: string) {
+  const digits = value.replace(/\D/g, "").slice(0, 11);
+  if (digits.length <= 2) return digits;
+  if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
+  if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
+  return `(${digits.slice(0, 2)}) ${digits.slice(2, 7)}-${digits.slice(7)}`;
+}
+
 export default function ContactForm() {
   const ref = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [form, setForm] = useState({
+  const [form, setForm] = useState<FormState>({
     name: "",
     age: "",
     phone: "",
     email: "",
     instagram: "",
-    source: "",
+    destino: "",
   });
 
   useEffect(() => {
@@ -31,32 +48,26 @@ export default function ContactForm() {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const name = e.target.name as keyof FormState;
+    const value = name === "phone" ? formatPhone(e.target.value) : e.target.value;
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
-    const url = process.env.NEXT_PUBLIC_FORMSPREE_URL;
-    if (!url) {
-      setStatus("error");
-      return;
-    }
-
     try {
-      const res = await fetch(url, {
+      const res = await fetch("/api/lead-personalizado", {
         method: "POST",
-        headers: { "Accept": "application/json", "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
 
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", age: "", phone: "", email: "", instagram: "", source: "" });
+        setForm({ name: "", age: "", phone: "", email: "", instagram: "", destino: "" });
       } else {
         setStatus("error");
       }
@@ -72,41 +83,35 @@ export default function ContactForm() {
 
   return (
     <section
-      id="contato"
+      id="form-personalizado"
       ref={ref}
       className="bg-offwhite py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Left */}
           <div>
             <div className="reveal">
               <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
-                Quero ser
+                Me conta um pouco
                 <br />
-                avisada.
+                sobre você
               </h2>
             </div>
             <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
               <p>
-                Deixa seu contato pra eu te avisar assim que os próximos
-                roteiros saírem.
+                Preencha o formulário para receber um contato rapidinho. Assim posso montar um roteiro personalizado do seu jeito.
               </p>
             </div>
           </div>
 
-          {/* Right — form card */}
           <div className="reveal">
             <div className="bg-preto rounded-3xl p-8 md:p-10">
               {status === "success" ? (
                 <div className="text-center py-12">
                   <div className="text-5xl mb-6">✈️</div>
-                  <h3 className="font-abril text-offwhite text-3xl mb-4">
-                    Recebi!
-                  </h3>
+                  <h3 className="font-abril text-offwhite text-3xl mb-4">Recebi!</h3>
                   <p className="font-jakarta font-light text-offwhite/60 text-lg leading-relaxed">
-                    Anotei tudo! Assim que tiver novidades por aqui, você será
-                    uma das primeiras a saber.
+                    Recebi! Em breve você tem novidades por aqui.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}
@@ -170,7 +175,7 @@ export default function ContactForm() {
 
                   <div>
                     <label htmlFor="email" className={labelClass}>
-                      E-mail *
+                      Email *
                     </label>
                     <input
                       id="email"
@@ -186,14 +191,13 @@ export default function ContactForm() {
 
                   <div>
                     <label htmlFor="instagram" className={labelClass}>
-                      Instagram{" "}
-                      <span className="text-offwhite/30">(opcional)</span>
+                      Instagram <span className="text-offwhite/30">(opcional)</span>
                     </label>
                     <input
                       id="instagram"
                       name="instagram"
                       type="text"
-                      placeholder="@seunome"
+                      placeholder="Seu nome no Instagram"
                       value={form.instagram}
                       onChange={handleChange}
                       className={inputClass}
@@ -201,31 +205,24 @@ export default function ContactForm() {
                   </div>
 
                   <div>
-                    <label htmlFor="source" className={labelClass}>
-                      Como me achou? *
+                    <label htmlFor="destino" className={labelClass}>
+                      Destino desejado *
                     </label>
-                    <select
-                      id="source"
-                      name="source"
+                    <input
+                      id="destino"
+                      name="destino"
+                      type="text"
                       required
-                      value={form.source}
+                      placeholder="Pra onde você quer ir?"
+                      value={form.destino}
                       onChange={handleChange}
-                      className={`${inputClass} appearance-none`}
-                    >
-                      <option value="" disabled className="bg-preto">
-                        Selecione uma opção
-                      </option>
-                      <option value="TikTok" className="bg-preto">TikTok</option>
-                      <option value="Instagram" className="bg-preto">Instagram</option>
-                      <option value="Indicação de amigo" className="bg-preto">Indicação de amigo</option>
-                      <option value="Outro" className="bg-preto">Outro</option>
-                    </select>
+                      className={inputClass}
+                    />
                   </div>
 
                   {status === "error" && (
                     <p className="font-jakarta font-medium text-rosa text-sm">
-                      Algo deu errado. Tente novamente ou me mande mensagem no
-                      Instagram.
+                      Ops, algo deu errado. Tenta de novo?
                     </p>
                   )}
 
@@ -234,7 +231,7 @@ export default function ContactForm() {
                     disabled={status === "sending"}
                     className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl hover:bg-rosa/90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 mt-2"
                   >
-                    {status === "sending" ? "Enviando..." : "quero ser avisada →"}
+                    {status === "sending" ? "Enviando..." : "quero saber mais"}
                   </button>
 
                   <p className="font-jakarta font-light text-offwhite/30 text-xs text-center">
