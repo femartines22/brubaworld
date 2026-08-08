@@ -4,6 +4,7 @@ import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import PaisesVisitados from "@/components/PaisesVisitados";
+import ComoViajar from "@/components/ComoViajar";
 import ContactForm from "@/components/ContactForm";
 import Reviews from "@/components/Reviews";
 import Carrossel from "@/components/Carrossel";
@@ -19,9 +20,10 @@ export default function Home() {
         <Marquee />
         <About />
         <PaisesVisitados />
-        <ContactForm />
+        <ComoViajar />
         <Carrossel />
         <Reviews />
+        <ContactForm />
       </main>
       <Footer />
     </>

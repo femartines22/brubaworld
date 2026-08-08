@@ -49,7 +49,7 @@ export default function Navbar() {
 
         {/* CTA */}
         <a
-          href="#form-personalizado"
+          href="#como-viajar"
           className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors"
         >
           quero meu roteiro →
@@ -93,7 +93,7 @@ export default function Navbar() {
           ))}
           <li>
             <a
-              href="#form-personalizado"
+              href="#como-viajar"
               className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors mt-2"
               onClick={() => setMenuOpen(false)}
             >

@@ -50,7 +50,6 @@ function buildValue(type: string, value: string) {
     case "status":
       return { status: { name: value } };
     case "date":
-      // O input type="date" já entrega no formato AAAA-MM-DD que o Notion espera.
       return { date: { start: value } };
     case "checkbox":
       return { checkbox: value === "Sim" || value === "true" };
@@ -95,8 +94,8 @@ export async function POST(request: NextRequest) {
     email?: string;
   };
 
-  // Só nome, telefone e destino são obrigatórios — idade, email e Instagram
-  // são opcionais e simplesmente não são enviados ao Notion quando vazios.
+  // Só nome, telefone e destino são obrigatórios. Os demais campos
+  // simplesmente não vão para o Notion quando chegam vazios.
   if (!name || !phone || !destino) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
@@ -142,6 +141,8 @@ export async function POST(request: NextRequest) {
       { aliases: ["Observações", "Observacoes", "Notas"], value: observacoes || "" },
       { aliases: ["Instagram", "Insta"], value: instagram || "" },
       { aliases: ["Email", "E-mail"], value: email || "" },
+      // O CRM da Bruba usa o tipo "Status" com o funil dela.
+      // "Forms Preenchido" é a primeira coluna do quadro.
       { aliases: ["Status"], value: "Forms Preenchido" },
     ];
 

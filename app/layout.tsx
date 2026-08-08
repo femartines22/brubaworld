@@ -21,14 +21,37 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
 });
 
+const TITULO = "brubaworld — Roteiros de viagem por quem já viveu cada destino";
+const DESCRICAO =
+  "Guias de viagem criados por quem já foi, testou e recomenda só o que realmente vale a pena.";
+const SITE = "https://www.brubaworld.com.br";
+
 export const metadata: Metadata = {
-  title: "brubaworld — Roteiros de viagem por quem já viveu cada destino",
-  description:
-    "Guias de viagem criados por quem já foi, testou e recomenda só o que realmente vale a pena.",
+  // Necessário para o Next montar a URL absoluta da imagem de compartilhamento.
+  metadataBase: new URL(SITE),
+  title: TITULO,
+  description: DESCRICAO,
   openGraph: {
-    title: "brubaworld — Roteiros de viagem por quem já viveu cada destino",
-    description: "Guias de viagem criados por quem já foi, testou e recomenda só o que realmente vale a pena.",
+    title: TITULO,
+    description: DESCRICAO,
     type: "website",
+    url: SITE,
+    siteName: "brubaworld",
+    locale: "pt_BR",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "brubaworld — Roteiros feitos por quem já viveu",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITULO,
+    description: DESCRICAO,
+    images: ["/og-image.png"],
   },
 };
 
