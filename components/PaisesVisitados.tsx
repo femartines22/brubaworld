@@ -40,8 +40,7 @@ export default function PaisesVisitados() {
             Os países que eu já vivi de perto
           </h2>
           <p className="font-jakarta font-light text-preto/50 text-base md:text-lg mt-3 max-w-2xl">
-            Cada lugar dessa lista eu visitei de verdade, com mala, roteiro e
-            curiosidade.
+            Já viajei para 24 países e posso te ajudar a fazer a sua viagem também.
           </p>
         </div>
 

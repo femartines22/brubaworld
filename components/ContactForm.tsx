@@ -92,15 +92,31 @@ export default function ContactForm() {
           <div>
             <div className="reveal">
               <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
-                Me conta um pouco
-                <br />
-                sobre você
+                Dois jeitos de viajar com a Bruba
               </h2>
             </div>
-            <div className="reveal mt-8 space-y-4 font-jakarta font-light text-preto/60 text-lg leading-relaxed">
-              <p>
-                Preencha o formulário para receber um contato rapidinho. Assim posso montar um roteiro personalizado do seu jeito.
+            <div className="reveal mt-8 space-y-6 font-jakarta text-preto/70 text-lg leading-relaxed">
+              <p className="max-w-xl">
+                Roteiros prontos para destinos selecionados e roteiros personalizados montados especialmente para você.
               </p>
+              <div className="space-y-4">
+                <div className="rounded-[2rem] border border-preto/10 bg-white p-5 shadow-sm">
+                  <span className="font-jakarta font-semibold text-preto text-sm uppercase tracking-[0.18em]">
+                    Roteiros prontos
+                  </span>
+                  <p className="mt-3 font-jakarta font-light text-preto/60 text-base leading-relaxed">
+                    Guias limitados para alguns destinos selecionados, feitos por quem já foi. Perfeito para quem quer viajar com segurança, saindo do passo a passo já testado.
+                  </p>
+                </div>
+                <div className="rounded-[2rem] border border-preto/10 bg-white p-5 shadow-sm">
+                  <span className="font-jakarta font-semibold text-preto text-sm uppercase tracking-[0.18em]">
+                    Roteiro personalizado
+                  </span>
+                  <p className="mt-3 font-jakarta font-light text-preto/60 text-base leading-relaxed">
+                    Você conta os seus planos aqui e a gente entra em contato pelo WhatsApp o mais breve possível para montar o roteiro do seu jeito.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
 
