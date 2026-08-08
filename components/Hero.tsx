@@ -36,7 +36,7 @@ export default function Hero() {
           </div>
 
           {/* Headline */}
-          <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight mb-8">
+          <h1 className="font-display font-black text-offwhite text-6xl md:text-8xl lg:text-9xl leading-[1.02] tracking-tight mb-8">
             <span className="block">Roteiros feitos</span>
             <span className="block text-manteiga">por quem</span>
             <span className="block">já viveu.</span>

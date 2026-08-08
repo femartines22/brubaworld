@@ -1,0 +1,25 @@
+// Cidades visitadas — usadas no marquee do topo e na faixa da seção de países.
+// Para adicionar uma cidade nova, basta incluir o nome nesta lista.
+export const cidadesVisitadas = [
+  "Lisboa",
+  "Paris",
+  "Roma",
+  "Amsterdam",
+  "Praga",
+  "Barcelona",
+  "Ibiza",
+  "Santorini",
+  "Bruges",
+  "Londres",
+  "Dublin",
+  "Edimburgo",
+  "Madrid",
+  "Budapeste",
+  "Porto",
+  "Florença",
+  "Zurique",
+  "Sevilha",
+  "Valeta",
+  "Nova York",
+  "Orlando",
+];

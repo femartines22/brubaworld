@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne, Plus_Jakarta_Sans, Abril_Fatface } from "next/font/google";
+import { Syne, Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 
 const syne = Syne({
@@ -14,10 +14,11 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["300", "400", "500", "600"],
 });
 
-const abrilFatface = Abril_Fatface({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  variable: "--font-abril",
-  weight: "400",
+  variable: "--font-display",
+  weight: ["400", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
@@ -37,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-BR" className={`${syne.variable} ${jakarta.variable} ${abrilFatface.variable}`}>
+    <html lang="pt-BR" className={`${syne.variable} ${jakarta.variable} ${playfair.variable}`}>
       <body className="antialiased font-jakarta">{children}</body>
     </html>
   );

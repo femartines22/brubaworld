@@ -29,7 +29,7 @@ function Stars() {
   return (
     <div className="flex gap-1">
       {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#F5E6A3">
+        <svg key={i} width="14" height="14" viewBox="0 0 24 24" className="fill-manteigaClara">
           <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
         </svg>
       ))}
@@ -65,7 +65,7 @@ export default function Reviews() {
           <span className="font-jakarta font-medium text-sm text-offwhite/30 uppercase tracking-widest">
             quem já viajou
           </span>
-          <h2 className="font-abril text-offwhite text-4xl md:text-6xl leading-tight mt-3">
+          <h2 className="font-display font-bold text-offwhite text-4xl md:text-6xl leading-tight mt-3">
             O que dizem.
           </h2>
         </div>

@@ -114,7 +114,7 @@ export default function ParisLondresPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
               Guia de Viagem
             </span>
-            <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            <h1 className="font-display font-black text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
               Paris e Londres:
             </h1>
             <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
@@ -143,10 +143,10 @@ export default function ParisLondresPage() {
 
         <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               é pra você?
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Esse guia é pra quem...
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -167,7 +167,7 @@ export default function ParisLondresPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dentro do guia
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
               O seu roteiro em uma fileira.
             </h2>
             <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
@@ -180,7 +180,7 @@ export default function ParisLondresPage() {
                   key={dia.num}
                   className="flex-shrink-0 w-[280px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-6 hover:border-offwhite/20 transition-colors"
                 >
-                  <span className="font-syne font-extrabold text-7xl leading-none" style={{ color: "#F5E6A3" }}>
+                  <span className="font-syne font-extrabold text-7xl leading-none text-manteigaClara">
                     {dia.num}
                   </span>
                   <p className="font-jakarta font-medium text-offwhite text-base leading-snug">
@@ -194,10 +194,10 @@ export default function ParisLondresPage() {
 
         <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto text-center">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               dica especial
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Tem um detalhe que faz toda diferença.
             </h2>
             <p className="font-jakarta font-light text-preto/70 text-base md:text-lg leading-relaxed max-w-2xl mx-auto">
@@ -211,7 +211,7 @@ export default function ParisLondresPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               pronto pra viajar
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronto pra viajar?
             </h2>
             <p className="font-jakarta font-light text-offwhite/60 text-lg mb-2">
@@ -237,7 +237,7 @@ export default function ParisLondresPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dúvidas
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Perguntas frequentes
             </h2>
             <FAQ />

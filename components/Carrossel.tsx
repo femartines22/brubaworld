@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
+import Mala from "@/components/Mala";
+import Passaporte from "@/components/Passaporte";
 
 const guias = [
   {
@@ -90,16 +92,15 @@ export default function Carrossel() {
     <section
       ref={ref}
       id="roteiros"
-      className="py-24 md:py-32 px-5 md:px-10"
-      style={{ backgroundColor: "#F5E6A3" }}
+      className="bg-manteigaClara py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-5xl mx-auto">
         {/* Header */}
         <div className="reveal mb-12">
-          <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+          <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
             guias
           </span>
-          <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
+          <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight mt-3">
             Escolha o seu roteiro pronto.
           </h2>
           <p className="font-jakarta font-light text-preto/50 text-base md:text-lg mt-3">
@@ -138,16 +139,17 @@ export default function Carrossel() {
                     </div>
                   )}
                   {guia.id === "paris-a-table" && (
-                    <div className="absolute bottom-4 right-6 opacity-25 text-4xl select-none">
-                      🍽
-                    </div>
+                    <Mala className="absolute -bottom-3 right-4 w-20 h-20 md:w-28 md:h-28" />
                   )}
                   {guia.emBreve && (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest border border-offwhite/20 px-3 py-1 rounded-full">
-                        em breve
-                      </span>
-                    </div>
+                    <>
+                      <Passaporte className="absolute -bottom-4 -right-4 w-24 h-24 md:w-32 md:h-32 opacity-60" />
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest border border-offwhite/20 px-3 py-1 rounded-full">
+                          em breve
+                        </span>
+                      </div>
+                    </>
                   )}
                 </div>
 
@@ -160,7 +162,7 @@ export default function Carrossel() {
 
                   {/* Título + subtítulo */}
                   <div>
-                    <h3 className="font-abril text-offwhite text-xl md:text-4xl leading-tight">
+                    <h3 className="font-display font-bold text-offwhite text-xl md:text-4xl leading-tight">
                       {guia.titulo}
                     </h3>
                     <p className="font-jakarta font-light text-offwhite/40 text-xs md:text-sm mt-1">

@@ -26,8 +26,7 @@ export default function Packages() {
     <section
       id="pacotes"
       ref={ref}
-      className="py-24 md:py-32 px-5 md:px-10"
-      style={{ backgroundColor: "#F5E6A3" }}
+      className="bg-manteigaClara py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -35,7 +34,7 @@ export default function Packages() {
           <span className="font-jakarta font-medium text-sm text-preto/50 uppercase tracking-widest">
             o que você leva
           </span>
-          <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
+          <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight mt-3">
             Escolha o seu
             <br />
             pacote.
@@ -50,7 +49,7 @@ export default function Packages() {
               <span className="inline-block font-jakarta font-medium text-xs text-preto/50 uppercase tracking-widest border border-preto/10 px-3 py-1 rounded-full mb-4">
                 Básico
               </span>
-              <h3 className="font-abril text-preto text-3xl md:text-4xl">
+              <h3 className="font-display font-bold text-preto text-3xl md:text-4xl">
                 Só PDF
               </h3>
               <p className="font-jakarta font-light text-preto/60 mt-3 leading-relaxed">
@@ -107,7 +106,7 @@ export default function Packages() {
               <span className="inline-block font-jakarta font-medium text-xs text-rosa uppercase tracking-widest border border-rosa/30 px-3 py-1 rounded-full mb-4">
                 Completo
               </span>
-              <h3 className="font-abril text-rosa text-3xl md:text-4xl">
+              <h3 className="font-display font-bold text-rosa text-3xl md:text-4xl">
                 PDF +<br />Google Maps
               </h3>
               <p className="font-jakarta font-light text-offwhite/60 mt-3 leading-relaxed">

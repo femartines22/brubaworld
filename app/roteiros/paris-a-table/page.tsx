@@ -5,6 +5,7 @@ import Link from "next/link";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Mala from "@/components/Mala";
 
 const KIWIFY_URL = "https://pay.kiwify.com.br/Pd1fsEO";
 
@@ -103,7 +104,7 @@ export default function ParisATablePage() {
               <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
               Guia de Restaurantes
             </span>
-            <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            <h1 className="font-display font-black text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
               Paris à Table:
             </h1>
             <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
@@ -133,10 +134,10 @@ export default function ParisATablePage() {
         {/* 2. Para quem é */}
         <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               é pra você?
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Esse guia é pra quem...
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -158,7 +159,7 @@ export default function ParisATablePage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dentro do guia
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Tudo organizado por categoria.
             </h2>
             <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
@@ -171,14 +172,11 @@ export default function ParisATablePage() {
                   key={cat.num}
                   className="flex-shrink-0 w-[260px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-5 hover:border-offwhite/20 transition-colors"
                 >
-                  <span
-                    className="font-syne font-extrabold text-7xl leading-none"
-                    style={{ color: "#F5E6A3" }}
-                  >
+                  <span className="font-syne font-extrabold text-7xl leading-none text-manteigaClara">
                     {cat.num}
                   </span>
                   <div>
-                    <p className="font-abril text-offwhite text-lg leading-snug mb-2">
+                    <p className="font-display font-bold text-offwhite text-lg leading-snug mb-2">
                       {cat.titulo}
                     </p>
                     <p className="font-jakarta font-light text-offwhite/50 text-sm leading-relaxed">
@@ -194,7 +192,7 @@ export default function ParisATablePage() {
                   +1
                 </span>
                 <div>
-                  <p className="font-abril text-offwhite/50 text-lg leading-snug mb-2">
+                  <p className="font-display font-bold text-offwhite/50 text-lg leading-snug mb-2">
                     O mapa dos doces
                   </p>
                   <p className="font-jakarta font-light text-offwhite/30 text-sm leading-relaxed">
@@ -207,15 +205,12 @@ export default function ParisATablePage() {
         </section>
 
         {/* 4. CTA */}
-        <section
-          className="py-20 md:py-28 px-5 md:px-10 text-center"
-          style={{ backgroundColor: "#F5E6A3" }}
-        >
+        <section className="bg-manteigaClara py-20 md:py-28 px-5 md:px-10 text-center">
           <div className="max-w-2xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               garanta o seu
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronta pra comer bem em Paris?
             </h2>
             <p className="font-jakarta font-light text-preto/70 text-lg mb-2">
@@ -234,7 +229,7 @@ export default function ParisATablePage() {
               Garantir agora →
             </a>
 
-            <p className="font-jakarta font-light text-preto/40 text-xs mb-12">
+            <p className="font-jakarta font-light text-preto/55 text-xs mb-12">
               Checkout seguro via Kiwify.
             </p>
 
@@ -253,19 +248,17 @@ export default function ParisATablePage() {
                   className="absolute inset-0 opacity-10"
                   style={{ backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%)" }}
                 />
-                <div className="absolute top-8 right-8 opacity-20 text-5xl select-none">
-                  🍽
-                </div>
+                <Mala className="absolute top-8 right-8 w-16 h-16 opacity-70" />
                 <div className="relative z-10 text-left w-full">
                   <p className="font-jakarta font-medium text-white/60 text-xs uppercase tracking-widest mb-2">
                     brubaworld
                   </p>
-                  <h3 className="font-abril text-white text-xl leading-snug">
+                  <h3 className="font-display font-bold text-white text-xl leading-snug">
                     Paris à Table: Bistrôs, Padarias e Mesas Favoritas
                   </h3>
                 </div>
               </div>
-              <p className="font-jakarta font-light text-preto/40 text-xs mt-3">
+              <p className="font-jakarta font-light text-preto/55 text-xs mt-3">
                 Clique para ir ao checkout seguro
               </p>
             </a>
@@ -278,7 +271,7 @@ export default function ParisATablePage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dúvidas
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Perguntas frequentes.
             </h2>
             <FAQ />

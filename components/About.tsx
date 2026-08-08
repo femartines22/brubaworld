@@ -27,22 +27,21 @@ export default function About() {
     <section
       id="sobre"
       ref={ref}
-      className="py-24 md:py-32 px-5 md:px-10"
-      style={{ backgroundColor: "#F2277E" }}
+      className="bg-rosa py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
           {/* Text column */}
           <div className="order-2 md:order-1 flex flex-col gap-6">
             <div className="reveal">
-              <span className="font-jakarta font-medium text-sm text-white/60 uppercase tracking-widest">
+              <span className="font-jakarta font-medium text-sm text-white/80 uppercase tracking-widest">
                 quem faz
               </span>
-              <h2 className="font-abril text-white text-4xl md:text-6xl leading-tight mt-3">
+              <h2 className="font-display font-bold text-white text-4xl md:text-6xl leading-tight mt-3">
                 Oi, eu sou
                 <br />a Bruba.
               </h2>
-              <p className="font-abril text-white/90 text-2xl md:text-3xl mt-4 leading-snug">
+              <p className="font-display italic text-white/90 text-2xl md:text-3xl mt-4 leading-snug">
                 Sou apaixonada por viagens.
               </p>
             </div>
@@ -72,7 +71,7 @@ export default function About() {
             </div>
 
             {/* Body paragraphs */}
-            <div className="reveal space-y-4 font-jakarta font-light text-white/80 text-base md:text-lg leading-relaxed">
+            <div className="reveal space-y-4 font-jakarta font-light text-white/90 text-base md:text-lg leading-relaxed">
               <p>
                 Já perdi a conta de quantos roteiros montei pra mim, amigos e
                 família. Sempre do mesmo jeito: pesquisando tudo e testando
@@ -89,11 +88,8 @@ export default function About() {
             </div>
 
             {/* Quote box */}
-            <div
-              className="reveal rounded-2xl p-6 md:p-8"
-              style={{ backgroundColor: "#F5E6A3" }}
-            >
-              <p className="font-abril text-preto text-xl md:text-2xl leading-snug">
+            <div className="reveal bg-manteigaClara rounded-2xl p-6 md:p-8">
+              <p className="font-display italic text-preto text-xl md:text-2xl leading-snug">
                 &ldquo;Eu já fui. Eu já testei. E recomendo só o que realmente
                 vale a pena.&rdquo;
               </p>

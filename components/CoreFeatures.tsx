@@ -12,7 +12,7 @@ const features = [
     visual: (
       <div className="absolute top-6 left-5 right-5">
         <div className="bg-white rounded-2xl p-4 shadow-[0_8px_20px_rgba(242,39,126,0.1)]">
-          <p className="text-[11px] text-preto/40 font-jakarta font-medium uppercase tracking-wider mb-3">
+          <p className="text-[11px] text-preto/55 font-jakarta font-medium uppercase tracking-wider mb-3">
             seu briefing
           </p>
           <div className="space-y-2">
@@ -22,7 +22,7 @@ const features = [
               { label: "Estilo", value: "cultura + gastronomia" },
             ].map((item) => (
               <div key={item.label} className="flex items-center justify-between">
-                <span className="text-[11px] text-preto/40 font-jakarta">{item.label}</span>
+                <span className="text-[11px] text-preto/55 font-jakarta">{item.label}</span>
                 <span className="text-[11px] text-preto font-jakarta font-medium bg-offwhite px-2 py-0.5 rounded-full">
                   {item.value}
                 </span>
@@ -32,7 +32,7 @@ const features = [
         </div>
         <div className="mt-2 flex items-center gap-1.5 ml-1">
           <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
-          <span className="text-[10px] text-preto/40 font-jakarta">
+          <span className="text-[10px] text-preto/55 font-jakarta">
             feito 100% pra você, nenhum campo genérico
           </span>
         </div>
@@ -96,7 +96,7 @@ const features = [
             </svg>
           </div>
           <span className="text-[10px] font-jakarta font-semibold text-preto">Roteiro PDF</span>
-          <span className="text-[9px] font-jakarta text-preto/40 text-center leading-tight">dia a dia completo</span>
+          <span className="text-[9px] font-jakarta text-preto/55 text-center leading-tight">dia a dia completo</span>
         </div>
         {/* Maps card */}
         <div className="flex-1 bg-white rounded-2xl p-3.5 shadow-[0_8px_20px_rgba(0,0,0,0.08)] flex flex-col items-center gap-2">
@@ -107,7 +107,7 @@ const features = [
             </svg>
           </div>
           <span className="text-[10px] font-jakarta font-semibold text-preto">Google Maps</span>
-          <span className="text-[9px] font-jakarta text-preto/40 text-center leading-tight">todos os pontos</span>
+          <span className="text-[9px] font-jakarta text-preto/55 text-center leading-tight">todos os pontos</span>
         </div>
       </div>
     ),
@@ -153,7 +153,7 @@ export default function CoreFeatures() {
           >
             por quê brubaworld?
           </span>
-          <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
+          <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight">
             Feito pra você.
             <br />
             Não pra todo mundo.
@@ -173,7 +173,7 @@ export default function CoreFeatures() {
 
               {/* Text block */}
               <div className="relative z-10 p-6">
-                <h3 className="font-abril text-preto text-xl md:text-2xl leading-tight mb-2">
+                <h3 className="font-display font-bold text-preto text-xl md:text-2xl leading-tight mb-2">
                   {feature.title}
                 </h3>
                 <p className="font-jakarta font-light text-preto/60 text-sm leading-relaxed">

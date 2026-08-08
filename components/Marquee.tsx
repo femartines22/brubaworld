@@ -1,29 +1,7 @@
-export default function Marquee() {
-  const cities = [
-    "Lisboa",
-    "Paris",
-    "Roma",
-    "Amsterdam",
-    "Praga",
-    "Barcelona",
-    "Ibiza",
-    "Santorini",
-    "Bruges",
-    "Londres",
-    "Dublin",
-    "Edimburgo",
-    "Madrid",
-    "Budapeste",
-    "Porto",
-    "Florença",
-    "Zurique",
-    "Sevilha",
-    "Valeta",
-    "Nova York",
-    "Orlando",
-  ];
+import { cidadesVisitadas } from "@/data/cidades";
 
-  const items = [...cities, ...cities];
+export default function Marquee() {
+  const items = [...cidadesVisitadas, ...cidadesVisitadas];
 
   return (
     <div className="bg-preto py-5 overflow-hidden border-y border-offwhite/5">

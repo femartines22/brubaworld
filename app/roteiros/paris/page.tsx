@@ -92,7 +92,7 @@ export default function ParisPage() {
               <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
               Guia de Viagem
             </span>
-            <h1 className="font-abril text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[0.95] tracking-tight">
+            <h1 className="font-display font-black text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
               Paris em 5 Dias:
             </h1>
             <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
@@ -122,10 +122,10 @@ export default function ParisPage() {
         {/* 2. Para quem é */}
         <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               é pra você?
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Esse guia é pra quem...
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -147,7 +147,7 @@ export default function ParisPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dentro do guia
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Cinco dias. Tudo pensado.
             </h2>
             <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
@@ -160,10 +160,7 @@ export default function ParisPage() {
                   key={dia.num}
                   className="flex-shrink-0 w-[260px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-6 hover:border-offwhite/20 transition-colors"
                 >
-                  <span
-                    className="font-syne font-extrabold text-7xl leading-none"
-                    style={{ color: "#F5E6A3" }}
-                  >
+                  <span className="font-syne font-extrabold text-7xl leading-none text-manteigaClara">
                     {dia.num}
                   </span>
                   <p className="font-jakarta font-medium text-offwhite text-base leading-snug">
@@ -191,7 +188,7 @@ export default function ParisPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               vale a pena?
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Quanto você economiza.
             </h2>
             <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
@@ -207,10 +204,7 @@ export default function ParisPage() {
                       <p className="font-syne font-extrabold text-offwhite/40 text-lg">{item.sem}</p>
                     </div>
                     <span className="text-offwhite/20 font-jakarta">→</span>
-                    <div
-                      className="flex-1 text-center rounded-xl p-3"
-                      style={{ backgroundColor: "#F5E6A3" }}
-                    >
+                    <div className="flex-1 text-center bg-manteigaClara rounded-xl p-3">
                       <p className="font-jakarta font-light text-preto/50 text-xs mb-1">Com guia</p>
                       <p className="font-syne font-extrabold text-preto text-lg">{item.com}</p>
                     </div>
@@ -222,15 +216,12 @@ export default function ParisPage() {
         </section>
 
         {/* 5. CTA */}
-        <section
-          className="py-20 md:py-28 px-5 md:px-10 text-center"
-          style={{ backgroundColor: "#F5E6A3" }}
-        >
+        <section className="bg-manteigaClara py-20 md:py-28 px-5 md:px-10 text-center">
           <div className="max-w-2xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
               garanta o seu
             </span>
-            <h2 className="font-abril text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronto pra viajar?
             </h2>
             <p className="font-jakarta font-light text-preto/70 text-lg mb-2">
@@ -249,7 +240,7 @@ export default function ParisPage() {
               Garantir agora →
             </a>
 
-            <p className="font-jakarta font-light text-preto/40 text-xs mb-12">
+            <p className="font-jakarta font-light text-preto/55 text-xs mb-12">
               Checkout seguro via Kiwify.
             </p>
 
@@ -277,12 +268,12 @@ export default function ParisPage() {
                   <p className="font-jakarta font-medium text-white/60 text-xs uppercase tracking-widest mb-2">
                     brubaworld
                   </p>
-                  <h3 className="font-abril text-white text-xl leading-snug">
+                  <h3 className="font-display font-bold text-white text-xl leading-snug">
                     Paris em 5 Dias: Guia para a Primeira Viagem
                   </h3>
                 </div>
               </div>
-              <p className="font-jakarta font-light text-preto/40 text-xs mt-3">
+              <p className="font-jakarta font-light text-preto/55 text-xs mt-3">
                 Clique para ir ao checkout seguro
               </p>
             </a>
@@ -295,7 +286,7 @@ export default function ParisPage() {
             <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
               dúvidas
             </span>
-            <h2 className="font-abril text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
               Perguntas frequentes.
             </h2>
             <FAQ />

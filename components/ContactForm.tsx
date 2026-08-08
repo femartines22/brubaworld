@@ -12,7 +12,16 @@ type FormState = {
 };
 
 function formatPhone(value: string) {
-  const digits = value.replace(/\D/g, "").slice(0, 11);
+  let digits = value.replace(/\D/g, "");
+
+  // Se a pessoa digitar o código do país (+55 ou 55), descarta —
+  // sem isso o "55" era lido como DDD e o número inteiro saía deslocado.
+  if (digits.length > 11 && digits.startsWith("55")) {
+    digits = digits.slice(2);
+  }
+
+  digits = digits.slice(0, 11);
+
   if (digits.length <= 2) return digits;
   if (digits.length <= 6) return `(${digits.slice(0, 2)}) ${digits.slice(2)}`;
   if (digits.length <= 10) return `(${digits.slice(0, 2)}) ${digits.slice(2, 6)}-${digits.slice(6)}`;
@@ -91,7 +100,7 @@ export default function ContactForm() {
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
           <div>
             <div className="reveal">
-              <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight">
+              <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight">
                 Dois jeitos de viajar com a Bruba
               </h2>
             </div>
@@ -124,10 +133,45 @@ export default function ContactForm() {
             <div className="bg-preto rounded-3xl p-8 md:p-10">
               {status === "success" ? (
                 <div className="text-center py-12">
-                  <div className="text-5xl mb-6">✈️</div>
-                  <h3 className="font-abril text-offwhite text-3xl mb-4">Recebi!</h3>
+                  <svg
+                    viewBox="0 0 64 64"
+                    className="w-16 h-16 mx-auto mb-6"
+                    role="img"
+                    aria-label="Ilustração de um avião de papel"
+                  >
+                    <defs>
+                      <linearGradient id="aviao-fundo" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#F7E455" />
+                        <stop offset="100%" stopColor="#F2277E" />
+                      </linearGradient>
+                    </defs>
+                    <path
+                      d="M58 8 L6 28 L24 36 L32 54 L42 34 Z"
+                      fill="url(#aviao-fundo)"
+                      stroke="#111111"
+                      strokeOpacity="0.35"
+                      strokeWidth="1.6"
+                      strokeLinejoin="round"
+                    />
+                    <path
+                      d="M58 8 L24 36"
+                      fill="none"
+                      stroke="#111111"
+                      strokeOpacity="0.3"
+                      strokeWidth="1.6"
+                    />
+                    <path
+                      d="M14 48 q6 -4 12 -2 M8 56 q9 -6 18 -3"
+                      fill="none"
+                      stroke="#F2277E"
+                      strokeOpacity="0.45"
+                      strokeWidth="2"
+                      strokeDasharray="4 5"
+                    />
+                  </svg>
+                  <h3 className="font-display font-bold text-offwhite text-3xl mb-4">Recebi!</h3>
                   <p className="font-jakarta font-light text-offwhite/60 text-lg leading-relaxed">
-                    Recebi! Em breve você tem novidades por aqui.
+                    Recebi seus dados! Em breve vou entrar em contato com você no WhatsApp.
                   </p>
                   <button
                     onClick={() => setStatus("idle")}

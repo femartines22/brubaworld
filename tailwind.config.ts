@@ -11,13 +11,15 @@ const config: Config = {
       colors: {
         rosa: "#F2277E",
         manteiga: "#F7E455",
+        manteigaClara: "#F5E6A3",
         preto: "#111111",
+        grafite: "#2B2B2B",
         offwhite: "#FAFAF8",
       },
       fontFamily: {
         syne: ["var(--font-syne)", "sans-serif"],
         jakarta: ["var(--font-jakarta)", "sans-serif"],
-        abril: ["var(--font-abril)", "serif"],
+        display: ["var(--font-display)", "serif"],
       },
       keyframes: {
         blob: {
@@ -34,11 +36,16 @@ const config: Config = {
           "0%": { opacity: "0", transform: "translateY(30px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%": { transform: "translateY(-14px)" },
+        },
       },
       animation: {
         blob: "blob 8s ease-in-out infinite",
         marquee: "marquee 25s linear infinite",
         "fade-up": "fade-up 0.6s ease forwards",
+        float: "float 6s ease-in-out infinite",
       },
     },
   },

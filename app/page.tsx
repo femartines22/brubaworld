@@ -3,7 +3,6 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Marquee from "@/components/Marquee";
 import About from "@/components/About";
-import ComoViajar from "@/components/ComoViajar";
 import PaisesVisitados from "@/components/PaisesVisitados";
 import ContactForm from "@/components/ContactForm";
 import Reviews from "@/components/Reviews";
@@ -19,7 +18,6 @@ export default function Home() {
         <Hero />
         <Marquee />
         <About />
-        <ComoViajar />
         <PaisesVisitados />
         <ContactForm />
         <Carrossel />

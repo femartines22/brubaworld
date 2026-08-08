@@ -68,7 +68,7 @@ export default function HowItWorks() {
   };
 
   const descClass = (step: (typeof steps)[0]) => {
-    if (step.pink) return "text-white/80";
+    if (step.pink) return "text-white/90";
     if (step.dark) return "text-offwhite/60";
     return "text-preto/60";
   };
@@ -82,10 +82,10 @@ export default function HowItWorks() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="reveal mb-16">
-          <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
+          <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
             simples assim
           </span>
-          <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
+          <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight mt-3">
             Como funciona.
           </h2>
         </div>
@@ -104,7 +104,7 @@ export default function HowItWorks() {
               </span>
               <div>
                 <h3
-                  className={`font-abril text-2xl md:text-3xl leading-tight mb-4 ${titleClass(step)}`}
+                  className={`font-display font-bold text-2xl md:text-3xl leading-tight mb-4 ${titleClass(step)}`}
                 >
                   {step.title}
                 </h3>
