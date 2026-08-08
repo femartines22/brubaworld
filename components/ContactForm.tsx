@@ -85,7 +85,7 @@ export default function ContactForm() {
     <section
       id="form-personalizado"
       ref={ref}
-      className="bg-offwhite py-24 md:py-32 px-5 md:px-10"
+      className="scroll-mt-24 bg-offwhite py-24 md:py-32 px-5 md:px-10"
     >
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">

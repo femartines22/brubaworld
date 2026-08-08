@@ -1,6 +1,6 @@
 export default function ComoViajar() {
   return (
-    <section id="como-viajar" className="py-24 md:py-32 px-5 md:px-10">
+    <section id="como-viajar" className="scroll-mt-24 py-24 md:py-32 px-5 md:px-10">
       <div className="max-w-7xl mx-auto">
         <div className="reveal mb-10 text-center">
           <span className="font-jakarta font-medium text-sm text-preto/40 uppercase tracking-widest">
