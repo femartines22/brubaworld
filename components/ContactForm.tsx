@@ -3,12 +3,29 @@
 import { useEffect, useRef, useState } from "react";
 
 type FormState = {
+  // obrigatórios
   name: string;
-  age: string;
   phone: string;
-  email: string;
-  instagram: string;
   destino: string;
+  // opcionais
+  age: string;
+  primeiraVez: string;
+  dataEstimada: string;
+  observacoes: string;
+  instagram: string;
+  email: string;
+};
+
+const FORM_VAZIO: FormState = {
+  name: "",
+  phone: "",
+  destino: "",
+  age: "",
+  primeiraVez: "",
+  dataEstimada: "",
+  observacoes: "",
+  instagram: "",
+  email: "",
 };
 
 function formatPhone(value: string) {
@@ -31,14 +48,7 @@ function formatPhone(value: string) {
 export default function ContactForm() {
   const ref = useRef<HTMLElement>(null);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
-  const [form, setForm] = useState<FormState>({
-    name: "",
-    age: "",
-    phone: "",
-    email: "",
-    instagram: "",
-    destino: "",
-  });
+  const [form, setForm] = useState<FormState>(FORM_VAZIO);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -57,7 +67,9 @@ export default function ContactForm() {
     return () => observer.disconnect();
   }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+  ) => {
     const name = e.target.name as keyof FormState;
     const value = name === "phone" ? formatPhone(e.target.value) : e.target.value;
     setForm((prev) => ({ ...prev, [name]: value }));
@@ -76,7 +88,7 @@ export default function ContactForm() {
 
       if (res.ok) {
         setStatus("success");
-        setForm({ name: "", age: "", phone: "", email: "", instagram: "", destino: "" });
+        setForm(FORM_VAZIO);
       } else {
         setStatus("error");
       }
@@ -182,7 +194,8 @@ export default function ContactForm() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <div className="grid sm:grid-cols-2 gap-5">
+                  {/* --- Bloco obrigatório: só o mínimo para a Bruba responder --- */}
+                  <div className="space-y-5">
                     <div>
                       <label htmlFor="name" className={labelClass}>
                         Nome *
@@ -198,15 +211,63 @@ export default function ContactForm() {
                         className={inputClass}
                       />
                     </div>
+
+                    <div>
+                      <label htmlFor="phone" className={labelClass}>
+                        Telefone / WhatsApp *
+                      </label>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        required
+                        placeholder="(11) 99999-9999"
+                        value={form.phone}
+                        onChange={handleChange}
+                        className={inputClass}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="destino" className={labelClass}>
+                        Destino desejado *
+                      </label>
+                      <input
+                        id="destino"
+                        name="destino"
+                        type="text"
+                        required
+                        placeholder="Pra onde você quer ir?"
+                        value={form.destino}
+                        onChange={handleChange}
+                        className={inputClass}
+                      />
+                    </div>
+                  </div>
+
+                  {/* --- Divisor: separa o obrigatório do opcional --- */}
+                  <div className="flex items-center gap-4 pt-3">
+                    <span className="h-px flex-1 bg-offwhite/10" />
+                    <span className="font-jakarta font-medium text-xs uppercase tracking-[0.18em] text-offwhite/40 whitespace-nowrap">
+                      opcional
+                    </span>
+                    <span className="h-px flex-1 bg-offwhite/10" />
+                  </div>
+
+                  <p className="font-jakarta font-light text-offwhite/40 text-sm -mt-2">
+                    Se quiser, me conta mais sobre você. Ajuda a montar seu roteiro.
+                  </p>
+
+                  {/* --- Bloco opcional --- */}
+                  <div className="space-y-5">
                     <div>
                       <label htmlFor="age" className={labelClass}>
-                        Idade *
+                        Idade
                       </label>
                       <input
                         id="age"
                         name="age"
                         type="number"
-                        required
                         placeholder="Sua idade"
                         min={16}
                         max={99}
@@ -215,69 +276,88 @@ export default function ContactForm() {
                         className={inputClass}
                       />
                     </div>
-                  </div>
 
-                  <div>
-                    <label htmlFor="phone" className={labelClass}>
-                      Telefone / WhatsApp *
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      required
-                      placeholder="(11) 99999-9999"
-                      value={form.phone}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
+                    <div>
+                      <label htmlFor="primeiraVez" className={labelClass}>
+                        É a sua primeira vez indo pra esse lugar?
+                      </label>
+                      <select
+                        id="primeiraVez"
+                        name="primeiraVez"
+                        value={form.primeiraVez}
+                        onChange={handleChange}
+                        className={`${inputClass} appearance-none cursor-pointer`}
+                      >
+                        <option value="" className="bg-preto">
+                          Selecione
+                        </option>
+                        <option value="Sim" className="bg-preto">
+                          Sim, primeira vez
+                        </option>
+                        <option value="Não" className="bg-preto">
+                          Não, já estive lá
+                        </option>
+                      </select>
+                    </div>
 
-                  <div>
-                    <label htmlFor="email" className={labelClass}>
-                      Email *
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      placeholder="seu@email.com"
-                      value={form.email}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
+                    <div>
+                      <label htmlFor="dataEstimada" className={labelClass}>
+                        Quando você pretende ir?
+                      </label>
+                      <input
+                        id="dataEstimada"
+                        name="dataEstimada"
+                        type="date"
+                        value={form.dataEstimada}
+                        onChange={handleChange}
+                        className={`${inputClass} cursor-pointer [color-scheme:dark]`}
+                      />
+                    </div>
 
-                  <div>
-                    <label htmlFor="instagram" className={labelClass}>
-                      Instagram <span className="text-offwhite/30">(opcional)</span>
-                    </label>
-                    <input
-                      id="instagram"
-                      name="instagram"
-                      type="text"
-                      placeholder="Seu nome no Instagram"
-                      value={form.instagram}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
-                  </div>
+                    <div>
+                      <label htmlFor="observacoes" className={labelClass}>
+                        Observações
+                      </label>
+                      <textarea
+                        id="observacoes"
+                        name="observacoes"
+                        rows={3}
+                        placeholder="Algo que eu precise saber? Restrição alimentar, criança pequena, o que você já quer fazer…"
+                        value={form.observacoes}
+                        onChange={handleChange}
+                        className={`${inputClass} resize-none`}
+                      />
+                    </div>
 
-                  <div>
-                    <label htmlFor="destino" className={labelClass}>
-                      Destino desejado *
-                    </label>
-                    <input
-                      id="destino"
-                      name="destino"
-                      type="text"
-                      required
-                      placeholder="Pra onde você quer ir?"
-                      value={form.destino}
-                      onChange={handleChange}
-                      className={inputClass}
-                    />
+                    <div>
+                      <label htmlFor="instagram" className={labelClass}>
+                        Instagram
+                      </label>
+                      <input
+                        id="instagram"
+                        name="instagram"
+                        type="text"
+                        placeholder="Seu nome no Instagram"
+                        value={form.instagram}
+                        onChange={handleChange}
+                        className={inputClass}
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="email" className={labelClass}>
+                        Email
+                      </label>
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="seu@email.com"
+                        value={form.email}
+                        onChange={handleChange}
+                        className={inputClass}
+                      />
+                    </div>
                   </div>
 
                   {status === "error" && (
@@ -291,7 +371,7 @@ export default function ContactForm() {
                     disabled={status === "sending"}
                     className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-xl hover:bg-rosa/90 hover:scale-[1.02] transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100 mt-2"
                   >
-                    {status === "sending" ? "Enviando..." : "quero saber mais"}
+                    {status === "sending" ? "Enviando..." : "enviar meus dados"}
                   </button>
 
                   <p className="font-jakarta font-light text-offwhite/30 text-xs text-center">

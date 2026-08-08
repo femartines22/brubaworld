@@ -49,6 +49,11 @@ function buildValue(type: string, value: string) {
       return { select: { name: value } };
     case "status":
       return { status: { name: value } };
+    case "date":
+      // O input type="date" já entrega no formato AAAA-MM-DD que o Notion espera.
+      return { date: { start: value } };
+    case "checkbox":
+      return { checkbox: value === "Sim" || value === "true" };
     case "url":
       return { url: value };
     default:
@@ -68,16 +73,31 @@ export async function POST(request: NextRequest) {
   }
 
   const data = await request.json();
-  const { name, age, phone, email, instagram, destino } = data as {
+  const {
+    name,
+    phone,
+    destino,
+    age,
+    primeiraVez,
+    dataEstimada,
+    observacoes,
+    instagram,
+    email,
+  } = data as {
     name?: string;
-    age?: string;
     phone?: string;
-    email?: string;
-    instagram?: string;
     destino?: string;
+    age?: string;
+    primeiraVez?: string;
+    dataEstimada?: string;
+    observacoes?: string;
+    instagram?: string;
+    email?: string;
   };
 
-  if (!name || !age || !phone || !email || !destino) {
+  // Só nome, telefone e destino são obrigatórios — idade, email e Instagram
+  // são opcionais e simplesmente não são enviados ao Notion quando vazios.
+  if (!name || !phone || !destino) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
@@ -111,11 +131,17 @@ export async function POST(request: NextRequest) {
     //    se alguém renomear a coluna no Notion.
     const mapping: { aliases: string[]; value: string }[] = [
       { aliases: ["Nome", "Name"], value: name },
-      { aliases: ["Idade", "Age"], value: age },
       { aliases: ["Número", "Numero", "Telefone", "WhatsApp", "Phone"], value: phone },
-      { aliases: ["Email", "E-mail"], value: email },
-      { aliases: ["Instagram", "Insta"], value: instagram || "" },
       { aliases: ["Destino Desejado", "Destino", "Destination"], value: destino },
+      { aliases: ["Idade", "Age"], value: age || "" },
+      {
+        aliases: ["Primeira Vez no Destino", "Primeira Vez"],
+        value: primeiraVez || "",
+      },
+      { aliases: ["Data Estimada", "Data da Viagem"], value: dataEstimada || "" },
+      { aliases: ["Observações", "Observacoes", "Notas"], value: observacoes || "" },
+      { aliases: ["Instagram", "Insta"], value: instagram || "" },
+      { aliases: ["Email", "E-mail"], value: email || "" },
       { aliases: ["Status"], value: "Forms Preenchido" },
     ];
 
