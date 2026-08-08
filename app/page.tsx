@@ -21,9 +21,9 @@ export default function Home() {
         <About />
         <ComoViajar />
         <PaisesVisitados />
+        <ContactForm />
         <Carrossel />
         <Reviews />
-        <ContactForm />
       </main>
       <Footer />
     </>

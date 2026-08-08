@@ -7,7 +7,7 @@ export default function ComoViajar() {
             Como você quer viajar?
           </span>
           <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
-            Escolha sua próxima etapa.
+            Escolha o seu roteiro pronto.
           </h2>
         </div>
 

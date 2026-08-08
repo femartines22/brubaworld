@@ -100,7 +100,7 @@ export default function Carrossel() {
             guias
           </span>
           <h2 className="font-abril text-preto text-4xl md:text-6xl leading-tight mt-3">
-            Escolha o Seu Roteiro.
+            Escolha o seu roteiro pronto.
           </h2>
           <p className="font-jakarta font-light text-preto/50 text-base md:text-lg mt-3">
             Feitos por quem já foi, testou e voltou pra contar.
