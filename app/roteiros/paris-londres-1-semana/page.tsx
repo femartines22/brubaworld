@@ -6,7 +6,7 @@ import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
-const KIWIFY_URL = "[LINK_KIWIFY_PENDENTE]";
+const KIWIFY_URL = "https://pay.kiwify.com.br/mJrcKZN";
 
 const paraQuem = [
   "Quer conhecer duas capitais europeias numa única viagem, sem perder tempo se planejando",
