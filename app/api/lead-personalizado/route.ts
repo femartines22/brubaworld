@@ -141,9 +141,9 @@ export async function POST(request: NextRequest) {
       { aliases: ["Observações", "Observacoes", "Notas"], value: observacoes || "" },
       { aliases: ["Instagram", "Insta"], value: instagram || "" },
       { aliases: ["Email", "E-mail"], value: email || "" },
-      // O CRM da Bruba usa o tipo "Status" com o funil dela.
-      // "Forms Preenchido" é a primeira coluna do quadro.
-      { aliases: ["Status"], value: "Forms Preenchido" },
+      // Primeira coluna do funil no CRM. Se esse nome mudar no Notion,
+      // precisa mudar aqui também, senão o lead chega sem status.
+      { aliases: ["Status"], value: "Lead Novo" },
     ];
 
     const properties: Record<string, unknown> = {};
