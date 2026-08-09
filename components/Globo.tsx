@@ -53,13 +53,21 @@ const meridianos = [-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150, 180].fla
   (lon) => linha("lon", lon, -90, 90)
 );
 
-export default function Globo({ className = "" }: { className?: string }) {
+export default function Globo({
+  className = "",
+  decorativo = false,
+}: {
+  className?: string;
+  /** Quando o globo é só contexto visual, some para leitores de tela. */
+  decorativo?: boolean;
+}) {
   return (
     <svg
       viewBox="0 0 260 260"
       className={className}
-      role="img"
-      aria-label="Ilustração de um globo terrestre"
+      {...(decorativo
+        ? { "aria-hidden": true }
+        : { role: "img", "aria-label": "Ilustração de um globo terrestre" })}
     >
       {/* Preenchimento suave da esfera */}
       <circle cx={CX} cy={CY} r={R} fill="#F2277E" fillOpacity="0.04" />

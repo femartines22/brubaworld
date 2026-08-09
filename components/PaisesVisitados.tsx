@@ -1,9 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { paisesVisitados, paisesPorContinente } from "@/data/paisesVisitados";
-import { cidadesVisitadas } from "@/data/cidades";
+import {
+  paisesVisitados,
+  paisesPorContinente,
+  paisDestaque,
+  legendaDestaque,
+} from "@/data/paisesVisitados";
 import Globo from "@/components/Globo";
+import Polaroid from "@/components/Polaroid";
+import Bandeira from "@/components/Bandeira";
 
 export default function PaisesVisitados() {
   const ref = useRef<HTMLElement>(null);
@@ -14,7 +20,7 @@ export default function PaisesVisitados() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 150);
+              setTimeout(() => el.classList.add("visible"), i * 120);
             });
           }
         });
@@ -25,95 +31,117 @@ export default function PaisesVisitados() {
     return () => observer.disconnect();
   }, []);
 
-  // Lista duplicada para o loop contínuo da faixa de cidades
-  const cidadesLoop = [...cidadesVisitadas, ...cidadesVisitadas];
-
   return (
-    <section
-      ref={ref}
-      id="paises"
-      className="bg-offwhite py-20 md:py-24 px-5 md:px-10"
-    >
+    <section ref={ref} id="paises" className="bg-manteigaSoft py-20 md:py-28 px-5 md:px-10">
       <div className="max-w-6xl mx-auto">
-        {/* Header + globo lado a lado */}
-        <div className="grid md:grid-cols-[1.4fr_1fr] gap-10 md:gap-16 items-center">
+        {/* Bloco superior: polaroids sobre o globo + texto */}
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+          {/* Polaroids com o globo ao fundo */}
+          <div className="reveal relative flex justify-center py-6 md:py-10">
+            {/* O globo funciona como contexto, atrás das fotos */}
+            <Globo
+              className="absolute inset-0 m-auto w-[92%] max-w-[420px] h-auto opacity-30 pointer-events-none"
+              decorativo
+            />
+
+            <div className="relative flex items-start">
+              <Polaroid
+                legenda="verão, 2024"
+                etiqueta="Malta"
+                rotacao={-7}
+                gradiente="linear-gradient(160deg, #F6C9A8 0%, #E9A48C 55%, #C98BA0 100%)"
+                className="w-[45%] max-w-[190px] translate-y-8"
+              />
+              <Polaroid
+                legenda="inverno, 2023"
+                etiqueta="Praga"
+                rotacao={4}
+                gradiente="linear-gradient(160deg, #BFD3D6 0%, #9FB6BE 60%, #7E93A4 100%)"
+                className="w-[52%] max-w-[215px] -ml-6"
+              />
+            </div>
+          </div>
+
+          {/* Texto */}
           <div>
             <div className="reveal">
-              <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
+              <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
                 mundo afora
               </span>
-              <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight mt-3">
-                Os países que eu já vivi de perto
+              <h2 className="font-display font-bold text-grafite text-4xl md:text-5xl leading-tight mt-3">
+                Os países que eu já vivi de perto.
               </h2>
-              <p className="font-jakarta font-light text-preto/60 text-base md:text-lg mt-3 max-w-xl">
-                Eu conheço os 24 países e posso te orientar na sua viagem.
-              </p>
             </div>
 
-            {/* Contador */}
-            <div className="reveal flex items-baseline gap-3 mt-8">
-              <span className="font-display font-black text-rosa text-7xl md:text-9xl leading-none">
+            <div className="reveal flex items-center gap-4 mt-7">
+              <span className="font-num font-bold text-rosa text-6xl md:text-7xl leading-none">
                 {paisesVisitados.length}
               </span>
-              <span className="font-jakarta font-medium text-preto/60 text-base md:text-lg leading-tight">
-                países
+              <span className="font-jakarta text-cinza text-sm md:text-base leading-snug">
+                países visitados de perto,
                 <br />
-                visitados de perto
+                testando cada canto
               </span>
             </div>
-          </div>
 
-          {/* Globo */}
-          <div className="reveal flex justify-center md:justify-end">
-            <Globo className="w-56 h-56 md:w-full md:max-w-sm md:h-auto animate-float" />
+            <p className="reveal font-jakarta text-cinza text-base leading-relaxed mt-6 max-w-md">
+              Eu conheço os {paisesVisitados.length} e posso te orientar na sua viagem,
+              com dica de quem já esteve lá.
+            </p>
           </div>
         </div>
 
-        {/* Países agrupados por continente */}
-        <div className="mt-12 space-y-7">
+        {/* Cards por continente */}
+        <div className="grid sm:grid-cols-2 gap-4 md:gap-5 mt-14">
           {paisesPorContinente.map((grupo) => (
-            <div key={grupo.continente} className="reveal">
-              {/* Cabeçalho do continente */}
-              <div className="flex items-baseline gap-3 mb-3">
-                <h3 className="font-display font-bold text-preto text-lg md:text-xl">
+            <div
+              key={grupo.continente}
+              className="reveal bg-white rounded-2xl p-6 border border-grafite/5"
+            >
+              <div className="flex items-baseline justify-between mb-4">
+                <h3 className="font-display font-bold text-grafite text-lg">
                   {grupo.continente}
                 </h3>
-                <span className="font-jakarta font-semibold text-xs tracking-[0.1em] text-rosa">
-                  {grupo.paises.length}
+                <span className="font-num font-bold text-rosa text-lg">
+                  {String(grupo.paises.length).padStart(2, "0")}
                 </span>
-                <span className="flex-1 h-px bg-preto/10" />
               </div>
 
-              {/* Países do continente */}
               <div className="flex flex-wrap gap-2">
-                {grupo.paises.map((pais) => (
-                  <span
-                    key={pais}
-                    className="font-jakarta font-normal text-sm md:text-base bg-manteigaClara text-grafite px-3 py-1.5 rounded-lg border border-transparent hover:border-rosa hover:-translate-y-0.5 transition-all duration-200 cursor-default"
-                  >
-                    {pais}
-                  </span>
-                ))}
+                {grupo.paises.map((pais) => {
+                  const eDestaque = pais === paisDestaque;
+                  return (
+                    <span
+                      key={pais}
+                      className={`inline-flex items-center gap-1.5 font-jakarta text-sm px-2.5 py-1.5 rounded-full ${
+                        eDestaque
+                          ? "font-medium bg-rosaDeep text-white"
+                          : "bg-creme2 text-grafite/80"
+                      }`}
+                    >
+                      <Bandeira pais={pais} />
+                      {pais}
+                      {eDestaque && (
+                        <span aria-hidden="true" className="text-manteiga">
+                          ★
+                        </span>
+                      )}
+                    </span>
+                  );
+                })}
               </div>
+
+              {/* Legenda da estrela, só no card que tem o país em destaque */}
+              {grupo.paises.includes(paisDestaque) && (
+                <p className="font-jakarta text-cinzaClaro text-xs mt-4 pt-3 border-t border-creme2">
+                  <span className="text-rosaDeep" aria-hidden="true">
+                    ★
+                  </span>{" "}
+                  {legendaDestaque}
+                </p>
+              )}
             </div>
           ))}
-        </div>
-
-        {/* Faixa de cidades — mesma lista do topo, agora em branco sobre fundo escuro */}
-        <div className="reveal mt-8 rounded-[2rem] bg-preto py-8 overflow-hidden">
-          <p className="font-jakarta font-medium text-white/50 text-sm uppercase tracking-[0.18em] px-8 mb-5">
-            E as cidades onde eu já coloquei o pé
-          </p>
-          <div className="flex animate-marquee whitespace-nowrap">
-            {cidadesLoop.map((cidade, i) => (
-              <span key={i} className="inline-flex items-center gap-5 mx-5">
-                <span className="font-syne font-extrabold text-2xl md:text-3xl text-white tracking-tight">
-                  {cidade}
-                </span>
-                <span className="text-white/30 text-base">✦</span>
-              </span>
-            ))}
-          </div>
         </div>
       </div>
     </section>

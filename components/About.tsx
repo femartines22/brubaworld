@@ -2,6 +2,12 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
+import { paisesVisitados } from "@/data/paisesVisitados";
+import Bandeira from "@/components/Bandeira";
+
+// FOTO: retrato da Bruba, vertical (proporção 3/4).
+// Trocar aqui quando a foto final for escolhida.
+const FOTO_RETRATO = "/bruba.jpeg";
 
 export default function About() {
   const ref = useRef<HTMLElement>(null);
@@ -24,103 +30,64 @@ export default function About() {
   }, []);
 
   return (
-    <section
-      id="sobre"
-      ref={ref}
-      className="bg-rosa py-24 md:py-32 px-5 md:px-10"
-    >
-      <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-12 md:gap-20 items-start">
-          {/* Text column */}
-          <div className="order-2 md:order-1 flex flex-col gap-6">
-            <div className="reveal">
-              <span className="font-jakarta font-medium text-sm text-white/80 uppercase tracking-widest">
-                quem faz
-              </span>
-              <h2 className="font-display font-bold text-white text-4xl md:text-6xl leading-tight mt-3">
-                Oi, eu sou
-                <br />a Bruba.
-              </h2>
-              <p className="font-display italic text-white/90 text-2xl md:text-3xl mt-4 leading-snug">
-                Sou apaixonada por viagens.
-              </p>
-            </div>
-
-            {/* Credentials card */}
-            <div className="reveal bg-white/15 backdrop-blur-sm border border-white/20 rounded-2xl p-6">
-              <p className="font-jakarta font-light text-white text-base leading-relaxed">
-                Já morei em{" "}
-                <span className="font-semibold">Lille, na França</span>,
-                trabalhei como Cast Member no{" "}
-                <span className="font-semibold">Walt Disney World, em Orlando</span>,
-                e já visitei mais de{" "}
-                <span className="font-semibold">20 países</span>.
-              </p>
-            </div>
-
-            {/* Language line */}
-            <div className="reveal flex flex-wrap gap-2">
-              {["🇧🇷 Português", "🇫🇷 Francês", "🇬🇧 Inglês"].map((lang) => (
-                <span
-                  key={lang}
-                  className="inline-flex items-center font-jakarta font-medium text-sm bg-white/20 text-white border border-white/30 px-4 py-1.5 rounded-full"
-                >
-                  {lang}
-                </span>
-              ))}
-            </div>
-
-            {/* Body paragraphs */}
-            <div className="reveal space-y-4 font-jakarta font-light text-white/90 text-base md:text-lg leading-relaxed">
-              <p>
-                Já perdi a conta de quantos roteiros montei pra mim, amigos e
-                família. Sempre do mesmo jeito: pesquisando tudo e testando
-                na prática o que realmente vale a pena.
-              </p>
-              <p>
-                Via muito do mesmo por aí. Roteiros genéricos, óbvios, que
-                pareciam ter sido feitos pra qualquer pessoa, em qualquer lugar.
-              </p>
-              <p>
-                Resolvi ir além. Visitar de verdade, testar cada lugar com
-                meus próprios olhos antes de recomendar pra alguém.
-              </p>
-            </div>
-
-            {/* Quote box */}
-            <div className="reveal bg-manteigaClara rounded-2xl p-6 md:p-8">
-              <p className="font-display italic text-preto text-xl md:text-2xl leading-snug">
-                &ldquo;Eu já fui. Eu já testei. E recomendo só o que realmente
-                vale a pena.&rdquo;
-              </p>
-              <span className="font-jakarta font-medium text-preto/50 text-sm mt-3 block">
-                Bruba
-              </span>
-            </div>
-          </div>
-
-          {/* Photo column */}
-          <div className="order-1 md:order-2 reveal">
-            <div className="relative">
-              <div className="w-full aspect-[3/4] max-w-sm mx-auto rounded-3xl overflow-hidden">
+    <section id="sobre" ref={ref} className="bg-creme py-20 md:py-28 px-5 md:px-10">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center">
+          {/* Foto com moldura em arco */}
+          <div className="reveal order-1">
+            <div className="relative w-full max-w-sm mx-auto md:mx-0">
+              <div className="w-full aspect-[3/4] overflow-hidden rounded-t-[9999px] rounded-b-2xl bg-gradient-to-b from-[#F6C9A8] via-[#EFA9A0] to-[#B98BA8]">
                 <Image
-                  src="/bruba.jpeg"
-                  alt="Foto da Bruba"
+                  src={FOTO_RETRATO}
+                  alt="Retrato da Bruba"
                   width={480}
                   height={640}
                   className="w-full h-full object-cover"
                   priority
                 />
               </div>
+            </div>
+          </div>
 
-              {/* Decorative blobs */}
-              <div className="absolute -top-6 -left-6 w-24 h-24 bg-manteiga/30 rounded-full blur-2xl pointer-events-none" />
-              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-preto/20 rounded-full blur-3xl pointer-events-none" />
+          {/* Texto */}
+          <div className="order-2 flex flex-col gap-5">
+            <div className="reveal">
+              <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
+                quem faz
+              </span>
+              <h2 className="font-display font-bold text-grafite text-4xl md:text-5xl leading-tight mt-3">
+                Oi, eu sou a{" "}
+                <span className="font-script italic text-rosa">Bruba</span>.
+              </h2>
+            </div>
 
-              {/* Floating badge */}
-              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-preto text-offwhite font-jakarta font-medium text-xs px-4 py-2 rounded-full whitespace-nowrap shadow-lg">
-                20+ países visitados
-              </div>
+            <p className="reveal font-jakarta text-cinza text-base md:text-lg leading-relaxed">
+              Escrevo cada roteiro com a minha própria mão, só pra lugares onde eu já
+              pisei de verdade. Hoje meu forte é Paris: já voltei várias vezes, testei
+              tudo de novo, e conheço a cidade de um jeito que só dá pra conhecer assim.
+            </p>
+
+            {/* Citação */}
+            <blockquote className="reveal border-l-2 border-rosa pl-5">
+              <p className="font-script italic text-grafite text-lg md:text-xl leading-snug">
+                &ldquo;Eu já fui. Eu já testei. E recomendo só o que realmente vale a
+                pena.&rdquo;
+              </p>
+            </blockquote>
+
+            {/* Badge + idiomas */}
+            <div className="reveal flex flex-wrap items-center gap-2">
+              <span className="inline-flex items-center font-jakarta font-medium text-sm bg-rosaTint text-rosaDeep px-4 py-2 rounded-full">
+                <span className="font-num font-semibold mr-1.5">
+                  {paisesVisitados.length}
+                </span>
+                países visitados
+              </span>
+              <span className="inline-flex items-center gap-2 px-2" title="Português, francês e inglês">
+                <Bandeira pais="Brasil" className="w-5 h-3.5" />
+                <Bandeira pais="França" className="w-5 h-3.5" />
+                <Bandeira pais="Reino Unido" className="w-5 h-3.5" />
+              </span>
             </div>
           </div>
         </div>

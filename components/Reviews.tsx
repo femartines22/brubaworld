@@ -25,18 +25,6 @@ const reviews = [
   },
 ];
 
-function Stars() {
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <svg key={i} width="14" height="14" viewBox="0 0 24 24" className="fill-manteigaClara">
-          <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-        </svg>
-      ))}
-    </div>
-  );
-}
-
 export default function Reviews() {
   const ref = useRef<HTMLElement>(null);
 
@@ -46,7 +34,7 @@ export default function Reviews() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 120);
+              setTimeout(() => el.classList.add("visible"), i * 100);
             });
           }
         });
@@ -58,38 +46,37 @@ export default function Reviews() {
   }, []);
 
   return (
-    <section id="avaliacoes" ref={ref} className="bg-preto py-24 md:py-32 px-5 md:px-10">
-      <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="reveal text-center mb-16">
-          <span className="font-jakarta font-medium text-sm text-offwhite/30 uppercase tracking-widest">
+    <section
+      ref={ref}
+      id="avaliacoes"
+      className="scroll-mt-24 bg-manteigaSoft py-12 md:py-16"
+    >
+      <div className="max-w-6xl mx-auto">
+        {/* Cabeçalho */}
+        <div className="reveal flex items-baseline justify-between gap-4 px-5 md:px-10 mb-5">
+          <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
             quem já viajou
           </span>
-          <h2 className="font-display font-bold text-offwhite text-4xl md:text-6xl leading-tight mt-3">
-            O que dizem.
-          </h2>
+          <span className="font-jakarta text-cinzaClaro text-xs whitespace-nowrap">
+            arraste pra ver mais →
+          </span>
         </div>
 
-        {/* Grid */}
-        <div className="grid sm:grid-cols-2 gap-5">
-          {reviews.map((review, i) => (
-            <div
-              key={i}
-              className="reveal bg-white/5 border border-white/8 rounded-3xl p-8 flex flex-col gap-5"
+        {/* Faixa com scroll horizontal */}
+        <div className="reveal flex gap-4 overflow-x-auto snap-x snap-mandatory px-5 md:px-10 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          {reviews.map((review) => (
+            <figure
+              key={review.name}
+              className="snap-start shrink-0 w-[260px] bg-white rounded-xl border border-grafite/5 p-5 flex flex-col"
             >
-              <Stars />
-              <p className="font-jakarta font-light text-offwhite text-base md:text-lg leading-relaxed flex-1">
+              <blockquote className="font-jakarta text-grafite text-sm leading-relaxed flex-1">
                 &ldquo;{review.text}&rdquo;
-              </p>
-              <div>
-                <span className="font-jakarta font-medium text-rosa text-sm">
-                  {review.name}
-                </span>
-                <span className="font-jakarta font-light text-offwhite/30 text-sm">
-                  {" "}· {review.destination}
-                </span>
-              </div>
-            </div>
+              </blockquote>
+              <figcaption className="font-jakarta text-[13px] mt-4">
+                <span className="font-semibold text-grafite">{review.name}</span>
+                <span className="text-cinzaClaro"> · {review.destination}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

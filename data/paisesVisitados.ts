@@ -41,3 +41,8 @@ export const paisesPorContinente = [
 
 // Lista plana — usada pelo contador e por qualquer lugar que só precise dos nomes.
 export const paisesVisitados = paisesPorContinente.flatMap((g) => g.paises);
+
+// País em que a Bruba é especialista. Recebe destaque visual (estrela) na
+// grade de países, com legenda explicando o que a estrela significa.
+export const paisDestaque = "França";
+export const legendaDestaque = "especialista em paris";

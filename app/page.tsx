@@ -5,9 +5,8 @@ import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import PaisesVisitados from "@/components/PaisesVisitados";
 import ComoViajar from "@/components/ComoViajar";
-import ContactForm from "@/components/ContactForm";
-import Reviews from "@/components/Reviews";
 import Carrossel from "@/components/Carrossel";
+import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -20,10 +19,10 @@ export default function Home() {
         <Marquee />
         <About />
         <PaisesVisitados />
+        {/* ComoViajar traz as abas e o formulário lado a lado */}
         <ComoViajar />
         <Carrossel />
         <Reviews />
-        <ContactForm />
       </main>
       <Footer />
     </>

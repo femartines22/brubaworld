@@ -2,8 +2,13 @@
 
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import Mala from "@/components/Mala";
-import Passaporte from "@/components/Passaporte";
+import PreviaGuia from "@/components/PreviaGuia";
+
+// Cor do botão por cidade: os dois guias de Paris dividem o rosa da marca,
+// e o guia que junta as duas capitais recebe metade de cada cor.
+const BOTAO_PARIS = "bg-rosa hover:bg-rosaDeep";
+const BOTAO_PARIS_LONDRES =
+  "bg-[linear-gradient(90deg,#F2277E_0%,#F2277E_50%,#5B7C99_50%,#5B7C99_100%)] hover:brightness-95";
 
 const guias = [
   {
@@ -12,12 +17,13 @@ const guias = [
     titulo: "Paris em 5 Dias",
     subtitulo: "o guia da sua primeira viagem",
     transformacao: "Sua primeira vez em Paris, sem estresse e sem perder nada.",
-    precoRiscado: "R$ 59,90",
-    preco: "R$ 39,90",
-    cta: "quero esse guia →",
+    precoRiscado: "R$ 109,90",
+    preco: "R$ 69,90",
     href: "/roteiros/paris",
-    externo: false,
-    gradiente: "linear-gradient(135deg, #1a0a10 0%, #F2277E 100%)",
+    // FOTO: capa do guia, horizontal
+    etiquetaFoto: "Torre Eiffel",
+    gradiente: "linear-gradient(160deg, #F3B896 0%, #EE8FA0 55%, #B87FA8 100%)",
+    corBotao: BOTAO_PARIS,
     emBreve: false,
   },
   {
@@ -26,12 +32,13 @@ const guias = [
     titulo: "Paris à Table",
     subtitulo: "bistrôs, padarias e mesas favoritas",
     transformacao: "Comer bem em Paris sem cair em armadilha de turista.",
-    precoRiscado: "R$ 39,90",
-    preco: "R$ 24,90",
-    cta: "quero esse guia →",
+    precoRiscado: "",
+    preco: "R$ 49,90",
     href: "/roteiros/paris-a-table",
-    externo: false,
-    gradiente: "linear-gradient(135deg, #100d04 0%, #8B5E1A 100%)",
+    // FOTO: capa do guia, horizontal
+    etiquetaFoto: "Bistrô parisiense",
+    gradiente: "linear-gradient(160deg, #E8B98A 0%, #D69A6A 55%, #A9744C 100%)",
+    corBotao: BOTAO_PARIS,
     emBreve: false,
   },
   {
@@ -40,30 +47,27 @@ const guias = [
     titulo: "Paris e Londres em 1 Semana",
     subtitulo: "duas capitais, um roteiro completo",
     transformacao: "Sua semana entre Paris e Londres organizada passo a passo.",
-    precoRiscado: "R$ 79,90",
-    preco: "R$ 49,90",
-    cta: "quero esse guia →",
+    precoRiscado: "R$ 129,90",
+    preco: "R$ 89,90",
     href: "/roteiros/paris-londres-1-semana",
-    externo: false,
-    gradiente: "linear-gradient(135deg, #1a0a10 0%, #F2277E 100%)",
+    // FOTO: capa do guia, horizontal
+    etiquetaFoto: "Big Ben, Londres",
+    gradiente: "linear-gradient(160deg, #C3D6D9 0%, #9FB6BE 55%, #7B93A6 100%)",
+    corBotao: BOTAO_PARIS_LONDRES,
     emBreve: false,
   },
   {
     id: "em-breve-1",
-    badge: "Em breve",
-    titulo: "Novo guia",
-    subtitulo: "próximo destino",
-    transformacao: "Mais um destino chegando em breve.",
-    gradiente: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
-    emBreve: true,
-  },
-  {
-    id: "em-breve-2",
-    badge: "Em breve",
-    titulo: "Novo guia",
-    subtitulo: "próximo destino",
-    transformacao: "Mais um destino chegando em breve.",
-    gradiente: "linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%)",
+    badge: "Novo guia",
+    titulo: "Próximo destino",
+    subtitulo: "em produção",
+    transformacao: "Mais um roteiro testado de pertinho, chegando em breve.",
+    precoRiscado: "",
+    preco: "",
+    href: "",
+    etiquetaFoto: "",
+    gradiente: "linear-gradient(160deg, #E8E4DC 0%, #DAD5CB 100%)",
+    corBotao: "",
     emBreve: true,
   },
 ];
@@ -77,7 +81,7 @@ export default function Carrossel() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 150);
+              setTimeout(() => el.classList.add("visible"), i * 120);
             });
           }
         });
@@ -92,110 +96,92 @@ export default function Carrossel() {
     <section
       ref={ref}
       id="roteiros"
-      className="bg-manteigaClara py-24 md:py-32 px-5 md:px-10"
+      className="scroll-mt-24 bg-creme py-20 md:py-28 px-5 md:px-10"
     >
-      <div className="max-w-5xl mx-auto">
-        {/* Header */}
-        <div className="reveal mb-12">
-          <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
-            guias
-          </span>
-          <h2 className="font-display font-bold text-preto text-4xl md:text-6xl leading-tight mt-3">
-            Escolha o seu roteiro pronto.
-          </h2>
-          <p className="font-jakarta font-light text-preto/50 text-base md:text-lg mt-3">
-            Feitos por quem já foi, testou e voltou pra contar.
-          </p>
+      <div className="max-w-6xl mx-auto">
+        {/* Cabeçalho + prévia do guia */}
+        <div className="grid lg:grid-cols-2 gap-10 items-center mb-14">
+          <div className="reveal">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
+              guias prontos
+            </span>
+            <h2 className="font-display font-bold text-grafite text-4xl md:text-5xl leading-tight mt-3">
+              Escrevi cada página.
+              <br />
+              Você recebe assim.
+            </h2>
+          </div>
+
+          <div className="reveal flex flex-col items-center gap-5">
+            <PreviaGuia />
+            <span className="inline-flex items-center font-jakarta font-medium text-[10px] uppercase tracking-[0.16em] bg-grafite text-white px-4 py-2 rounded-full">
+              prévia real do que você recebe
+            </span>
+          </div>
         </div>
 
-        {/* Grid de cards */}
-        <div className="grid grid-cols-2 gap-4 md:gap-6">
+        {/* Cards dos guias */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {guias.map((guia) => {
             const conteudo = (
               <div
-                className={`bg-preto rounded-3xl overflow-hidden border flex flex-col h-full transition-all duration-300 ${
-                  guia.emBreve
-                    ? "border-white/5 cursor-default grayscale opacity-50"
-                    : "border-white/5 hover:border-white/10 hover:scale-[1.01] hover:shadow-2xl"
+                className={`bg-white rounded-2xl overflow-hidden border border-grafite/5 flex flex-col h-full transition-all duration-300 ${
+                  guia.emBreve ? "opacity-60" : "hover:-translate-y-1 hover:shadow-xl"
                 }`}
               >
-                {/* Área decorativa */}
+                {/* Capa */}
                 <div
-                  className="h-32 md:h-44 relative overflow-hidden flex-shrink-0"
+                  className="relative h-44 flex-shrink-0"
                   style={{ background: guia.gradiente }}
                 >
-                  <div
-                    className="absolute inset-0 opacity-10"
-                    style={{
-                      backgroundImage:
-                        "radial-gradient(circle at 20% 50%, #FFFFFF 0%, transparent 55%), radial-gradient(circle at 80% 20%, #F7E455 0%, transparent 45%)",
-                    }}
-                  />
-                  {guia.id === "paris-5-dias" && (
-                    <div className="absolute bottom-4 right-6 opacity-25">
-                      <svg width="44" height="58" viewBox="0 0 48 64" fill="white">
-                        <path d="M24 2 L20 20 L16 20 L12 40 L8 40 L4 62 L44 62 L40 40 L36 40 L32 20 L28 20 Z M18 44 L30 44 L30 50 L18 50 Z" fillRule="evenodd" />
-                      </svg>
-                    </div>
-                  )}
-                  {guia.id === "paris-a-table" && (
-                    <Mala className="absolute -bottom-3 right-4 w-20 h-20 md:w-28 md:h-28" />
-                  )}
-                  {guia.emBreve && (
-                    <>
-                      <Passaporte className="absolute -bottom-4 -right-4 w-24 h-24 md:w-32 md:h-32 opacity-60" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <span className="font-jakarta font-medium text-xs text-offwhite/30 uppercase tracking-widest border border-offwhite/20 px-3 py-1 rounded-full">
-                          em breve
-                        </span>
-                      </div>
-                    </>
+                  {guia.emBreve ? (
+                    <span className="absolute top-4 left-4 font-jakarta font-medium text-[10px] uppercase tracking-[0.14em] bg-white/70 text-grafite/60 px-3 py-1.5 rounded-full">
+                      em breve
+                    </span>
+                  ) : (
+                    <span className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 bg-grafite/45 text-white/90 font-jakarta font-medium text-[9px] uppercase tracking-[0.12em] px-2.5 py-1.5 rounded-full backdrop-blur-sm">
+                      {guia.etiquetaFoto}
+                    </span>
                   )}
                 </div>
 
                 {/* Conteúdo */}
-                <div className="p-4 md:p-7 flex flex-col gap-3 md:gap-4 flex-1">
-                  {/* Badge */}
-                  <span className="inline-flex items-center gap-1.5 font-jakarta font-medium text-xs text-offwhite/40 border border-offwhite/10 px-3 py-1 rounded-full w-fit">
+                <div className="p-6 flex flex-col gap-2 flex-1">
+                  <span className="font-jakarta font-semibold text-[10px] uppercase tracking-[0.16em] text-rosaDeep">
                     {guia.badge}
                   </span>
 
-                  {/* Título + subtítulo */}
-                  <div>
-                    <h3 className="font-display font-bold text-offwhite text-xl md:text-4xl leading-tight">
-                      {guia.titulo}
-                    </h3>
-                    <p className="font-jakarta font-light text-offwhite/40 text-xs md:text-sm mt-1">
-                      {guia.subtitulo}
-                    </p>
-                  </div>
-
-                  {/* Linha de transformação */}
-                  <p className="font-jakarta font-medium text-offwhite text-xs md:text-lg leading-snug hidden md:block">
+                  <h3 className="font-display font-bold text-grafite text-xl leading-snug">
+                    {guia.titulo}
+                  </h3>
+                  <p className="font-jakarta text-cinzaClaro text-[13px]">
+                    {guia.subtitulo}
+                  </p>
+                  <p className="font-jakarta text-cinza text-sm leading-relaxed mt-1">
                     {guia.transformacao}
                   </p>
 
-                  {/* Preço */}
-                  {!guia.emBreve && "preco" in guia && guia.preco && (
-                    <div className="flex items-baseline gap-2">
-                      {"precoRiscado" in guia && guia.precoRiscado && (
-                        <span className="font-jakarta font-light text-offwhite/30 text-sm line-through">
-                          {guia.precoRiscado}
+                  {!guia.emBreve && (
+                    <>
+                      <div className="flex items-baseline gap-2 mt-4">
+                        {guia.precoRiscado && (
+                          <span className="font-num text-cinzaClaro text-sm line-through">
+                            {guia.precoRiscado}
+                          </span>
+                        )}
+                        <span className="font-num font-bold text-grafite text-xl">
+                          {guia.preco}
                         </span>
-                      )}
-                      <span className="font-syne font-extrabold text-offwhite/80 text-lg md:text-xl">
-                        {guia.preco}
-                      </span>
-                    </div>
-                  )}
+                      </div>
 
-                  {/* CTA */}
-                  {!guia.emBreve && "cta" in guia && guia.cta && (
-                    <div className="mt-auto pt-2">
-                      <span className="w-full flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-xs md:text-base px-4 md:px-6 py-3 md:py-4 rounded-xl hover:bg-rosa/90 transition-colors">
-                        {guia.cta}
-                      </span>
-                    </div>
+                      <div className="mt-auto pt-4">
+                        <span
+                          className={`w-full flex items-center justify-center gap-2 text-white font-jakarta font-semibold text-sm px-6 py-3.5 rounded-full transition-all duration-200 ${guia.corBotao}`}
+                        >
+                          quero esse guia →
+                        </span>
+                      </div>
+                    </>
                   )}
                 </div>
               </div>
@@ -209,18 +195,8 @@ export default function Carrossel() {
               );
             }
 
-            return "externo" in guia && guia.externo ? (
-              <a
-                key={guia.id}
-                href={"href" in guia ? guia.href ?? "#" : "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="reveal block"
-              >
-                {conteudo}
-              </a>
-            ) : (
-              <Link key={guia.id} href={"href" in guia ? guia.href ?? "/" : "/"} className="reveal block">
+            return (
+              <Link key={guia.id} href={guia.href} className="reveal block">
                 {conteudo}
               </Link>
             );

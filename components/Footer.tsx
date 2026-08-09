@@ -30,26 +30,26 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-preto py-16 px-5 md:px-10 border-t border-offwhite/5">
-      <div className="max-w-7xl mx-auto">
+    <footer className="bg-creme2 py-14 px-5 md:px-10 border-t border-grafite/5">
+      <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           {/* Logo */}
           <a
             href="#"
-            className="font-syne font-extrabold text-2xl text-offwhite hover:text-manteiga transition-colors"
+            className="font-display font-bold text-2xl text-grafite hover:text-rosaDeep transition-colors"
           >
-            bruba<span className="text-rosa">world</span>
+            bruba<span className="font-script italic text-rosa">world</span>
           </a>
 
-          {/* Social links */}
-          <div className="flex items-center gap-4">
+          {/* Redes sociais */}
+          <div className="flex items-center gap-3">
             {socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center justify-center w-10 h-10 rounded-full bg-offwhite/5 text-offwhite/50 hover:bg-rosa hover:text-white transition-all duration-200"
+                className="flex items-center justify-center w-10 h-10 rounded-full bg-white text-cinza hover:bg-rosa hover:text-white transition-all duration-200"
                 aria-label={s.label}
               >
                 {s.icon}
@@ -58,12 +58,10 @@ export default function Footer() {
           </div>
 
           {/* Copyright */}
-          <p className="font-jakarta font-light text-offwhite/30 text-sm text-center">
-            © {new Date().getFullYear()} brubaworld. Todos os direitos
-            reservados.
+          <p className="font-jakarta text-cinzaClaro text-sm text-center">
+            © {new Date().getFullYear()} brubaworld. Todos os direitos reservados.
           </p>
         </div>
-
       </div>
     </footer>
   );

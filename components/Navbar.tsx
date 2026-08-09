@@ -13,33 +13,35 @@ export default function Navbar() {
   }, []);
 
   const links = [
-    { label: "Roteiros", href: "#roteiros" },
     { label: "Sobre", href: "#sobre" },
+    { label: "Roteiros", href: "#roteiros" },
     { label: "Avaliações", href: "#avaliacoes" },
   ];
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-preto/95 backdrop-blur-sm shadow-lg" : "bg-transparent"
+        scrolled
+          ? "bg-creme/90 backdrop-blur-md border-b border-grafite/5"
+          : "bg-transparent"
       }`}
     >
-      <nav className="max-w-7xl mx-auto px-5 md:px-10 flex items-center justify-between h-16 md:h-20">
+      <nav className="max-w-6xl mx-auto px-5 md:px-10 flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
         <a
           href="#"
-          className="font-syne font-extrabold text-xl tracking-tight text-offwhite hover:text-manteiga transition-colors"
+          className="font-display font-bold text-xl tracking-tight text-grafite hover:text-rosaDeep transition-colors"
         >
-          bruba<span className="text-rosa">world</span>
+          bruba<span className="font-script italic text-rosa">world</span>
         </a>
 
-        {/* Desktop links */}
+        {/* Links no desktop */}
         <ul className="hidden md:flex items-center gap-8">
           {links.map((l) => (
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-jakarta font-medium text-sm text-offwhite/70 hover:text-offwhite transition-colors"
+                className="font-jakarta font-medium text-sm text-cinza hover:text-grafite transition-colors"
               >
                 {l.label}
               </a>
@@ -50,32 +52,33 @@ export default function Navbar() {
         {/* CTA */}
         <a
           href="#como-viajar"
-          className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors"
+          className="hidden md:inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosaDeep transition-colors"
         >
           quero meu roteiro →
         </a>
 
-        {/* Mobile hamburger */}
+        {/* Botão do menu no celular */}
         <button
           className="md:hidden flex flex-col gap-1.5 p-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menu"
+          aria-expanded={menuOpen}
         >
           <span
-            className={`block w-6 h-0.5 bg-offwhite transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
+            className={`block w-6 h-0.5 bg-grafite transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
           />
           <span
-            className={`block w-6 h-0.5 bg-offwhite transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
+            className={`block w-6 h-0.5 bg-grafite transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
           />
           <span
-            className={`block w-6 h-0.5 bg-offwhite transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
+            className={`block w-6 h-0.5 bg-grafite transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
           />
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Menu do celular */}
       <div
-        className={`md:hidden bg-preto transition-all duration-300 overflow-hidden ${
+        className={`md:hidden bg-creme border-b border-grafite/5 transition-all duration-300 overflow-hidden ${
           menuOpen ? "max-h-80 pb-6" : "max-h-0"
         }`}
       >
@@ -84,7 +87,7 @@ export default function Navbar() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="font-jakarta font-medium text-base text-offwhite/80 hover:text-offwhite transition-colors block"
+                className="font-jakarta font-medium text-base text-cinza hover:text-grafite transition-colors block"
                 onClick={() => setMenuOpen(false)}
               >
                 {l.label}
@@ -94,7 +97,7 @@ export default function Navbar() {
           <li>
             <a
               href="#como-viajar"
-              className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosa/90 transition-colors mt-2"
+              className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-sm px-5 py-2.5 rounded-full hover:bg-rosaDeep transition-colors mt-2"
               onClick={() => setMenuOpen(false)}
             >
               quero meu roteiro →
