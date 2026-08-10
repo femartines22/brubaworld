@@ -5,6 +5,7 @@ import Link from "next/link";
 import CustomCursor from "@/components/CustomCursor";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import PreviaGuia from "@/components/PreviaGuia";
 
 const KIWIFY_URL = "https://pay.kiwify.com.br/yMypo41";
 
@@ -47,19 +48,25 @@ function FAQ() {
   return (
     <div className="space-y-3">
       {faqs.map((item, i) => (
-        <div key={i} className="border border-offwhite/10 rounded-2xl overflow-hidden">
+        <div
+          key={i}
+          className="bg-white border border-grafite/8 rounded-2xl overflow-hidden"
+        >
           <button
-            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-offwhite/5 transition-colors"
+            className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-creme2/50 transition-colors"
             onClick={() => setOpen(open === i ? null : i)}
+            aria-expanded={open === i}
           >
-            <span className="font-jakarta font-medium text-offwhite text-base pr-4">{item.q}</span>
-            <span className="text-rosa font-syne font-bold text-lg flex-shrink-0">
+            <span className="font-jakarta font-medium text-grafite text-base pr-4">
+              {item.q}
+            </span>
+            <span className="font-num font-bold text-rosa text-lg flex-shrink-0">
               {open === i ? "−" : "+"}
             </span>
           </button>
           {open === i && (
             <div className="px-6 pb-5">
-              <p className="font-jakarta font-light text-offwhite/60 text-base leading-relaxed">{item.a}</p>
+              <p className="font-jakarta text-cinza text-base leading-relaxed">{item.a}</p>
             </div>
           )}
         </div>
@@ -74,107 +81,121 @@ export default function ParisPage() {
       <CustomCursor />
       <Navbar />
       <main>
-
-        {/* 1. Hero */}
-        <section className="relative bg-preto min-h-[80vh] flex items-center pt-20 pb-24 px-5 md:px-10 overflow-hidden">
-          <div
-            className="absolute right-[-10%] top-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-rosa opacity-20 animate-blob pointer-events-none"
-            aria-hidden="true"
-          />
-          <div className="relative z-10 max-w-4xl mx-auto w-full">
+        {/* Hero */}
+        <section className="bg-creme pt-32 pb-16 md:pt-40 md:pb-24 px-5 md:px-10">
+          <div className="max-w-5xl mx-auto">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 font-jakarta font-medium text-sm text-offwhite/40 hover:text-offwhite mb-10 transition-colors"
+              className="inline-flex items-center gap-2 font-jakarta font-medium text-sm text-cinzaClaro hover:text-grafite mb-10 transition-colors"
             >
               ← Voltar
             </Link>
-            <span className="inline-flex items-center gap-2 bg-rosa/15 border border-rosa/30 text-rosa font-jakarta font-medium text-xs px-4 py-1.5 rounded-full mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
-              Guia de Viagem
-            </span>
-            <h1 className="font-display font-black text-offwhite text-5xl md:text-7xl lg:text-8xl leading-[1.02] tracking-tight">
-              Paris em 5 Dias:
-            </h1>
-            <p className="font-jakarta font-semibold text-rosa text-xl md:text-3xl lg:text-4xl leading-tight mt-2 mb-8">
-              Guia para a Primeira Viagem
-            </p>
-            <div className="space-y-4 max-w-2xl">
-              <p className="font-jakarta font-medium text-offwhite/90 text-lg md:text-xl leading-relaxed italic">
-                O roteiro que eu gostaria de ter recebido antes da minha primeira viagem para Paris.
-              </p>
-              <p className="font-jakarta font-light text-offwhite/60 text-base md:text-lg leading-relaxed">
-                Depois de morar na França e visitar Paris diversas vezes, reuni neste guia tudo o que realmente faz diferença para aproveitar a cidade sem estresse. É só abrir no celular e viajar com tranquilidade.
-              </p>
-            </div>
-            <div className="mt-10">
-              <a
-                href={KIWIFY_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosa/90 hover:scale-105 transition-all duration-200 shadow-lg shadow-rosa/30"
-              >
-                quero esse guia →
-              </a>
+
+            <div className="grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
+              <div>
+                <span className="inline-flex items-center gap-2 border border-dashed border-rosa/40 text-rosaDeep font-jakarta font-medium text-[11px] uppercase tracking-[0.18em] px-4 py-2 rounded-full mb-7">
+                  <span className="w-1.5 h-1.5 rounded-full bg-rosa" />
+                  guia de viagem
+                </span>
+
+                <h1 className="font-display font-bold text-grafite text-4xl md:text-6xl leading-[1.05] tracking-[-0.02em]">
+                  Paris em <span className="font-script italic text-rosa">5 dias</span>.
+                </h1>
+                <p className="font-jakarta text-cinza text-lg md:text-xl mt-4 leading-relaxed max-w-xl">
+                  O roteiro que eu gostaria de ter recebido antes da minha primeira viagem
+                  para Paris.
+                </p>
+                <p className="font-jakarta text-cinza text-base mt-4 leading-relaxed max-w-xl">
+                  Depois de morar na França e voltar várias vezes, reuni aqui o que
+                  realmente faz diferença para aproveitar a cidade sem estresse.
+                </p>
+
+                <div className="flex items-baseline gap-3 mt-8">
+                  <span className="font-num text-cinzaClaro text-lg line-through">
+                    R$ 109,90
+                  </span>
+                  <span className="font-num font-bold text-grafite text-3xl">R$ 69,90</span>
+                </div>
+
+                <a
+                  href={KIWIFY_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosaDeep transition-colors duration-200"
+                >
+                  quero esse guia →
+                </a>
+              </div>
+
+              <div className="flex flex-col items-center gap-5">
+                <PreviaGuia />
+                <span className="inline-flex items-center font-jakarta font-medium text-[10px] uppercase tracking-[0.16em] bg-grafite text-white px-4 py-2 rounded-full">
+                  prévia real do que você recebe
+                </span>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* 2. Para quem é */}
-        <section className="bg-offwhite py-20 md:py-28 px-5 md:px-10">
+        {/* Para quem é */}
+        <section className="bg-manteigaSoft py-16 md:py-24 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
               é pra você?
             </span>
-            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-10">
-              Esse guia é pra quem...
+            <h2 className="font-display font-bold text-grafite text-3xl md:text-4xl leading-tight mt-3 mb-9">
+              Esse guia é pra quem…
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {paraQuem.map((item, i) => (
-                <div key={i} className="flex items-start gap-4 bg-white border border-preto/8 rounded-2xl p-6">
+                <div
+                  key={i}
+                  className="flex items-start gap-4 bg-white border border-grafite/5 rounded-2xl p-6"
+                >
                   <span className="w-6 h-6 rounded-full bg-rosa flex-shrink-0 flex items-center justify-center mt-0.5">
                     <span className="text-white text-xs">✓</span>
                   </span>
-                  <p className="font-jakarta font-light text-preto/70 text-base leading-relaxed">{item}</p>
+                  <p className="font-jakarta text-cinza text-base leading-relaxed">{item}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* 3. Cinco dias. Tudo pensado. */}
-        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
+        {/* Dentro do guia */}
+        <section className="bg-creme py-16 md:py-24 px-5 md:px-10">
+          <div className="max-w-5xl mx-auto">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
               dentro do guia
             </span>
-            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-grafite text-3xl md:text-4xl leading-tight mt-3 mb-4">
               Cinco dias. Tudo pensado.
             </h2>
-            <p className="font-jakarta font-light text-offwhite/50 text-base md:text-lg leading-relaxed max-w-2xl mb-14">
-              Não é uma lista de atrações do Google. É um roteiro com contexto, ordem certa, dicas de quem já foi e os alertas que ninguém te conta antes.
+            <p className="font-jakarta text-cinza text-base md:text-lg leading-relaxed max-w-2xl mb-12">
+              Não é uma lista de atrações do Google. É um roteiro com contexto, ordem
+              certa, dicas de quem já foi e os alertas que ninguém te conta antes.
             </p>
 
-            <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 md:-mx-10 md:px-10 snap-x snap-mandatory">
+            <div className="flex gap-4 overflow-x-auto pb-4 -mx-5 px-5 md:-mx-10 md:px-10 snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {dias.map((dia) => (
                 <div
                   key={dia.num}
-                  className="flex-shrink-0 w-[260px] snap-start border border-offwhite/10 rounded-3xl p-8 flex flex-col gap-6 hover:border-offwhite/20 transition-colors"
+                  className="flex-shrink-0 w-[240px] snap-start bg-white border border-grafite/5 rounded-2xl p-7 flex flex-col gap-5"
                 >
-                  <span className="font-syne font-extrabold text-7xl leading-none text-manteigaClara">
+                  <span className="font-num font-bold text-5xl leading-none text-rosa/25">
                     {dia.num}
                   </span>
-                  <p className="font-jakarta font-medium text-offwhite text-base leading-snug">
+                  <p className="font-jakarta font-medium text-grafite text-base leading-snug">
                     {dia.texto}
                   </p>
                 </div>
               ))}
 
-              {/* Bônus */}
-              <div className="flex-shrink-0 w-[260px] snap-start border border-dashed border-offwhite/20 rounded-3xl p-8 flex flex-col gap-6">
-                <span className="font-syne font-extrabold text-7xl leading-none text-offwhite/20">
+              <div className="flex-shrink-0 w-[240px] snap-start border border-dashed border-grafite/15 rounded-2xl p-7 flex flex-col gap-5">
+                <span className="font-num font-bold text-5xl leading-none text-cinzaClaro/50">
                   +1
                 </span>
-                <p className="font-jakarta font-medium text-offwhite/40 text-base leading-snug">
+                <p className="font-jakarta font-medium text-cinzaClaro text-base leading-snug">
                   O bate-volta ideal para completar a viagem.
                 </p>
               </div>
@@ -182,31 +203,36 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* 4. Quanto você economiza */}
-        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
+        {/* Quanto economiza */}
+        <section className="bg-manteigaSoft py-16 md:py-24 px-5 md:px-10">
           <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
               vale a pena?
             </span>
-            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-grafite text-3xl md:text-4xl leading-tight mt-3 mb-9">
               Quanto você economiza.
             </h2>
-            <div className="grid sm:grid-cols-2 gap-6 max-w-2xl">
+            <div className="grid sm:grid-cols-2 gap-5 max-w-2xl">
               {[
                 { label: "Horas de pesquisa", sem: "30h+", com: "0h" },
                 { label: "Risco de erro", sem: "Alto", com: "Zero" },
               ].map((item) => (
-                <div key={item.label} className="bg-offwhite/5 border border-offwhite/10 rounded-2xl p-6">
-                  <p className="font-jakarta font-medium text-offwhite/60 text-sm mb-4">{item.label}</p>
+                <div
+                  key={item.label}
+                  className="bg-white border border-grafite/5 rounded-2xl p-6"
+                >
+                  <p className="font-jakarta font-medium text-cinza text-sm mb-4">
+                    {item.label}
+                  </p>
                   <div className="flex items-center gap-3">
-                    <div className="flex-1 text-center bg-offwhite/5 rounded-xl p-3">
-                      <p className="font-jakarta font-light text-offwhite/40 text-xs mb-1">Sem guia</p>
-                      <p className="font-syne font-extrabold text-offwhite/40 text-lg">{item.sem}</p>
+                    <div className="flex-1 text-center bg-creme2 rounded-xl p-3">
+                      <p className="font-jakarta text-cinzaClaro text-xs mb-1">Sem guia</p>
+                      <p className="font-num font-bold text-cinzaClaro text-lg">{item.sem}</p>
                     </div>
-                    <span className="text-offwhite/20 font-jakarta">→</span>
-                    <div className="flex-1 text-center bg-manteigaClara rounded-xl p-3">
-                      <p className="font-jakarta font-light text-preto/50 text-xs mb-1">Com guia</p>
-                      <p className="font-syne font-extrabold text-preto text-lg">{item.com}</p>
+                    <span className="text-cinzaClaro font-jakarta">→</span>
+                    <div className="flex-1 text-center bg-rosaTint rounded-xl p-3">
+                      <p className="font-jakarta text-rosaDeep/60 text-xs mb-1">Com guia</p>
+                      <p className="font-num font-bold text-rosaDeep text-lg">{item.com}</p>
                     </div>
                   </div>
                 </div>
@@ -215,84 +241,53 @@ export default function ParisPage() {
           </div>
         </section>
 
-        {/* 5. CTA */}
-        <section className="bg-manteigaClara py-20 md:py-28 px-5 md:px-10 text-center">
+        {/* CTA final */}
+        <section className="bg-creme py-16 md:py-24 px-5 md:px-10 text-center">
           <div className="max-w-2xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-preto/55 uppercase tracking-widest">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
               garanta o seu
             </span>
-            <h2 className="font-display font-bold text-preto text-3xl md:text-5xl leading-tight mt-3 mb-4">
+            <h2 className="font-display font-bold text-grafite text-3xl md:text-5xl leading-tight mt-3 mb-4">
               Pronto pra viajar?
             </h2>
-            <p className="font-jakarta font-light text-preto/70 text-lg mb-2">
+            <p className="font-jakarta text-cinza text-lg mb-2">
               É só comprar, baixar e levar no celular. Paris te espera.
             </p>
-            <p className="font-jakarta font-medium text-preto/50 text-sm mb-10">
-              Notificação de acesso por e-mail e WhatsApp.
-            </p>
+
+            <div className="flex items-baseline justify-center gap-3 mt-7 mb-6">
+              <span className="font-num text-cinzaClaro text-lg line-through">
+                R$ 109,90
+              </span>
+              <span className="font-num font-bold text-grafite text-4xl">R$ 69,90</span>
+            </div>
 
             <a
               href={KIWIFY_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 bg-rosa text-white font-jakarta font-semibold text-xl px-12 py-6 rounded-2xl hover:bg-rosa/90 hover:scale-[1.03] transition-all duration-200 shadow-xl shadow-rosa/30 mb-3"
+              className="inline-flex items-center justify-center gap-3 bg-rosa text-white font-jakarta font-semibold text-lg px-10 py-5 rounded-full hover:bg-rosaDeep transition-colors duration-200"
             >
               Garantir agora →
             </a>
 
-            <p className="font-jakarta font-light text-preto/55 text-xs mb-12">
-              Checkout seguro via Kiwify.
+            <p className="font-jakarta text-cinzaClaro text-xs mt-4">
+              Checkout seguro via Kiwify. Acesso por e-mail e WhatsApp.
             </p>
-
-            <a
-              href={KIWIFY_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block group"
-              aria-label="Comprar guia de Paris"
-            >
-              <div
-                className="w-64 md:w-80 mx-auto aspect-[3/4] rounded-3xl flex items-end p-8 relative overflow-hidden group-hover:scale-[1.03] group-hover:shadow-2xl transition-all duration-300"
-                style={{ background: "linear-gradient(135deg, #111111 0%, #F2277E 100%)" }}
-              >
-                <div
-                  className="absolute inset-0 opacity-10"
-                  style={{ backgroundImage: "radial-gradient(circle at 30% 40%, #F7E455 0%, transparent 60%)" }}
-                />
-                <div className="absolute top-8 right-8 opacity-20">
-                  <svg width="48" height="64" viewBox="0 0 48 64" fill="white">
-                    <path d="M24 2 L20 20 L16 20 L12 40 L8 40 L4 62 L44 62 L40 40 L36 40 L32 20 L28 20 Z M18 44 L30 44 L30 50 L18 50 Z" fillRule="evenodd"/>
-                  </svg>
-                </div>
-                <div className="relative z-10 text-left w-full">
-                  <p className="font-jakarta font-medium text-white/60 text-xs uppercase tracking-widest mb-2">
-                    brubaworld
-                  </p>
-                  <h3 className="font-display font-bold text-white text-xl leading-snug">
-                    Paris em 5 Dias: Guia para a Primeira Viagem
-                  </h3>
-                </div>
-              </div>
-              <p className="font-jakarta font-light text-preto/55 text-xs mt-3">
-                Clique para ir ao checkout seguro
-              </p>
-            </a>
           </div>
         </section>
 
         {/* FAQ */}
-        <section className="bg-preto py-20 md:py-28 px-5 md:px-10">
-          <div className="max-w-4xl mx-auto">
-            <span className="font-jakarta font-medium text-sm text-offwhite/40 uppercase tracking-widest">
+        <section className="bg-manteigaSoft py-16 md:py-24 px-5 md:px-10">
+          <div className="max-w-3xl mx-auto">
+            <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
               dúvidas
             </span>
-            <h2 className="font-display font-bold text-offwhite text-3xl md:text-5xl leading-tight mt-3 mb-10">
+            <h2 className="font-display font-bold text-grafite text-3xl md:text-4xl leading-tight mt-3 mb-9">
               Perguntas frequentes.
             </h2>
             <FAQ />
           </div>
         </section>
-
       </main>
       <Footer />
     </>
