@@ -117,15 +117,46 @@ export async function POST(request: NextRequest) {
   const data = dataISO ? dataISO.slice(0, 10) : new Date().toISOString().slice(0, 10);
 
   try {
-    // 4. Se esse pedido já foi lançado, não duplica.
-    if (pedido) {
+    // 4. Lê o schema para descobrir os nomes reais das colunas.
+    //    A coluna de título muda de nome conforme quem criou a base.
+    const schemaRes = await fetch(
+      `https://api.notion.com/v1/databases/${FINANCEIRO_ID}`,
+      { headers: HEADERS }
+    );
+    if (!schemaRes.ok) {
+      const detalhe = await schemaRes.text();
+      console.error("[kiwify] Não consegui ler a base:", detalhe);
+      return NextResponse.json({ error: "notion", detalhe }, { status: 500 });
+    }
+    const schema = await schemaRes.json();
+    const props: Record<string, { name: string; type: string }> = schema.properties;
+
+    /** Acha uma coluna pelo tipo ou por qualquer um dos nomes aceitos. */
+    const achar = (nomes: string[], tipo?: string) =>
+      Object.values(props).find(
+        (p) =>
+          (tipo ? p.type === tipo : true) &&
+          (nomes.length === 0 ||
+            nomes.some((n) => n.toLowerCase() === p.name.toLowerCase()))
+      );
+
+    const colTitulo = achar([], "title");
+    const colData = achar(["Data"], "date");
+    const colTipo = achar(["Tipo"], "select");
+    const colCategoria = achar(["Categoria", "Origem"], "select");
+    const colValor = achar(["Valor"], "number");
+    const colRecebimento = achar(["Recebimento"], "select");
+    const colPedido = achar(["ID do pedido"], "rich_text");
+
+    // 5. Se esse pedido já foi lançado, não duplica.
+    if (pedido && colPedido) {
       const busca = await fetch(
         `https://api.notion.com/v1/databases/${FINANCEIRO_ID}/query`,
         {
           method: "POST",
           headers: HEADERS,
           body: JSON.stringify({
-            filter: { property: "ID do pedido", rich_text: { equals: pedido } },
+            filter: { property: colPedido.name, rich_text: { equals: pedido } },
             page_size: 1,
           }),
         }
@@ -139,23 +170,28 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 5. Cria o lançamento.
+    // 6. Monta o lançamento só com as colunas que existem de verdade.
     const descricao = cliente ? `${produto} — ${cliente}` : produto;
+    const properties: Record<string, unknown> = {};
+
+    if (colTitulo)
+      properties[colTitulo.name] = { title: [{ text: { content: descricao } }] };
+    if (colData) properties[colData.name] = { date: { start: data } };
+    if (colTipo) properties[colTipo.name] = { select: { name: "Entrada" } };
+    if (colCategoria)
+      properties[colCategoria.name] = { select: { name: "Guia pronto" } };
+    if (colValor) properties[colValor.name] = { number: valor };
+    if (colRecebimento)
+      properties[colRecebimento.name] = { select: { name: "Kiwify" } };
+    if (colPedido && pedido)
+      properties[colPedido.name] = { rich_text: [{ text: { content: pedido } }] };
 
     const res = await fetch("https://api.notion.com/v1/pages", {
       method: "POST",
       headers: HEADERS,
       body: JSON.stringify({
         parent: { database_id: FINANCEIRO_ID },
-        properties: {
-          "Descrição": { title: [{ text: { content: descricao } }] },
-          Data: { date: { start: data } },
-          Tipo: { select: { name: "Entrada" } },
-          Categoria: { select: { name: "Guia pronto" } },
-          Valor: { number: valor },
-          Recebimento: { select: { name: "Kiwify" } },
-          "ID do pedido": { rich_text: [{ text: { content: pedido } }] },
-        },
+        properties,
       }),
     });
 
