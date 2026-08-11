@@ -7,8 +7,6 @@ import PreviaGuia from "@/components/PreviaGuia";
 // Cor do botão por cidade: os dois guias de Paris dividem o rosa da marca,
 // e o guia que junta as duas capitais recebe metade de cada cor.
 const BOTAO_PARIS = "bg-rosa hover:bg-rosaDeep";
-// Usado pelo guia Paris e Londres, que está temporariamente fora do ar.
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const BOTAO_PARIS_LONDRES =
   "bg-[linear-gradient(90deg,#F2277E_0%,#F2277E_50%,#5B7C99_50%,#5B7C99_100%)] hover:brightness-95";
 
@@ -43,22 +41,21 @@ const guias = [
     corBotao: BOTAO_PARIS,
     emBreve: false,
   },
-  // Paris e Londres está fora do ar temporariamente (pendência na Kiwify).
-  // Para voltar, basta descomentar este bloco.
-  // {
-  //   id: "paris-londres-1-semana",
-  //   badge: "Guia de Viagem",
-  //   titulo: "Paris e Londres em 1 Semana",
-  //   subtitulo: "duas capitais, um roteiro completo",
-  //   transformacao: "Sua semana entre Paris e Londres organizada passo a passo.",
-  //   precoRiscado: "R$ 129,90",
-  //   preco: "R$ 89,90",
-  //   href: "/roteiros/paris-londres-1-semana",
-  //   etiquetaFoto: "Big Ben, Londres",
-  //   gradiente: "linear-gradient(160deg, #C3D6D9 0%, #9FB6BE 55%, #7B93A6 100%)",
-  //   corBotao: BOTAO_PARIS_LONDRES,
-  //   emBreve: false,
-  // },
+  {
+    id: "paris-londres-1-semana",
+    badge: "Guia de Viagem",
+    titulo: "Paris e Londres em 1 Semana",
+    subtitulo: "duas capitais, um roteiro completo",
+    transformacao: "Sua semana entre Paris e Londres organizada passo a passo.",
+    precoRiscado: "R$ 129,90",
+    preco: "R$ 89,90",
+    href: "/roteiros/paris-londres-1-semana",
+    // FOTO: capa do guia, horizontal
+    etiquetaFoto: "Big Ben, Londres",
+    gradiente: "linear-gradient(160deg, #C3D6D9 0%, #9FB6BE 55%, #7B93A6 100%)",
+    corBotao: BOTAO_PARIS_LONDRES,
+    emBreve: false,
+  },
   {
     id: "em-breve-1",
     badge: "Novo guia",
