@@ -4,7 +4,14 @@ const NOTION_API_KEY = process.env.NOTION_API_KEY;
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
 const NOTION_VERSION = "2022-06-28";
 
-type NotionProperty = { id: string; name: string; type: string };
+type OpcaoStatus = { id: string; name: string };
+type NotionProperty = {
+  id: string;
+  name: string;
+  type: string;
+  status?: { options?: OpcaoStatus[] };
+  select?: { options?: OpcaoStatus[] };
+};
 
 /**
  * Normaliza o nome de uma propriedade para comparação:
@@ -125,6 +132,22 @@ export async function POST(request: NextRequest) {
     const schema = await schemaRes.json();
     const schemaProps: Record<string, NotionProperty> = schema.properties ?? {};
 
+    // Descobre o nome REAL da primeira etapa do funil, em vez de confiar
+    // num texto fixo. Um espaço a mais no Notion já quebrava o envio inteiro.
+    const statusProp = Object.values(schemaProps).find((p) => p.type === "status");
+    const opcoes = statusProp?.status?.options ?? [];
+    const etapaInicial =
+      opcoes.find((o) => normalize(o.name) === normalize("Lead Novo"))?.name ??
+      opcoes[0]?.name ??
+      "";
+
+    if (opcoes.length && !opcoes.some((o) => o.name === "Lead Novo")) {
+      console.warn(
+        `[lead] "Lead Novo" não bate exatamente. Usando "${etapaInicial}". ` +
+          `Opções no Notion: ${opcoes.map((o) => `"${o.name}"`).join(", ")}`
+      );
+    }
+
     // 2. Casa cada campo do formulário com a propriedade correspondente.
     //    Os apelidos cobrem variações de escrita para o mapeamento não quebrar
     //    se alguém renomear a coluna no Notion.
@@ -141,9 +164,8 @@ export async function POST(request: NextRequest) {
       { aliases: ["Observações", "Observacoes", "Notas"], value: observacoes || "" },
       { aliases: ["Instagram", "Insta"], value: instagram || "" },
       { aliases: ["Email", "E-mail"], value: email || "" },
-      // Primeira coluna do funil no CRM. Se esse nome mudar no Notion,
-      // precisa mudar aqui também, senão o lead chega sem status.
-      { aliases: ["Status"], value: "Lead Novo" },
+      // Primeira coluna do funil, lida do próprio Notion logo acima.
+      { aliases: ["Status"], value: etapaInicial },
     ];
 
     const properties: Record<string, unknown> = {};
@@ -167,22 +189,89 @@ export async function POST(request: NextRequest) {
     }
 
     // 4. Cria a página.
-    const response = await fetch("https://api.notion.com/v1/pages", {
-      method: "POST",
-      headers,
-      body: JSON.stringify({
-        parent: { database_id: NOTION_DATABASE_ID },
-        properties,
-      }),
-    });
+    const criar = (props: Record<string, unknown>) =>
+      fetch("https://api.notion.com/v1/pages", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          parent: { database_id: NOTION_DATABASE_ID },
+          properties: props,
+        }),
+      });
 
+    let response = await criar(properties);
+
+    // 5. Se o Notion recusou alguma propriedade, tenta de novo com o mínimo.
+    //    Perder um lead é muito pior do que perder um campo do lead.
     if (!response.ok) {
-      const details = await response.text();
-      console.error("[lead] Erro da API do Notion:", details);
-      return NextResponse.json(
-        { error: "Notion API error.", details },
-        { status: 500 }
-      );
+      const detalhe = await response.text();
+      console.error("[lead] Notion recusou o envio completo:", detalhe);
+      console.error("[lead] Campos enviados:", Object.keys(properties).join(", "));
+
+      const essencial: Record<string, unknown> = {};
+      if (titleProp) {
+        essencial[titleProp.name] = { title: [{ text: { content: name } }] };
+      }
+      // Telefone e destino são o que a Bruba precisa para responder.
+      for (const chave of ["Número", "Numero", "Telefone", "Destino Desejado", "Destino"]) {
+        const prop = findProperty(schemaProps, [chave]);
+        if (!prop || essencial[prop.name]) continue;
+        const valor = chave.startsWith("Destino") ? destino : phone;
+        const built = buildValue(prop.type, valor);
+        if (built) essencial[prop.name] = built;
+      }
+      // O resto do que foi preenchido vai no corpo da página, para nada se perder.
+      const resumo = [
+        `Telefone: ${phone}`,
+        `Destino: ${destino}`,
+        age ? `Idade: ${age}` : "",
+        primeiraVez ? `Primeira vez: ${primeiraVez}` : "",
+        dataEstimada ? `Quando pretende ir: ${dataEstimada}` : "",
+        observacoes ? `Observações: ${observacoes}` : "",
+        instagram ? `Instagram: ${instagram}` : "",
+        email ? `Email: ${email}` : "",
+      ]
+        .filter(Boolean)
+        .join("\n");
+
+      response = await fetch("https://api.notion.com/v1/pages", {
+        method: "POST",
+        headers,
+        body: JSON.stringify({
+          parent: { database_id: NOTION_DATABASE_ID },
+          properties: essencial,
+          children: [
+            {
+              object: "block",
+              type: "callout",
+              callout: {
+                rich_text: [
+                  {
+                    text: {
+                      content:
+                        "Alguns campos não puderam ser gravados nas colunas. Dados completos:\n\n" +
+                        resumo,
+                    },
+                  },
+                ],
+                icon: { emoji: "⚠️" },
+              },
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        const detalhe2 = await response.text();
+        console.error("[lead] Falhou até no modo mínimo:", detalhe2);
+        return NextResponse.json(
+          { error: "Notion API error.", details: detalhe2 },
+          { status: 500 }
+        );
+      }
+
+      console.warn("[lead] Salvo em modo mínimo. Confira o card no Notion.");
+      return NextResponse.json({ success: true, parcial: true }, { status: 200 });
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
