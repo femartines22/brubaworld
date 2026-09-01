@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { guardarCopia } from "@/lib/backupLead";
 
 const NOTION_API_KEY = process.env.NOTION_API_KEY;
 const NOTION_DATABASE_ID = process.env.NOTION_DATABASE_ID;
@@ -68,16 +69,6 @@ function buildValue(type: string, value: string) {
 }
 
 export async function POST(request: NextRequest) {
-  if (!NOTION_API_KEY || !NOTION_DATABASE_ID) {
-    console.error(
-      "[lead] Variáveis do Notion ausentes. Confira NOTION_API_KEY e NOTION_DATABASE_ID."
-    );
-    return NextResponse.json(
-      { error: "Notion credentials are not configured." },
-      { status: 500 }
-    );
-  }
-
   const data = await request.json();
   const {
     name,
@@ -107,6 +98,33 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: "Missing required fields." }, { status: 400 });
   }
 
+  // Guarda a cópia ANTES de falar com o Notion. Se a integração estiver fora,
+  // o lead ainda chega por e-mail em vez de se perder.
+  const temCopia = await guardarCopia({
+    name,
+    phone,
+    destino,
+    age,
+    primeiraVez,
+    dataEstimada,
+    observacoes,
+    instagram,
+    email,
+  });
+
+  if (!NOTION_API_KEY || !NOTION_DATABASE_ID) {
+    console.error(
+      "[lead] Variáveis do Notion ausentes. Confira NOTION_API_KEY e NOTION_DATABASE_ID."
+    );
+    // Com cópia garantida, o lead não se perdeu: pode mostrar sucesso.
+    return temCopia
+      ? NextResponse.json({ success: true, apenasCopia: true }, { status: 200 })
+      : NextResponse.json(
+          { error: "Notion credentials are not configured." },
+          { status: 500 }
+        );
+  }
+
   const headers = {
     Authorization: `Bearer ${NOTION_API_KEY}`,
     "Content-Type": "application/json",
@@ -123,6 +141,9 @@ export async function POST(request: NextRequest) {
     if (!schemaRes.ok) {
       const details = await schemaRes.text();
       console.error("[lead] Falha ao ler o schema do banco:", details);
+      if (temCopia) {
+        return NextResponse.json({ success: true, apenasCopia: true }, { status: 200 });
+      }
       return NextResponse.json(
         { error: "Não foi possível ler o banco do Notion.", details },
         { status: 500 }
@@ -264,6 +285,9 @@ export async function POST(request: NextRequest) {
       if (!response.ok) {
         const detalhe2 = await response.text();
         console.error("[lead] Falhou até no modo mínimo:", detalhe2);
+        if (temCopia) {
+          return NextResponse.json({ success: true, apenasCopia: true }, { status: 200 });
+        }
         return NextResponse.json(
           { error: "Notion API error.", details: detalhe2 },
           { status: 500 }
