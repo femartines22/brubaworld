@@ -32,14 +32,10 @@ const inter = Inter({
   weight: ["400", "500", "600"],
 });
 
-// Números (preços, contadores, dias do guia).
-// Hoje é a própria Inter. Quando a licença web da Bootzy chegar, trocar
-// esta constante por next/font/local apontando para public/fonts/bootzy/.
-const numeros = Inter({
-  subsets: ["latin"],
-  variable: "--font-num",
-  weight: ["600", "700"],
-});
+// Números (preços, contadores, dias do guia) usam a própria Inter, pela classe
+// font-num do Tailwind. Quando a licença web da Bootzy chegar, criar aqui uma
+// constante com next/font/local (variable "--font-num") e apontar font-num para ela
+// em tailwind.config.ts.
 
 const TITULO = "brubaworld — Roteiros de viagem por quem já viveu cada destino";
 const DESCRICAO =
@@ -83,7 +79,7 @@ export default function RootLayout({
   return (
     <html
       lang="pt-BR"
-      className={`${fraunces.variable} ${instrumentSerif.variable} ${inter.variable} ${numeros.variable} ${syne.variable}`}
+      className={`${fraunces.variable} ${instrumentSerif.variable} ${inter.variable} ${syne.variable}`}
     >
       <body className="antialiased font-jakarta bg-creme text-grafite">{children}</body>
     </html>

@@ -38,3 +38,6 @@ next-env.d.ts
 .vercel
 .vercel_backup
 .env*
+
+# artefatos da skill de design
+.taste-skill/

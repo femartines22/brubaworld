@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { lugarVisitado } from "@/data/destinos";
 
 type FormState = {
   // obrigatórios
@@ -89,30 +90,27 @@ export default function FormularioLead() {
     }
   };
 
+  // Se o destino digitado é um lugar onde a Bruba já esteve, o formulário avisa.
+  const visitado = lugarVisitado(form.destino);
+
   const inputClass =
-    "w-full bg-creme border border-grafite/10 text-grafite font-jakarta text-[15px] px-4 py-3 rounded-xl placeholder-cinzaClaro focus:outline-none focus:border-rosa focus:bg-white transition-all duration-200";
+    "w-full bg-creme border border-transparent text-grafite font-jakarta text-[1.0625rem] px-4 py-3 rounded-lg placeholder-cinza focus:outline-none focus:border-rosa focus:bg-white transition-colors duration-200";
 
   const labelClass =
-    "block font-jakarta font-medium text-[13px] text-cinza mb-1.5";
+    "block font-jakarta font-medium text-sm text-grafite mb-1.5";
 
   if (status === "success") {
     return (
-      <div className="bg-white rounded-3xl border border-grafite/5 p-8 md:p-10 text-center">
+      <div className="bg-white rounded-2xl p-8 md:p-10 text-center">
         <svg
           viewBox="0 0 64 64"
           className="w-14 h-14 mx-auto mb-5"
           role="img"
           aria-label="Ilustração de um avião de papel"
         >
-          <defs>
-            <linearGradient id="aviao-lead" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#F7E455" />
-              <stop offset="100%" stopColor="#F2277E" />
-            </linearGradient>
-          </defs>
           <path
             d="M58 8 L6 28 L24 36 L32 54 L42 34 Z"
-            fill="url(#aviao-lead)"
+            fill="#F2277E"
             stroke="#2B2B2B"
             strokeOpacity="0.3"
             strokeWidth="1.6"
@@ -120,13 +118,13 @@ export default function FormularioLead() {
           />
           <path d="M58 8 L24 36" fill="none" stroke="#2B2B2B" strokeOpacity="0.25" strokeWidth="1.6" />
         </svg>
-        <h3 className="font-display font-bold text-grafite text-2xl mb-3">Recebi!</h3>
-        <p className="font-jakarta text-cinza leading-relaxed">
+        <h3 className="font-display font-bold text-grafite text-[1.875rem] mb-3">Recebi!</h3>
+        <p className="font-jakarta text-grafite text-[1.0625rem] leading-relaxed">
           Recebi seus dados! Em breve vou entrar em contato com você no WhatsApp.
         </p>
         <button
           onClick={() => setStatus("idle")}
-          className="mt-6 inline-flex items-center gap-2 border border-grafite/20 text-grafite font-jakarta font-medium text-sm px-5 py-2.5 rounded-full hover:border-grafite/50 transition-all"
+          className="botao botao-tinta mt-6"
         >
           enviar outro
         </button>
@@ -135,11 +133,11 @@ export default function FormularioLead() {
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-grafite/5 p-6 md:p-8">
-      <h3 className="font-display font-bold text-grafite text-xl md:text-2xl mb-1">
+    <div className="bg-white rounded-2xl p-5 md:p-8">
+      <h4 className="font-display font-bold text-grafite text-[1.25rem] md:text-[1.875rem] leading-tight mb-2">
         Me conta um pouco sobre você
-      </h3>
-      <p className="font-jakarta text-cinza text-sm mb-6">
+      </h4>
+      <p className="font-jakarta text-grafite text-[1.0625rem] mb-6">
         Respondo pessoalmente, em até 2 horas.
       </p>
 
@@ -190,19 +188,22 @@ export default function FormularioLead() {
             value={form.destino}
             onChange={handleChange}
             className={inputClass}
+            aria-describedby="destino-visitado"
           />
+          <p id="destino-visitado" aria-live="polite" className="font-jakarta font-medium text-rosaDeep text-sm min-h-[1.25rem] mt-2">
+            {visitado && (
+              <span className="inline-flex items-center gap-1.5">
+                <svg viewBox="0 0 16 16" className="w-4 h-4" aria-hidden="true"><path d="M3 8.5l3.2 3L13 4.5" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                Eu já estive em {visitado}.
+              </span>
+            )}
+          </p>
         </div>
 
-        {/* Divisor */}
-        <div className="flex items-center gap-3 pt-2">
-          <span className="h-px flex-1 bg-grafite/10" />
-          <span className="font-jakarta font-medium text-[10px] uppercase tracking-[0.18em] text-cinzaClaro whitespace-nowrap">
-            opcional
-          </span>
-          <span className="h-px flex-1 bg-grafite/10" />
-        </div>
+        {/* Parte opcional */}
+        <p className="font-jakarta font-semibold text-grafite text-sm pt-3">opcional</p>
 
-        <p className="font-jakarta text-cinzaClaro text-[13px] -mt-1">
+        <p className="font-jakarta text-cinza text-sm -mt-2">
           Se quiser, me conta mais sobre você. Ajuda a montar seu roteiro.
         </p>
 
@@ -313,12 +314,12 @@ export default function FormularioLead() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="w-full bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosaDeep transition-colors duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-1"
+          className="botao botao-rosa w-full mt-1 disabled:opacity-60 disabled:cursor-not-allowed"
         >
           {status === "sending" ? "Enviando..." : "enviar meus dados"}
         </button>
 
-        <p className="font-jakarta text-cinzaClaro text-[11px] text-center">
+        <p className="font-jakarta text-cinza text-sm text-center">
           Sem spam. Seus dados são só pra montar seu roteiro.
         </p>
       </form>

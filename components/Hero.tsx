@@ -1,65 +1,69 @@
-"use client";
+import Listras from "@/components/Listras";
 
-import { useEffect, useRef } from "react";
+// Cartão de abertura: metade esquerda da tela no computador, ao lado da foto da Bruba.
+// No celular vem logo abaixo da foto, subindo 24px por cima dela.
+const LINKS = [
+  { label: "Sobre", href: "#sobre" },
+  { label: "Países", href: "#paises" },
+  { label: "Roteiros", href: "#roteiros" },
+  { label: "Avaliações", href: "#avaliacoes" },
+];
 
 export default function Hero() {
-  const revealRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = revealRef.current;
-    if (!el) return;
-    setTimeout(() => el.classList.add("visible"), 100);
-  }, []);
-
   return (
-    <section className="relative bg-creme pt-32 pb-20 md:pt-40 md:pb-28 px-5 md:px-10 overflow-hidden">
-      {/* Textura sutil de grão, para o creme não ficar chapado demais */}
-      <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-        }}
-        aria-hidden="true"
-      />
+    <section
+      id="inicio"
+      aria-labelledby="titulo-home"
+      className="relative z-10 -mt-6 lg:mt-0 bg-manteigaClara rounded-2xl overflow-hidden flex flex-col lg:min-h-[calc(100svh-48px)]"
+    >
+      <Listras className="h-10 lg:h-14" />
 
-      <div className="relative z-10 max-w-6xl mx-auto">
-        <div ref={revealRef} className="reveal max-w-[720px]">
-          {/* Kicker */}
-          <div className="inline-flex items-center gap-2 border border-dashed border-rosa/40 text-rosaDeep font-jakarta font-medium text-[11px] uppercase tracking-[0.18em] px-4 py-2 rounded-full mb-8">
-            <span className="w-1.5 h-1.5 rounded-full bg-rosa inline-block" />
-            concierge de viagens
-          </div>
+      <div className="flex-1 flex flex-col items-center justify-center text-center px-4 pt-7 pb-7 lg:px-12 lg:py-16">
+        <p
+          className="entrada font-display font-bold text-grafite text-[1.25rem] lg:text-[2.75rem] tracking-[-0.02em] leading-none"
+        >
+          bruba<span className="font-script italic font-normal text-rosaDeep">world</span>
+        </p>
 
-          {/* Título */}
-          <h1 className="font-display font-bold text-grafite text-[2.75rem] sm:text-6xl lg:text-7xl leading-[1.05] tracking-[-0.02em] mb-6">
-            Roteiros feitos
-            <br />
-            por quem já <span className="font-script italic text-rosa">viveu</span>.
-          </h1>
+        <h1
+          id="titulo-home"
+          className="entrada entrada-2 font-display font-bold text-grafite text-[2rem] sm:text-[2.6rem] lg:text-[clamp(2.75rem,4.2vw,4.25rem)] leading-[1.02] tracking-[-0.025em] mt-5 lg:mt-12"
+        >
+          Roteiros feitos
+          <br />
+          por quem já viveu.
+        </h1>
 
-          {/* Subtítulo */}
-          <p className="font-jakarta text-cinza text-lg md:text-xl max-w-xl mb-10 leading-relaxed">
-            Viagens vividas de verdade, direto pra você.
-            <br className="hidden sm:block" /> Chega de roteiro que serve pra qualquer um.
-          </p>
+        <p
+          className="entrada entrada-3 font-jakarta text-grafite text-[1.0625rem] lg:text-[1.25rem] leading-[1.55] max-w-[36ch] mt-6"
+        >
+          Viagens vividas de verdade, direto pra você. Chega de roteiro que serve pra
+          qualquer um.
+        </p>
 
-          {/* CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3">
-            <a
-              href="#roteiros"
-              className="inline-flex items-center justify-center gap-2 bg-rosa text-white font-jakarta font-semibold text-base px-8 py-4 rounded-full hover:bg-rosaDeep transition-colors duration-200"
-            >
-              quero meu roteiro →
-            </a>
-            <a
-              href="#sobre"
-              className="inline-flex items-center justify-center gap-2 border border-grafite/25 text-grafite font-jakarta font-medium text-base px-8 py-4 rounded-full hover:border-grafite/60 hover:bg-grafite/5 transition-all duration-200"
-            >
-              conhecer a bruba
-            </a>
-          </div>
+        <div
+          className="entrada entrada-4 flex flex-col sm:flex-row gap-3 mt-7 lg:mt-9 w-full sm:w-auto"
+        >
+          <a href="#form-personalizado" className="botao botao-rosa">
+            quero um roteiro sob medida
+          </a>
+          <a href="#roteiros" className="botao botao-tinta">
+            ver guias prontos
+          </a>
         </div>
       </div>
+
+      <nav aria-label="Seções da página" className="pb-7 lg:pb-8 px-4">
+        <ul className="flex flex-wrap justify-center gap-x-7 gap-y-2">
+          {LINKS.map((l) => (
+            <li key={l.href}>
+              <a href={l.href} className="link-sublinhado font-jakarta font-medium text-[1.0625rem] text-grafite">
+                {l.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </section>
   );
 }

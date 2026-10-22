@@ -1,137 +1,106 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
 import FormularioLead from "@/components/FormularioLead";
+import { guias } from "@/data/guias";
 
-type Aba = "prontos" | "sobMedida";
-
+// Os dois jeitos de viajar, lado a lado em dois campos de cor que se encostam.
+// O sob medida ocupa o campo maior e traz o formulário sempre à vista (é a única
+// entrada de leads; esconder atrás de um clique já derrubou conversão).
 export default function ComoViajar() {
-  const ref = useRef<HTMLElement>(null);
-  const [aba, setAba] = useState<Aba>("prontos");
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 120);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
-  const abaBtn = (ativa: boolean) =>
-    `font-jakarta font-medium text-sm px-5 py-2.5 rounded-full transition-all duration-200 ${
-      ativa ? "bg-grafite text-white" : "text-cinza hover:text-grafite"
-    }`;
-
   return (
     <section
       id="como-viajar"
-      ref={ref}
-      className="scroll-mt-24 bg-creme py-20 md:py-28 px-5 md:px-10"
+      aria-labelledby="titulo-como-viajar"
+      className="scroll-mt-6 py-24 lg:py-40"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="reveal mb-10">
-          <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
-            como viajar com a bruba
-          </span>
-          <h2 className="font-display font-bold text-grafite text-4xl md:text-5xl leading-tight mt-3">
-            Dois jeitos de viajar com a Bruba.
-          </h2>
-        </div>
+      <h2
+        id="titulo-como-viajar"
+        data-reveal
+        className="font-display font-bold text-grafite text-[1.875rem] lg:text-[2.75rem] leading-[1.06] tracking-[-0.02em] px-1 lg:px-12 mb-10 lg:mb-14"
+      >
+        Dois jeitos de viajar com a Bruba.
+      </h2>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Coluna esquerda: abas */}
-          <div className="reveal">
-            <div
-              role="tablist"
-              aria-label="Formas de viajar"
-              className="inline-flex items-center gap-1 bg-creme2 p-1 rounded-full mb-6"
-            >
-              <button
-                role="tab"
-                aria-selected={aba === "prontos"}
-                aria-controls="painel-prontos"
-                onClick={() => setAba("prontos")}
-                className={abaBtn(aba === "prontos")}
-              >
-                Guias Prontos
-              </button>
-              <button
-                role="tab"
-                aria-selected={aba === "sobMedida"}
-                aria-controls="painel-sob-medida"
-                onClick={() => setAba("sobMedida")}
-                className={abaBtn(aba === "sobMedida")}
-              >
-                Sob Medida
-              </button>
-            </div>
+      <div className="grid lg:grid-cols-12 rounded-2xl overflow-hidden">
+        {/* Sob medida: campo maior, primeiro no celular */}
+        <div
+          id="painel-sob-medida"
+          className="lg:order-2 lg:col-span-7 bg-rosaTint px-5 py-12 lg:p-16"
+        >
+          <h3
+            data-reveal
+            className="font-display font-bold text-grafite text-[1.25rem] lg:text-[1.875rem] leading-[1.1] tracking-[-0.015em]"
+          >
+            Roteiro pras suas datas, do seu jeito.
+          </h3>
+          <p
+            data-reveal
+            className="font-jakarta font-semibold text-rosaDeep text-[1.0625rem] mt-3"
+          >
+            construído do zero, só pra você
+          </p>
+          <p
+            data-reveal
+            className="font-jakarta text-grafite text-[1.0625rem] leading-[1.6] mt-3 max-w-[46ch]"
+          >
+            Você me conta os seus planos e eu monto o roteiro com você, com
+            acompanhamento direto pelo WhatsApp até fechar tudo certinho.
+          </p>
 
-            {/* Painel: Guias Prontos */}
-            {aba === "prontos" && (
-              <div
-                id="painel-prontos"
-                role="tabpanel"
-                className="bg-manteigaClara rounded-3xl p-7 md:p-9"
-              >
-                <span className="font-jakarta font-medium text-[11px] uppercase tracking-[0.16em] text-grafite/50">
-                  já escritos, testados por mim
-                </span>
-                <h3 className="font-display font-bold text-grafite text-2xl md:text-3xl leading-snug mt-3">
-                  Guia fechado, pro destino que eu já domino.
-                </h3>
-                <p className="font-jakarta text-grafite/70 text-base leading-relaxed mt-4">
-                  Você recebe na hora e segue o passo a passo já testado. Ideal pra quem
-                  quer partir logo, sem depender de troca de mensagem.
-                </p>
-                <a
-                  href="#roteiros"
-                  className="mt-7 inline-flex items-center justify-center gap-2 bg-grafite text-white font-jakarta font-semibold text-sm px-7 py-3.5 rounded-full hover:bg-grafite/85 transition-colors duration-200"
-                >
-                  ver guias →
-                </a>
-              </div>
-            )}
-
-            {/* Painel: Sob Medida */}
-            {aba === "sobMedida" && (
-              <div
-                id="painel-sob-medida"
-                role="tabpanel"
-                className="bg-rosaTint rounded-3xl p-7 md:p-9"
-              >
-                <span className="font-jakarta font-medium text-[11px] uppercase tracking-[0.16em] text-rosaDeep/60">
-                  construído do zero, só pra você
-                </span>
-                <h3 className="font-display font-bold text-grafite text-2xl md:text-3xl leading-snug mt-3">
-                  Roteiro pras suas datas, do seu jeito.
-                </h3>
-                <p className="font-jakarta text-grafite/70 text-base leading-relaxed mt-4">
-                  Você me conta os seus planos e eu monto o roteiro com você, com
-                  acompanhamento direto pelo WhatsApp até fechar tudo certinho.
-                </p>
-                {/* O formulário está ao lado no desktop e abaixo no celular */}
-                <p className="font-jakarta text-rosaDeep text-sm font-medium mt-6 lg:hidden">
-                  ↓ é só preencher aqui embaixo
-                </p>
-                <p className="font-jakarta text-rosaDeep text-sm font-medium mt-6 hidden lg:block">
-                  → é só preencher o formulário ao lado
-                </p>
-              </div>
-            )}
+          <div
+            id="form-personalizado"
+            data-reveal
+            className="scroll-mt-6 mt-10"
+          >
+            <FormularioLead />
           </div>
 
-          {/* Coluna direita: formulário */}
-          <div id="form-personalizado" className="reveal scroll-mt-24">
-            <FormularioLead />
+          {/* WHATSAPP: quando o número da Bruna chegar, o botão com mensagem pronta (wa.me) entra aqui, logo abaixo do formulário. */}
+        </div>
+
+        {/* Guias prontos: campo menor, com a lista e o preço de cada guia */}
+        <div className="lg:order-1 lg:col-span-5 bg-manteigaClara px-5 py-12 lg:p-16">
+          {/* No computador o conteúdo acompanha a rolagem, ao lado do formulário (que é mais alto) */}
+          <div className="lg:sticky lg:top-16">
+            <h3
+              data-reveal
+              className="font-display font-bold text-grafite text-[1.25rem] lg:text-[1.875rem] leading-[1.1] tracking-[-0.015em]"
+            >
+              Guia fechado, pro destino que eu já domino.
+            </h3>
+            <p
+              data-reveal
+              className="font-jakarta font-semibold text-grafite text-[1.0625rem] mt-3"
+            >
+              já escritos, testados por mim
+            </p>
+            <p
+              data-reveal
+              className="font-jakarta text-grafite text-[1.0625rem] leading-[1.6] mt-3 max-w-[40ch]"
+            >
+              Você recebe na hora e segue o passo a passo já testado. Ideal pra
+              quem quer partir logo, sem depender de troca de mensagem.
+            </p>
+
+            <ul data-reveal className="mt-10 space-y-2">
+              {guias.map((g) => (
+                <li key={g.id}>
+                  <a
+                    href={g.href}
+                    className="group flex items-baseline justify-between gap-4 rounded-lg px-4 py-3.5 -mx-4 hover:bg-manteiga/60 transition-colors duration-200"
+                  >
+                    <span className="font-display font-bold text-grafite text-[1.25rem] leading-tight group-hover:translate-x-1 transition-transform duration-200">
+                      {g.titulo}
+                    </span>
+                    <span className="font-num font-semibold text-grafite text-[1.0625rem] tabular-nums whitespace-nowrap">
+                      {g.preco}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <a data-reveal href="#roteiros" className="botao botao-tinta mt-8">
+              ver guias →
+            </a>
           </div>
         </div>
       </div>

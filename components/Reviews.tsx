@@ -1,7 +1,6 @@
-"use client";
-
-import { useEffect, useRef } from "react";
-
+// PROVISÓRIO: estes depoimentos são exemplos, não de clientes reais.
+// Ficam por decisão da Bruna até chegarem depoimentos de verdade (com autorização).
+// Pendência registrada: trocar antes de divulgar mais o site.
 const reviews = [
   {
     text: "O roteiro foi simplesmente perfeito. Cada detalhe fez sentido pra gente.",
@@ -26,59 +25,32 @@ const reviews = [
 ];
 
 export default function Reviews() {
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.querySelectorAll(".reveal").forEach((el, i) => {
-              setTimeout(() => el.classList.add("visible"), i * 100);
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
-
   return (
     <section
-      ref={ref}
       id="avaliacoes"
-      className="scroll-mt-24 bg-manteigaSoft py-12 md:py-16"
+      aria-labelledby="titulo-avaliacoes"
+      className="scroll-mt-6 bg-manteigaSoft rounded-2xl px-5 py-16 lg:px-12 lg:py-28"
     >
-      <div className="max-w-6xl mx-auto">
-        {/* Cabeçalho */}
-        <div className="reveal flex items-baseline justify-between gap-4 px-5 md:px-10 mb-5">
-          <span className="font-jakarta font-semibold text-[11px] text-rosaDeep uppercase tracking-[0.18em]">
-            quem já viajou
-          </span>
-          <span className="font-jakarta text-cinzaClaro text-xs whitespace-nowrap">
-            arraste pra ver mais →
-          </span>
-        </div>
+      <h2
+        id="titulo-avaliacoes"
+        data-reveal
+        className="font-display font-bold text-grafite text-[1.875rem] lg:text-[2.75rem] leading-[1.06] tracking-[-0.02em]"
+      >
+        Quem já viajou
+      </h2>
 
-        {/* Faixa com scroll horizontal */}
-        <div className="reveal flex gap-4 overflow-x-auto snap-x snap-mandatory px-5 md:px-10 pb-2 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {reviews.map((review) => (
-            <figure
-              key={review.name}
-              className="snap-start shrink-0 w-[260px] bg-white rounded-xl border border-grafite/5 p-5 flex flex-col"
-            >
-              <blockquote className="font-jakarta text-grafite text-sm leading-relaxed flex-1">
-                &ldquo;{review.text}&rdquo;
-              </blockquote>
-              <figcaption className="font-jakarta text-[13px] mt-4">
-                <span className="font-semibold text-grafite">{review.name}</span>
-                <span className="text-cinzaClaro"> · {review.destination}</span>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      <div className="grid md:grid-cols-2 gap-x-16 gap-y-12 mt-12 lg:mt-16">
+        {reviews.map((review) => (
+          <figure key={review.name} data-reveal>
+            <blockquote className="font-display font-semibold text-grafite text-[1.25rem] lg:text-[1.875rem] leading-[1.25] tracking-[-0.01em]">
+              <p>&ldquo;{review.text}&rdquo;</p>
+            </blockquote>
+            <figcaption className="font-jakarta text-[1.0625rem] mt-5">
+              <span className="font-semibold text-grafite">{review.name}</span>
+              <span className="text-cinza"> · {review.destination}</span>
+            </figcaption>
+          </figure>
+        ))}
       </div>
     </section>
   );

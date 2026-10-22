@@ -11,6 +11,9 @@ export default function CustomCursor() {
     const dot = dotRef.current;
     if (!cursor || !dot) return;
 
+    // Esconde o cursor do sistema só enquanto este cursor estiver na tela.
+    document.documentElement.classList.add("cursor-custom");
+
     let mouseX = 0;
     let mouseY = 0;
     let curX = 0;
@@ -43,6 +46,7 @@ export default function CustomCursor() {
     const raf = requestAnimationFrame(animate);
 
     return () => {
+      document.documentElement.classList.remove("cursor-custom");
       document.removeEventListener("mousemove", onMove);
       cancelAnimationFrame(raf);
     };

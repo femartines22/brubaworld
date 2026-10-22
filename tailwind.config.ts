@@ -36,9 +36,9 @@ const config: Config = {
         jakarta: ["var(--font-jakarta)", "sans-serif"],
         display: ["var(--font-display)", "serif"],
         script: ["var(--font-script)", "serif"],
-        // Números: Inter por enquanto. Quando a licença web da Bootzy chegar,
-        // basta trocar a fonte que alimenta --font-num em app/layout.tsx.
-        num: ["var(--font-num)", "sans-serif"],
+        // Números: a mesma Inter do corpo (carregar duas vezes contava como duas fontes).
+        // Quando a licença web da Bootzy chegar, trocar para ["var(--font-num)", ...].
+        num: ["var(--font-jakarta)", "sans-serif"],
       },
       keyframes: {
         blob: {

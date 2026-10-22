@@ -7,7 +7,10 @@
   --foreground: #111111;
 }
 
-* {
+/* O cursor personalizado agora só existe nas páginas de guia: o componente
+   CustomCursor coloca esta classe no <html> enquanto está na tela. */
+.cursor-custom,
+.cursor-custom * {
   cursor: none;
 }
 
@@ -22,7 +25,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Scroll reveal */
+/* Scroll reveal (páginas de guia) */
 .reveal {
   opacity: 0;
   transform: translateY(30px);
@@ -44,4 +47,128 @@ html {
 ::-webkit-scrollbar-thumb {
   background: #F2277E;
   border-radius: 3px;
+}
+
+/* ---------- Home ---------- */
+
+@layer components {
+  /* Um só formato de botão no site inteiro: pílula, cor chapada. */
+  .botao {
+    /* 19px em negrito: texto grande o bastante para o branco sobre o rosa da marca ser legível */
+    @apply inline-flex items-center justify-center gap-2 font-jakarta font-bold text-[1.1875rem] tracking-[-0.01em] leading-none whitespace-nowrap px-4 sm:px-7 py-[1.1rem] rounded-full;
+    transition: background-color 200ms ease, transform 160ms ease;
+  }
+  .botao:hover {
+    transform: translateY(-2px);
+  }
+  .botao:active {
+    transform: translateY(0) scale(0.98);
+  }
+  .botao:focus-visible,
+  .link-sublinhado:focus-visible,
+  .menu-rodape a:focus-visible {
+    outline: 3px solid #C81E5C;
+    outline-offset: 3px;
+  }
+  .botao-rosa {
+    @apply bg-rosa text-white hover:bg-rosaDeep;
+  }
+  .botao-tinta {
+    @apply bg-grafite text-white hover:bg-preto;
+  }
+
+  /* Link de texto: sublinhado que cresce no hover. */
+  .link-sublinhado {
+    background-image: linear-gradient(currentColor, currentColor); /* taste-skill-ignore: é o traço do sublinhado, não um degradê */
+    background-size: 0% 2px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 250ms ease, color 200ms ease;
+  }
+  .link-sublinhado:hover {
+    background-size: 100% 2px;
+    color: #C81E5C;
+  }
+
+  /* Menu do rodapé: o item sob o mouse anda para a direita, os outros clareiam. */
+  .menu-rodape a {
+    transition: transform 220ms ease, color 220ms ease;
+  }
+  .menu-rodape:hover a {
+    color: #746A5D;
+  }
+  .menu-rodape a:hover {
+    transform: translateX(12px);
+    color: #C81E5C;
+  }
+}
+
+/* Entrada das partes de cada seção (ver MotionLayer.tsx) */
+html.js-motion [data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 700ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    transform 700ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+html.js-motion [data-reveal].is-in,
+html.reveal-all [data-reveal] {
+  opacity: 1;
+  transform: none;
+}
+
+/* Abertura: chega em sequência e termina antes de 1,2s. Só CSS, não depende de script. */
+@keyframes entrada {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.entrada {
+  animation: entrada 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.entrada-2 {
+  animation-delay: 90ms;
+}
+.entrada-3 {
+  animation-delay: 180ms;
+}
+.entrada-4 {
+  animation-delay: 270ms;
+}
+
+/* A foto do palco se move devagar, como luz mudando num quarto. */
+@keyframes drift {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.07) translateY(-1.5%);
+  }
+}
+.anim-drift {
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  html.js-motion [data-reveal] {
+    transform: none;
+    transition: opacity 300ms ease;
+  }
+  .anim-drift {
+    animation: none;
+  }
+  .entrada {
+    animation: none;
+  }
+  .botao:hover,
+  .menu-rodape a:hover {
+    transform: none;
+  }
 }

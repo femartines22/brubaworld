@@ -5,7 +5,12 @@
  * clamp), nunca em pixel fixo. Com offset fixo, a página da esquerda saía da
  * viewport em telas de ~375px.
  */
-export default function PreviaGuia() {
+export default function PreviaGuia({ plano = false }: { plano?: boolean }) {
+  // plano: versão da home, sem sombra e com capa em cor chapada.
+  const sombraPagina = plano ? "" : "shadow-[0_20px_50px_-30px_rgba(43,43,43,0.55)]";
+  const sombraCapa = plano ? "" : "shadow-[0_26px_60px_-28px_rgba(43,43,43,0.6)]";
+  const rotulo = plano ? "normal-case tracking-normal" : "uppercase";
+  const fundoCapa = plano ? "#C81E5C" : "linear-gradient(165deg, #F3A97F 0%, #EE7E96 52%, #A96FA8 100%)";
   return (
     <div
       className="relative mx-auto flex items-end justify-center"
@@ -21,7 +26,7 @@ export default function PreviaGuia() {
     >
       {/* Página da esquerda */}
       <div
-        className="absolute bottom-0 bg-white rounded-lg shadow-[0_20px_50px_-30px_rgba(43,43,43,0.55)] origin-bottom-right"
+        className={`absolute bottom-0 bg-white rounded-lg ${sombraPagina} origin-bottom-right`}
         style={{
           width: "calc(var(--capa) * 0.82)",
           height: "calc(var(--capa) * 1.18)",
@@ -31,8 +36,8 @@ export default function PreviaGuia() {
         }}
       >
         <span
-          className="block font-jakarta font-semibold text-rosa uppercase tracking-[0.14em]"
-          style={{ fontSize: "calc(var(--capa) * 0.055)" }}
+          className={`block font-jakarta font-semibold text-rosaDeep tracking-[0.14em] ${rotulo}`}
+          style={{ fontSize: plano ? "calc(var(--capa) * 0.09)" : "calc(var(--capa) * 0.055)" }}
         >
           Dia 01
         </span>
@@ -49,7 +54,7 @@ export default function PreviaGuia() {
 
       {/* Página da direita */}
       <div
-        className="absolute bottom-0 bg-white rounded-lg shadow-[0_20px_50px_-30px_rgba(43,43,43,0.55)] origin-bottom-left"
+        className={`absolute bottom-0 bg-white rounded-lg ${sombraPagina} origin-bottom-left`}
         style={{
           width: "calc(var(--capa) * 0.82)",
           height: "calc(var(--capa) * 1.18)",
@@ -59,8 +64,8 @@ export default function PreviaGuia() {
         }}
       >
         <span
-          className="block font-jakarta font-semibold text-rosa uppercase tracking-[0.14em]"
-          style={{ fontSize: "calc(var(--capa) * 0.055)" }}
+          className={`block font-jakarta font-semibold text-rosaDeep tracking-[0.14em] ${rotulo}`}
+          style={{ fontSize: plano ? "calc(var(--capa) * 0.09)" : "calc(var(--capa) * 0.055)" }}
         >
           Dia 02
         </span>
@@ -77,17 +82,17 @@ export default function PreviaGuia() {
 
       {/* Capa, na frente */}
       <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 rounded-xl overflow-hidden flex flex-col items-center justify-center text-center shadow-[0_26px_60px_-28px_rgba(43,43,43,0.6)]"
+        className={`absolute bottom-0 left-1/2 -translate-x-1/2 rounded-xl overflow-hidden flex flex-col items-center justify-center text-center ${sombraCapa}`}
         style={{
           width: "var(--capa)",
           height: "calc(var(--capa) * 1.42)",
-          background: "linear-gradient(165deg, #F3A97F 0%, #EE7E96 52%, #A96FA8 100%)",
+          background: fundoCapa,
           padding: "calc(var(--capa) * 0.1)",
         }}
       >
         <span
-          className="font-jakarta font-medium text-white/70 uppercase tracking-[0.22em] leading-relaxed"
-          style={{ fontSize: "calc(var(--capa) * 0.05)" }}
+          className={`font-jakarta font-medium text-white tracking-[0.22em] leading-relaxed ${rotulo}`}
+          style={{ fontSize: plano ? "calc(var(--capa) * 0.085)" : "calc(var(--capa) * 0.05)" }}
         >
           Guia de viagem
         </span>
@@ -99,7 +104,7 @@ export default function PreviaGuia() {
         </span>
         <span
           className="font-script italic text-white/85 mt-2"
-          style={{ fontSize: "calc(var(--capa) * 0.075)" }}
+          style={{ fontSize: plano ? "calc(var(--capa) * 0.095)" : "calc(var(--capa) * 0.075)" }}
         >
           by bruba
         </span>
