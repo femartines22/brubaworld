@@ -5,7 +5,7 @@ import Marquee from "@/components/Marquee";
 import About from "@/components/About";
 import PaisesVisitados from "@/components/PaisesVisitados";
 import ComoViajar from "@/components/ComoViajar";
-import Carrossel from "@/components/Carrossel";
+import QuizDestino from "@/components/QuizDestino";
 import Reviews from "@/components/Reviews";
 import Footer from "@/components/Footer";
 
@@ -19,9 +19,10 @@ export default function Home() {
         <Marquee />
         <About />
         <PaisesVisitados />
-        {/* ComoViajar traz as abas e o formulário lado a lado */}
+        {/* ComoViajar traz as abas: Sob Medida (formulário) e Guias Prontos (cards dos guias) */}
         <ComoViajar />
-        <Carrossel />
+        {/* O resultado do quiz leva de volta pro formulário logo acima */}
+        <QuizDestino />
         <Reviews />
       </main>
       <Footer />

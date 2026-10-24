@@ -14,6 +14,7 @@ export default function Navbar() {
 
   const links = [
     { label: "Sobre", href: "#sobre" },
+    { label: "Pra onde ir?", href: "#quiz" },
     { label: "Roteiros", href: "#roteiros" },
     { label: "Avaliações", href: "#avaliacoes" },
   ];

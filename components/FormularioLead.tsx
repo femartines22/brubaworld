@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { EVENTO_QUERO_ROTEIRO, type PedidoRoteiro } from "@/lib/queroRoteiro";
 
 type FormState = {
   // obrigatórios
@@ -48,6 +49,17 @@ function formatPhone(value: string) {
 export default function FormularioLead() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [form, setForm] = useState<FormState>(FORM_VAZIO);
+
+  // Quem termina o quiz chega aqui com destino e respostas já preenchidos.
+  useEffect(() => {
+    const preencher = (e: Event) => {
+      const { destino, observacoes } = (e as CustomEvent<PedidoRoteiro>).detail;
+      setStatus("idle");
+      setForm((prev) => ({ ...prev, destino, observacoes }));
+    };
+    window.addEventListener(EVENTO_QUERO_ROTEIRO, preencher);
+    return () => window.removeEventListener(EVENTO_QUERO_ROTEIRO, preencher);
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>

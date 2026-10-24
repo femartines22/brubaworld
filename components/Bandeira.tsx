@@ -233,6 +233,106 @@ const BANDEIRAS: Record<string, React.ReactNode> = {
       <rect x="0" y="6.5" width={W} height="3" fill="#C8102E" />
     </>
   ),
+
+  // ---------- Extras usados no quiz de destinos ----------
+  Grécia: (
+    <>
+      {faixasH(["#0D5EAF", "#FFFFFF", "#0D5EAF", "#FFFFFF", "#0D5EAF", "#FFFFFF", "#0D5EAF", "#FFFFFF", "#0D5EAF"])}
+      <rect width="8.9" height="8.9" fill="#0D5EAF" />
+      <rect x="3.55" width="1.8" height="8.9" fill="#FFFFFF" />
+      <rect y="3.55" width="8.9" height="1.8" fill="#FFFFFF" />
+    </>
+  ),
+
+  Croácia: (
+    <>
+      {faixasH(["#FF0000", "#FFFFFF", "#171796"])}
+      <rect x="10" y="4" width="4" height="5" fill="#FF0000" />
+      <rect x="11" y="5" width="2" height="2.5" fill="#FFFFFF" />
+    </>
+  ),
+
+  Islândia: (
+    <>
+      <rect width={W} height={H} fill="#02529C" />
+      <rect x="6.5" width="4" height={H} fill="#FFFFFF" />
+      <rect y="6" width={W} height="4" fill="#FFFFFF" />
+      <rect x="7.5" width="2" height={H} fill="#DC1E35" />
+      <rect y="7" width={W} height="2" fill="#DC1E35" />
+    </>
+  ),
+
+  Turquia: (
+    <>
+      <rect width={W} height={H} fill="#E30A17" />
+      <circle cx="9" cy="8" r="4" fill="#FFFFFF" />
+      <circle cx="10" cy="8" r="3.2" fill="#E30A17" />
+      <circle cx="14.2" cy="8" r="1.2" fill="#FFFFFF" />
+    </>
+  ),
+
+  Marrocos: (
+    <>
+      <rect width={W} height={H} fill="#C1272D" />
+      <path
+        d="M12 4.6 L13.9 10.4 L9 6.8 L15 6.8 L10.1 10.4 Z"
+        fill="none"
+        stroke="#006233"
+        strokeWidth="0.8"
+        strokeLinejoin="round"
+      />
+    </>
+  ),
+
+  Japão: (
+    <>
+      <rect width={W} height={H} fill="#FFFFFF" />
+      <circle cx="12" cy="8" r="4.8" fill="#BC002D" />
+    </>
+  ),
+
+  Indonésia: <>{faixasH(["#CE1126", "#FFFFFF"])}</>,
+
+  Tailândia: (
+    <>
+      <rect width={W} height={H} fill="#A51931" />
+      <rect y="2.67" width={W} height="10.66" fill="#F4F5F8" />
+      <rect y="5.33" width={W} height="5.33" fill="#2D2A4A" />
+    </>
+  ),
+
+  Maldivas: (
+    <>
+      <rect width={W} height={H} fill="#D21034" />
+      <rect x="4" y="4" width="16" height="8" fill="#007E3A" />
+      <circle cx="12" cy="8" r="2.6" fill="#FFFFFF" />
+      <circle cx="12.9" cy="8" r="2.2" fill="#007E3A" />
+    </>
+  ),
+
+  "Emirados Árabes": (
+    <>
+      {faixasH(["#00732F", "#FFFFFF", "#000000"])}
+      <rect width="6" height={H} fill="#FF0000" />
+    </>
+  ),
+
+  México: (
+    <>
+      {faixasV(["#006847", "#FFFFFF", "#CE1126"])}
+      <circle cx="12" cy="8" r="1.8" fill="#8C6A3F" />
+    </>
+  ),
+
+  Peru: <>{faixasV(["#D91023", "#FFFFFF", "#D91023"])}</>,
+
+  Colômbia: (
+    <>
+      <rect width={W} height="8" fill="#FCD116" />
+      <rect y="8" width={W} height="4" fill="#003893" />
+      <rect y="12" width={W} height="4" fill="#CE1126" />
+    </>
+  ),
 };
 
 export default function Bandeira({
