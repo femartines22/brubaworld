@@ -125,9 +125,14 @@ export async function GET() {
     });
 
     // 4. Existe uma etapa inicial de funil para o lead cair?
-    const statusProp = Object.values(crm.corpo.properties ?? {}).find(
-      (p) => (p as { type: string }).type === "status"
-    ) as { name: string; status?: { options?: { name: string }[] } } | undefined;
+    // O CRM tem mais de uma coluna do tipo Status. A do funil é a que tem a etapa "Lead Novo".
+    type ColunaStatus = { name: string; type: string; status?: { options?: { name: string }[] } };
+    const colunasStatus = (Object.values(crm.corpo.properties ?? {}) as ColunaStatus[]).filter(
+      (p) => p.type === "status"
+    );
+    const statusProp =
+      colunasStatus.find((p) => (p.status?.options ?? []).some((o) => o.name.trim() === "Lead Novo")) ??
+      colunasStatus[0];
 
     const opcoes = statusProp?.status?.options ?? [];
     checagens.push({

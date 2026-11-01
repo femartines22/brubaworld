@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { EVENTO_QUERO_ROTEIRO, type PedidoRoteiro } from "@/lib/queroRoteiro";
+import { lerIndicacao } from "@/lib/indicacao";
 
 type FormState = {
   // obrigatórios
@@ -49,6 +50,12 @@ function formatPhone(value: string) {
 export default function FormularioLead() {
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
   const [form, setForm] = useState<FormState>(FORM_VAZIO);
+  const [indicacao, setIndicacao] = useState<string | null>(null);
+
+  // Quem chegou por um link de indicação (?ref=) ganha 15% no roteiro personalizado.
+  useEffect(() => {
+    setIndicacao(lerIndicacao());
+  }, []);
 
   // Quem termina o quiz chega aqui com destino e respostas já preenchidos.
   useEffect(() => {
@@ -87,6 +94,7 @@ export default function FormularioLead() {
         body: JSON.stringify({
           ...form,
           instagram: form.instagram.replace(/^@/, ""),
+          indicacao: indicacao ?? "",
         }),
       });
 
@@ -154,6 +162,12 @@ export default function FormularioLead() {
       <p className="font-jakarta text-cinza text-sm mb-6">
         Respondo pessoalmente, em até 2 horas.
       </p>
+
+      {indicacao && (
+        <p className="font-jakarta text-sm text-grafite bg-creme border border-rosa/30 rounded-xl px-4 py-3 mb-5">
+          Você chegou por indicação 💛 Seu roteiro personalizado sai com <strong>15% de desconto</strong>.
+        </p>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-4">
         {/* Obrigatórios */}

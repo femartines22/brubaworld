@@ -80,6 +80,7 @@ export async function POST(request: NextRequest) {
     observacoes,
     instagram,
     email,
+    indicacao,
   } = data as {
     name?: string;
     phone?: string;
@@ -90,7 +91,12 @@ export async function POST(request: NextRequest) {
     observacoes?: string;
     instagram?: string;
     email?: string;
+    indicacao?: string;
   };
+
+  // Código de indicação: só letras, números e hífen. Qualquer outra coisa é descartada.
+  const codigoIndicacao =
+    indicacao && /^[A-Z0-9-]{3,24}$/i.test(indicacao.trim()) ? indicacao.trim().toUpperCase() : "";
 
   // Só nome, telefone e destino são obrigatórios. Os demais campos
   // simplesmente não vão para o Notion quando chegam vazios.
@@ -155,7 +161,14 @@ export async function POST(request: NextRequest) {
 
     // Descobre o nome REAL da primeira etapa do funil, em vez de confiar
     // num texto fixo. Um espaço a mais no Notion já quebrava o envio inteiro.
-    const statusProp = Object.values(schemaProps).find((p) => p.type === "status");
+    // O CRM tem mais de uma coluna do tipo Status. A do funil é a que tem a etapa "Lead Novo".
+    const colunasStatus = Object.values(schemaProps).filter((p) => p.type === "status");
+    const statusProp =
+      colunasStatus.find((p) =>
+        (p.status?.options ?? []).some((o) => normalize(o.name) === normalize("Lead Novo"))
+      ) ??
+      colunasStatus.find((p) => normalize(p.name) === normalize("Status")) ??
+      colunasStatus[0];
     const opcoes = statusProp?.status?.options ?? [];
     const etapaInicial =
       opcoes.find((o) => normalize(o.name) === normalize("Lead Novo"))?.name ??
@@ -185,8 +198,9 @@ export async function POST(request: NextRequest) {
       { aliases: ["Observações", "Observacoes", "Notas"], value: observacoes || "" },
       { aliases: ["Instagram", "Insta"], value: instagram || "" },
       { aliases: ["Email", "E-mail"], value: email || "" },
+      { aliases: ["Indicada por", "Indicado por", "Indicação"], value: codigoIndicacao },
       // Primeira coluna do funil, lida do próprio Notion logo acima.
-      { aliases: ["Status"], value: etapaInicial },
+      { aliases: [statusProp?.name ?? "Status"], value: etapaInicial },
     ];
 
     const properties: Record<string, unknown> = {};
@@ -251,6 +265,7 @@ export async function POST(request: NextRequest) {
         observacoes ? `Observações: ${observacoes}` : "",
         instagram ? `Instagram: ${instagram}` : "",
         email ? `Email: ${email}` : "",
+        codigoIndicacao ? `Indicada por: ${codigoIndicacao}` : "",
       ]
         .filter(Boolean)
         .join("\n");

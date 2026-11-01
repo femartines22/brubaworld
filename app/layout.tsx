@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Instrument_Serif, Inter, Syne } from "next/font/google";
 import "./globals.css";
+import CapturaIndicacao from "@/components/CapturaIndicacao";
 
 // Syne continua carregada porque as páginas internas de roteiro ainda a usam.
 // O redesign editorial vale só para a Home.
@@ -85,7 +86,10 @@ export default function RootLayout({
       lang="pt-BR"
       className={`${fraunces.variable} ${instrumentSerif.variable} ${inter.variable} ${numeros.variable} ${syne.variable}`}
     >
-      <body className="antialiased font-jakarta bg-creme text-grafite">{children}</body>
+      <body className="antialiased font-jakarta bg-creme text-grafite">
+        <CapturaIndicacao />
+        {children}
+      </body>
     </html>
   );
 }
